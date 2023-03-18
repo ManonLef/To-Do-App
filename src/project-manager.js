@@ -23,8 +23,14 @@ class Project {
   }
 }
 
+// create a new Project
+function newProject(projectName) {
+  const project = new Project(projectName)
+  return project
+}
+
 // default project = inbox
-const inbox = new Project("inbox");
+const inbox = newProject("inbox");
 
 export default function addTaskToInbox(task) {
   inbox.tasks = task;
@@ -32,6 +38,8 @@ export default function addTaskToInbox(task) {
   console.log(inbox.name, inbox.tasks) // logs all tasks currently inside this project
   console.log(inbox.tasks[0].title); // logs title of first tasks
 }
+
+
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
