@@ -30,25 +30,33 @@ const projects = []
 function newProject(projectName) {
   const project = new Project(projectName)
   projects.push(project)
-  console.log(projects)
   return project
 }
 
 // default project = inbox
 const inbox = newProject("inbox");
 
-export default function addTaskToInbox(task) {
+function addTaskToInbox(task) {
   inbox.tasks = task;
-  // test setter
-  console.log(inbox.name, inbox.tasks) // logs all tasks currently inside this project
-  console.log(inbox.tasks[0].title); // logs title of first tasks
 }
 
+function addTaskToNewProject(task, project) {
+  newProject(project);
+  projects[projects.length-1].tasks = task
+}
 
+function addTaskToProject(task, project) {
+  // if undefined or inbox; put in inbox, 
+  if (project === "inbox" || !project) {
+    addTaskToInbox(task)
+  } else {
+    addTaskToNewProject(task, project)
+  }
+  console.log({projects})
+}
+
+export { addTaskToProject }
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-newProject("Project1")
-newProject("Project 2")
-newProject("project 3")
