@@ -16,8 +16,11 @@ class Project {
   get projectName() {
     return this.name;
   }
-
-  set projectName
+  // change project name
+  
+  set projectName(newName) {
+    this.name = newName;
+  }
 }
 
 // default project = inbox
@@ -27,7 +30,7 @@ export default function addTaskToInbox(task) {
   inbox.tasks = task;
   // test setter
   console.log(inbox.name, inbox.tasks) // logs all tasks currently inside this project
-  console.log(inbox.tasks[0]['title']); // logs title of first tasks
+  console.log(inbox.tasks[0].title); // logs title of first tasks
 }
 
 //  --------------------------------------------------------------------------
