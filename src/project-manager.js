@@ -23,9 +23,14 @@ class Project {
   }
 }
 
+// all projects
+const projects = []
+
 // create a new Project
 function newProject(projectName) {
   const project = new Project(projectName)
+  projects.push(project)
+  console.log(projects)
   return project
 }
 
@@ -40,9 +45,10 @@ export default function addTaskToInbox(task) {
 }
 
 
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-
+newProject("Project1")
+newProject("Project 2")
+newProject("project 3")
