@@ -12,15 +12,26 @@ class Project {
   set tasks(add) {
     this.projectTasks.push(add);
   }
+
+  get projectName() {
+    return this.name;
+  }
+
+  set projectName
+}
+
+// default project = inbox
+const inbox = new Project("inbox");
+
+export default function addTaskToInbox(task) {
+  inbox.tasks = task;
+  // test setter
+  console.log(inbox.name, inbox.tasks) // logs all tasks currently inside this project
+  console.log(inbox.tasks[0]['title']); // logs title of first tasks
 }
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-const inbox = new Project("inbox");
 
-inbox.tasks = "do stuff";
-inbox.tasks = "do more stuff";
-
-console.log(inbox.name, inbox.tasks)
