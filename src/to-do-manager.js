@@ -1,5 +1,5 @@
 import taskInfo from "./input-collector";
-import { addTaskToProject } from "./project-manager";
+import addTaskToProject from "./project-manager";
 
 // todo Class creates default todo with multiple properties
 class Task {
@@ -24,6 +24,32 @@ function createTask(info) {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-createTask(taskInfo);
-createTask(["this task should go to inbox", "no", "maybe", "someday", "inbox"]);
-createTask(["this task should go into project 1", "f", "f", "g", "project 1"]);
+createTask(taskInfo); // this task has no project assigned and should end up in the inbox
+createTask([
+  "this task should go to inbox",
+  "it's a pretty awesome inbox task",
+  "none",
+  "low",
+  "inbox",
+]);
+createTask([
+  "this will go into the bin project",
+  "it's binny",
+  "tomorrow",
+  "high",
+  "bin",
+]);
+createTask([
+  "hug a tree",
+  "this task is for instagram hug a tree day",
+  "before hug a tree day",
+  "low",
+  "insta",
+]);
+createTask([
+  "empty project should end in inbox",
+  "",
+  "",
+  "",
+  "",
+]);

@@ -45,17 +45,21 @@ function addTaskToNewProject(task, project) {
   projects[projects.length-1].tasks = task
 }
 
-function addTaskToProject(task, project) {
+export default function addTaskToProject(task, project) {
   // if undefined or inbox; put in inbox, 
+  // NOTE, there will be other options already previously made.
+  // Eventually these need to be accounted for.
+  // We also want to limit if else if I recall correctly from SOLID
+
+  // add check for existing project name
   if (project === "inbox" || !project) {
     addTaskToInbox(task)
   } else {
     addTaskToNewProject(task, project)
   }
-  console.log({projects})
+  console.table(projects)
 }
 
-export { addTaskToProject }
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
