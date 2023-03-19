@@ -28,16 +28,21 @@ function createTask(info) {
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-// displays all tasks regardless of project 
+// displays all tasks regardless of project
 function returnAllTasks() {
+  // example filter1 returnAllTasks(task)
+  // // example filter1 this function could be passed an argument and return only what's asked
   const allProjects = getProjects();
+  const allTasks = [];
   console.log("made it inside displayAllTasks function");
   for (let i = 0; i < allProjects.length; i += 1) {
     // for each project, display each task in it
     for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
-      console.table(allProjects[i].projectTasks[j].task);
+      allTasks.push(allProjects[i].projectTasks[j]); // example filter1 with just title: allTasks.push(allProjects[i].projectTasks[j].task)
     }
   }
+  console.table(allTasks);
+  return allTasks;
 }
 
 //  --------------------------------------------------------------------------

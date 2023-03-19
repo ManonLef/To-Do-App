@@ -45,7 +45,7 @@ For later:
 - I added a check for existing project not being inbox. The addTask to project function now does have a bunch of if/else which I think is not desirable. Will have to ponder an alternative setup. 
 
 Things to probably create:
-- [ ] function to remove a project
-- [ ] function to return all tasks
+- [x] function to remove a project
+- [x] function to return all tasks
 - [ ] function to remove a task from a project
 - [ ] getters and setters for every task property
