@@ -45,19 +45,28 @@ function addTaskToNewProject(task, project) {
   projects[projects.length - 1].tasks = task;
 }
 
-export default function addTaskToProject(task, project) {
-  // if undefined or inbox; put in inbox,
-  // NOTE, there will be other options already previously made.
-  // Eventually these need to be accounted for.
-  // We also want to limit if else if I recall correctly from SOLID
+// check if project already exists:
+function checkProject(project) {
+  // projects are stored inside the const projects
+  // check if the project array contains the project
+  for (let i = 0; i < projects.length; i++) {
+    // if there's a match with the name, return the project index inside array
+    if (project === projects[i].name) {
+      return i;
+    }
+  }
+  return false;
+}
 
-  // add check for existing project name
+function addTaskToProject(task, project) {
   if (project === "inbox" || !project) {
     addTaskToInbox(task);
+  } else if (checkProject(project)) {
+    const index = checkProject(project);
+    projects[index].tasks = task;
   } else {
     addTaskToNewProject(task, project);
   }
-  // console.table(projects[0].tasks)
 }
 
 //  --------------------------------------------------------------------------
@@ -70,4 +79,4 @@ function showProjects() {
   }
 }
 
-export { showProjects };
+export { showProjects, addTaskToProject };

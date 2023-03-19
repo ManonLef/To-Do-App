@@ -1,6 +1,5 @@
 import taskInfo from "./input-collector";
-import addTaskToProject from "./project-manager";
-import { showProjects } from "./project-manager";
+import { showProjects, addTaskToProject } from "./project-manager";
 
 // todo Class creates default todo with multiple properties
 class Task {
@@ -42,6 +41,20 @@ createTask([
 ]);
 createTask([
   "hug a tree",
+  "this task is for instagram hug a tree day",
+  "before hug a tree day",
+  "low",
+  "insta",
+]);
+createTask([
+  "insta 2",
+  "this task is for instagram hug a tree day",
+  "before hug a tree day",
+  "low",
+  "insta",
+]);
+createTask([
+  "insta 3",
   "this task is for instagram hug a tree day",
   "before hug a tree day",
   "low",
