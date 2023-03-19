@@ -49,7 +49,7 @@ function addTaskToNewProject(task, project) {
 function checkProject(project) {
   // projects are stored inside the const projects
   // check if the project array contains the project
-  for (let i = 0; i < projects.length; i++) {
+  for (let i = 0; i < projects.length; i += 1) {
     // if there's a match with the name, return the project index inside array
     if (project === projects[i].name) {
       return i;
@@ -71,7 +71,7 @@ function addTaskToProject(task, project) {
 
 // UI output helper functions
 function showAllProjectNames() {
-  for (let i = 0; i < projects.length; i++) {
+  for (let i = 0; i < projects.length; i += 1) {
     console.log(
       `TEST function showAllProjectNames. Currently on run ${i} ${projects[i].projectName}`
     );
@@ -87,7 +87,7 @@ function removeProject(index) {
 //  --------------------------------------------------------------------------
 
 function showProjectsTEST() {
-  for (let i = 0; i < projects.length; i++) {
+  for (let i = 0; i < projects.length; i += 1) {
     console.log(
       `TEST function show projects and their tasks in a table. Currently on run ${i}`
     );

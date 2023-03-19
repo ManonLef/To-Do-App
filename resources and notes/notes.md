@@ -39,7 +39,13 @@ To be honest I'm massively intimidated by this project. Not because of the proje
 
 For later: 
 - [x] for the addTaskToProject function, add some sort of check if the project is an existing one, not being inbox.
-- [ ] consider some sort of controller inbetween. Tasks get sent there, it decides how it should be sent to the project manager. It should probably have access to some kind of storage module as well where all the projects are stored.
+- [ ] consider some sort of controller in between. Tasks get sent there, it decides how it should be sent to the project manager. It should probably have access to some kind of storage module as well where all the projects are stored.
 
 ## 20230319 
 - I added a check for existing project not being inbox. The addTask to project function now does have a bunch of if/else which I think is not desirable. Will have to ponder an alternative setup. 
+
+Things to probably create:
+- [ ] function to remove a project
+- [ ] function to return all tasks
+- [ ] function to remove a task from a project
+- [ ] getters and setters for every task property
