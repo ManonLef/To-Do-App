@@ -33,4 +33,10 @@ To be honest I'm massively intimidated by this project. Not because of the proje
 ### UI/viewport module
 - will contain all the DOM stuff
 
-### 
+## End of day
+- I have mostly worked on the project and task module.
+- the tasks get created in the to-do-manager module and are then sent to the project-manager module for further processing.
+
+For later: 
+- [ ] for the addTaskToProject function, add some sort of check if the project is an existing one, not being inbox.
+- [ ] consider some sort of controller inbetween. Tasks get sent there, it decides how it should be sent to the project manager. It should probably have access to some kind of storage module as well where all the projects are stored.
