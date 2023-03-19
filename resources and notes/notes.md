@@ -49,3 +49,7 @@ Things to probably create:
 - [x] function to return all tasks
 - [ ] function to remove a task from a project
 - [ ] getters and setters for every task property
+
+## 20230319-2
+- I made a basic form to play around a bit with ui 
+- [ ] set task project to inbox when none defined.
