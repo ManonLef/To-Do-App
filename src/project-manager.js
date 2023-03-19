@@ -72,10 +72,16 @@ function addTaskToProject(task, project) {
 // UI output helper functions
 function showAllProjectNames() {
   for (let i = 0; i < projects.length; i++) {
-    console.log("TEST function showAllProjectNames. Currently on run " + i + " " + projects[i].projectName);
+    console.log(
+      `TEST function showAllProjectNames. Currently on run ${i} ${projects[i].projectName}`
+    );
   }
 }
 
+function removeProject(index) {
+  console.log(`splicing out the project at index number ${index}`);
+  return projects.splice(index, 1);
+}
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -83,11 +89,11 @@ function showAllProjectNames() {
 function showProjectsTEST() {
   for (let i = 0; i < projects.length; i++) {
     console.log(
-      "TEST function show projects and their tasks in a table. Currently on run " + i
+      `TEST function show projects and their tasks in a table. Currently on run ${i}`
     );
     console.table(projects[i].tasks);
   }
   showAllProjectNames();
 }
 
-export { showProjectsTEST, addTaskToProject };
+export { showProjectsTEST, addTaskToProject, removeProject };
