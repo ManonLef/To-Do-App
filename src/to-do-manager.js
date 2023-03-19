@@ -2,13 +2,13 @@ import taskInfo from "./input-collector";
 import {
   showProjectsTEST,
   addTaskToProject,
-  removeProject,
+  getProjects,
 } from "./project-manager";
 
 // todo Class creates default todo with multiple properties
 class Task {
-  constructor(title, description, dueDate, priority, project) {
-    this.title = title;
+  constructor(task, description, dueDate, priority, project) {
+    this.task = task;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
@@ -22,6 +22,22 @@ function createTask(info) {
   const newTask = new Task(info[0], info[1], info[2], info[3], info[4]);
   // test
   addTaskToProject(newTask, info[4]);
+}
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+// displays all tasks regardless of project 
+function returnAllTasks() {
+  const allProjects = getProjects();
+  console.log("made it inside displayAllTasks function");
+  for (let i = 0; i < allProjects.length; i += 1) {
+    // for each project, display each task in it
+    for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
+      console.table(allProjects[i].projectTasks[j].task);
+    }
+  }
 }
 
 //  --------------------------------------------------------------------------
@@ -68,7 +84,8 @@ createTask(["empty project should end in inbox", "", "", "", ""]);
 
 // testing functions
 showProjectsTEST();
+returnAllTasks();
 
-// testing the removeProject functionality from project-manager
-removeProject(0);
-showProjectsTEST();
+// // testing the removeProject functionality from project-manager
+// removeProject(0);
+// showProjectsTEST();

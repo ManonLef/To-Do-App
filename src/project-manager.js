@@ -82,6 +82,17 @@ function removeProject(index) {
   console.log(`splicing out the project at index number ${index}`);
   return projects.splice(index, 1);
 }
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function getProjects() {
+  const projectMirror = projects;
+  console.log(`this is the project mirror function running ${projectMirror}`);
+  return projectMirror;
+}
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -96,4 +107,8 @@ function showProjectsTEST() {
   showAllProjectNames();
 }
 
-export { showProjectsTEST, addTaskToProject, removeProject };
+//  --------------------------------------------------------------------------
+//  ||||||||||||||||||||||||||||||| • Exports • ||||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+export { showProjectsTEST, addTaskToProject, removeProject, getProjects };
