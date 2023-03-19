@@ -1,5 +1,6 @@
 import taskInfo from "./input-collector";
 import addTaskToProject from "./project-manager";
+import { showProjects } from "./project-manager";
 
 // todo Class creates default todo with multiple properties
 class Task {
@@ -46,10 +47,6 @@ createTask([
   "low",
   "insta",
 ]);
-createTask([
-  "empty project should end in inbox",
-  "",
-  "",
-  "",
-  "",
-]);
+createTask(["empty project should end in inbox", "", "", "", ""]);
+
+showProjects();
