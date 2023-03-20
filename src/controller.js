@@ -1,5 +1,6 @@
-import { createTask, returnAllTasks } from "./to-do-manager";
-import { showProjectsTEST, addTaskToProject } from "./project-manager";
+import { createTask } from "./to-do-manager";
+import { showProjectsTEST, addTaskToProject, getProjects } from "./project-manager";
+
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;
@@ -24,6 +25,18 @@ function workflowNewTask() {
   // test
   // - controller will send this data to the project manager to store it in the correct project. controller > project module
   return addTaskToProject(newTask, project);
+}
+
+function returnAllTasks() {
+  const allProjects = getProjects();
+  const allTasks = [];
+  for (let i = 0; i < allProjects.length; i += 1) {
+    for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
+      allTasks.push(allProjects[i].projectTasks[j]); 
+    }
+  }
+  console.table(allTasks);
+  return allTasks;
 }
 
 document.querySelector("button").addEventListener("click", () => {

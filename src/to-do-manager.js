@@ -1,5 +1,3 @@
-import { getProjects } from "./project-manager";
-
 class Task {
   constructor(task, description, dueDate, priority, project) {
     this.task = task;
@@ -10,17 +8,7 @@ class Task {
   }
 }
 
-function returnAllTasks() {
-  const allProjects = getProjects();
-  const allTasks = [];
-  for (let i = 0; i < allProjects.length; i += 1) {
-    for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
-      allTasks.push(allProjects[i].projectTasks[j]); 
-    }
-  }
-  console.table(allTasks);
-  return allTasks;
-}
+
 
 function createTask(taskdata) {
   const taskDetails = taskdata;
