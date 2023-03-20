@@ -1,9 +1,4 @@
-import {
-  showProjectsTEST,
-  addTaskToProject,
-  getProjects,
-} from "./project-manager";
-import getTaskFromForm from "./view"
+import { getProjects } from "./project-manager";
 
 class Task {
   constructor(task, description, dueDate, priority, project) {
@@ -27,17 +22,13 @@ function returnAllTasks() {
   return allTasks;
 }
 
-function createTask() {
-  const taskDetails = getTaskFromForm();
+function createTask(taskdata) {
+  const taskDetails = taskdata;
   const newTask = new Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3], taskDetails[4]);
-  addTaskToProject(newTask, taskDetails[4]);
-  // for testing only
-  showProjectsTEST();
-  returnAllTasks();
+  return newTask;
 }
 
-document.querySelector("button").addEventListener("click", createTask)
-
+export {createTask, returnAllTasks}
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
