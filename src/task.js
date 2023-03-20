@@ -1,5 +1,5 @@
 class Task {
-  constructor(task, description, dueDate, priority, project) {
+  constructor([task, description, dueDate, priority, project]) {
     this.task = task;
     this.description = description;
     this.dueDate = dueDate;
@@ -8,68 +8,4 @@ class Task {
   }
 }
 
-
-
-function createTask(taskdata) {
-  const taskDetails = taskdata;
-  const newTask = new Task(taskDetails[0], taskDetails[1], taskDetails[2], taskDetails[3], taskDetails[4]);
-  return newTask;
-}
-
-export {createTask}
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-// createTask(taskInfo); // this task has no project assigned and should end up in the inbox
-// createTask([
-//   "this task should go to inbox",
-//   "it's a pretty awesome inbox task",
-//   "none",
-//   "low",
-//   "inbox",
-// ]);
-// createTask([
-//   "this will go into the bin project",
-//   "it's binny",
-//   "tomorrow",
-//   "high",
-//   "bin",
-// ]);
-// createTask([
-//   "hug a tree",
-//   "this task is for instagram hug a tree day",
-//   "before hug a tree day",
-//   "low",
-//   "insta",
-// ]);
-// createTask([
-//   "insta 2",
-//   "this task is for instagram hug a tree day",
-//   "before hug a tree day",
-//   "low",
-//   "insta",
-// ]);
-// createTask([
-//   "insta 3",
-//   "this task is for instagram hug a tree day",
-//   "before hug a tree day",
-//   "low",
-//   "insta",
-// ]);
-// createTask(["empty project should end in inbox", "", "", "", ""]);
-
-// // testing functions
-// showProjectsTEST();
-// returnAllTasks();
-
-// // testing the removeProject functionality from project-manager
-// removeProject(0);
-// showProjectsTEST();
-
+export {Task}
