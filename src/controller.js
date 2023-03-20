@@ -1,6 +1,5 @@
-import { createTask } from "./to-do-manager";
-import { showProjectsTEST, addTaskToProject, getProjects } from "./project-manager";
-
+import { createTask } from "./task";
+import { showProjectsTEST, addTaskToProject, getProjects } from "./project";
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;

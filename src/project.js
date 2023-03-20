@@ -1,9 +1,8 @@
 class Project {
   constructor(name) {
     this.name = name;
+    this.projectTasks = [];
   }
-
-  projectTasks = [];
 
   get tasks() {
     return this.projectTasks;
@@ -16,8 +15,7 @@ class Project {
   get projectName() {
     return this.name;
   }
-  // change project name
-
+  
   set projectName(newName) {
     this.name = newName;
   }
@@ -111,4 +109,4 @@ function showProjectsTEST() {
 //  ||||||||||||||||||||||||||||||| • Exports • ||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-export { showProjectsTEST, addTaskToProject, removeProject, getProjects };
+export { showProjectsTEST, addTaskToProject, removeProject, getProjects, Project };

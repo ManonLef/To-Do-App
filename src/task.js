@@ -16,7 +16,7 @@ function createTask(taskdata) {
   return newTask;
 }
 
-export {createTask, returnAllTasks}
+export {createTask}
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
