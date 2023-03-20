@@ -1,4 +1,4 @@
-import { createTask } from "./task";
+import { Task } from "./task";
 import { showProjectsTEST, addTaskToProject, getProjects } from "./project";
 
 function getTaskFromForm() {
@@ -19,7 +19,7 @@ function workflowNewTask() {
   const taskData = getTaskFromForm(); // will be an array of data
   // - array will be used to create a task > controller > to do module
   // - to do module will send back the created task to the controller > to do module > controller
-  const newTask = createTask(taskData) // will be a new task object
+  const newTask = new Task(taskData) // will be a new task object
   const project = newTask.project;
   // test
   // - controller will send this data to the project manager to store it in the correct project. controller > project module
