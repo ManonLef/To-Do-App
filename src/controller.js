@@ -5,7 +5,7 @@ import Project from "./project";
 class Storage {
   constructor(name) {
     this.name = name;
-    this.projects = [new Project("inbox"), new Project("noob")];
+    this.projects = [new Project("default"), new Project("noob")];
   }
 
   get allProjects() {
@@ -13,7 +13,7 @@ class Storage {
   }
 
   set newProject(project) {
-    this.projects.push(project);
+    this.projects.push(new Project(project));
   }
 
 }
@@ -32,11 +32,12 @@ function getTaskFromForm() {
 }
 
 function addTaskToProject(task) {
+  // check to see if project already exists
   const index = _.findIndex(storage.projects, { name: task.project });
   if (index >= 0) {
     storage.projects[index].tasks = task;
   } else {
-    storage.newProject = new Project(task.project);
+    storage.newProject = (task.project);
     storage.projects[storage.projects.length - 1].tasks = task;
   }
 }
