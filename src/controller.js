@@ -47,6 +47,14 @@ function workflowNewTask() {
   return addTaskToProject(newTask);
 }
 
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 function returnAllTasks() {
   const allProjects = getProjects();
   const allTasks = [];
@@ -59,36 +67,24 @@ function returnAllTasks() {
   return allTasks;
 }
 
-function addTaskToNewProject(task, project) {
-  storage.newProject = new Project(project);
-  storage.allProjects[storage.allProjects.length - 1].tasks = task;
-}
-
-// check if project already exists:
-
-// UI output helper functions
-
-function removeProject(index) {
-  console.log(`splicing out the project at index number ${index}`);
-  return storage.projects.splice(index, 1);
-}
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
 function getProjects() {
   const projectMirror = storage.projects;
   console.log(`this is the project mirror function running ${projectMirror}`);
   return projectMirror;
 }
 
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
+function removeProject(index) {
+  console.log(`splicing out the project at index number ${index}`);
+  return storage.projects.splice(index, 1);
+}
+
+function addTaskToNewProject(task, project) {
+  storage.newProject = new Project(project);
+  storage.allProjects[storage.allProjects.length - 1].tasks = task;
+}
 
 //  --------------------------------------------------------------------------
-//  ||||||||||||||||||||||||||||||| • Exports • ||||||||||||||||||||||||||||||
+//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
