@@ -4,7 +4,7 @@ import Project from "./project";
 class Storage {
   constructor(name) {
     this.name = name;
-    this.projects = [];
+    this.projects = [(new Project("inbox")), (new Project("noob"))];
   }
 
   get allProjects() {
@@ -17,12 +17,8 @@ class Storage {
 
 }
 
+// default storage for testing
 const storage = new Storage("storage");
-
-storage.newProject = new Project("inbox")
-storage.newProject = new Project("noob");
-storage.newProject = new Project("mek");
-
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;
@@ -33,6 +29,8 @@ function getTaskFromForm() {
 
   return [task, description, due, prio, project];
 }
+
+
 
 function checkProject(project) {
   for (let i = 0; i < storage.projects.length; i += 1) {
@@ -45,7 +43,6 @@ function checkProject(project) {
 }
 
 
-
 function addTaskToProject(task) {
  if (checkProject(task.project)) {
     const index = checkProject(task.project);
@@ -53,41 +50,33 @@ function addTaskToProject(task) {
   } else if (task.project === "inbox") {
     storage.projects[0].tasks = task;
   } else {
-    // addTaskToNewProject(task, task.project);
     storage.newProject = new Project(task.project)
     storage.projects[storage.projects.length - 1].tasks = task;
   }
 }
 
+function workflowNewTask() {
+  const newTask = new Task(getTaskFromForm()); 
+  return addTaskToProject(newTask);
+}
+
+function returnAllTasks() {
+  const allProjects = getProjects();
+  const allTasks = [];
+  for (let i = 0; i < allProjects.length; i += 1) {
+    for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
+      allTasks.push(allProjects[i].projectTasks[j]);
+    }
+  }
+  console.table(allTasks);
+  return allTasks;
+}
+
+
 function addTaskToNewProject(task, project) {
   storage.newProject = new Project(project);
   storage.allProjects[storage.allProjects.length - 1].tasks = task;
 }
-
-function addTaskToInbox(task) {
-  storage.projects[0].tasks = task;
-}
-
-
-function workflowNewTask() {
-  const taskData = getTaskFromForm(); 
-  const newTask = new Task(taskData); 
-  return addTaskToProject(newTask);
-}
-
-
-
-// function returnAllTasks() {
-//   const allProjects = getProjects();
-//   const allTasks = [];
-//   for (let i = 0; i < allProjects.length; i += 1) {
-//     for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
-//       allTasks.push(allProjects[i].projectTasks[j]);
-//     }
-//   }
-//   console.table(allTasks);
-//   return allTasks;
-// }
 
 
 
@@ -120,9 +109,9 @@ function getProjects() {
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||||||||| • Exports • ||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
-  console.table(storage.allProjects);
-
+  returnAllTasks()
+  console.table(storage.projects);
+  console.log(storage.allProjects)
 });
