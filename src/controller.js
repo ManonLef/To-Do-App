@@ -1,10 +1,11 @@
+import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
 
 class Storage {
   constructor(name) {
     this.name = name;
-    this.projects = [(new Project("inbox")), (new Project("noob"))];
+    this.projects = [new Project("inbox"), new Project("noob")];
   }
 
   get allProjects() {
@@ -30,11 +31,9 @@ function getTaskFromForm() {
   return [task, description, due, prio, project];
 }
 
-
-
 function checkProject(project) {
   for (let i = 0; i < storage.projects.length; i += 1) {
-    console.log(storage.projects[i].name)
+    console.log(storage.projects[i].name);
     if (project === storage.projects[i].name) {
       return i;
     }
@@ -42,21 +41,18 @@ function checkProject(project) {
   return false;
 }
 
-
 function addTaskToProject(task) {
- if (checkProject(task.project)) {
-    const index = checkProject(task.project);
+  const index = _.findIndex(storage.projects, { name: task.project });
+  if (index >= 0) {
     storage.projects[index].tasks = task;
-  } else if (task.project === "inbox") {
-    storage.projects[0].tasks = task;
   } else {
-    storage.newProject = new Project(task.project)
+    storage.newProject = new Project(task.project);
     storage.projects[storage.projects.length - 1].tasks = task;
   }
 }
 
 function workflowNewTask() {
-  const newTask = new Task(getTaskFromForm()); 
+  const newTask = new Task(getTaskFromForm());
   return addTaskToProject(newTask);
 }
 
@@ -72,17 +68,12 @@ function returnAllTasks() {
   return allTasks;
 }
 
-
 function addTaskToNewProject(task, project) {
   storage.newProject = new Project(project);
   storage.allProjects[storage.allProjects.length - 1].tasks = task;
 }
 
-
-
-
 // check if project already exists:
-
 
 // UI output helper functions
 
@@ -105,13 +96,12 @@ function getProjects() {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||||||||| • Exports • ||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
-  returnAllTasks()
+  returnAllTasks();
   console.table(storage.projects);
-  console.log(storage.allProjects)
+  console.log(storage.allProjects);
 });
