@@ -31,16 +31,6 @@ function getTaskFromForm() {
   return [task, description, due, prio, project];
 }
 
-function checkProject(project) {
-  for (let i = 0; i < storage.projects.length; i += 1) {
-    console.log(storage.projects[i].name);
-    if (project === storage.projects[i].name) {
-      return i;
-    }
-  }
-  return false;
-}
-
 function addTaskToProject(task) {
   const index = _.findIndex(storage.projects, { name: task.project });
   if (index >= 0) {
