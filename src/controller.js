@@ -35,10 +35,10 @@ function addTaskToProject(task) {
   // check to see if project already exists
   const index = _.findIndex(storage.projects, { name: task.project });
   if (index >= 0) {
-    storage.projects[index].tasks = task;
+    return storage.projects[index].tasks = task;
   } else {
     storage.newProject = (task.project);
-    storage.projects[storage.projects.length - 1].tasks = task;
+    return storage.projects[storage.projects.length - 1].tasks = task;
   }
 }
 
@@ -55,6 +55,8 @@ function workflowNewTask() {
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+
+
 function returnAllTasks() {
   const allProjects = getProjects();
   const allTasks = [];
