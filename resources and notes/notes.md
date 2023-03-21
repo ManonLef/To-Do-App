@@ -53,3 +53,17 @@ Things to probably create:
 ## 20230319-2
 - I made a basic form to play around a bit with ui 
 - [ ] set task project to inbox when none defined.
+
+## 20230320
+After sleeping over the setup I still felt something was missing from my code. Some functions still end with calling another function. I feel like a pubsub kind of implementation would be nicer but instead of handling this with a plugin, I'd much rather set up a different way. And I'm thinking of implementing a controller that gathers information from the other modules and uses said information.
+
+### Pseudocode example a new task gets created:
+- User presses new task button and a form pops up > DOM
+- User enters details and hits submit > data entered will be transformed to an array > listener in controller?
+- array will be used to create a task > controller > to do module
+- to do module will send back the created task to the controller > to do module > controller
+- controller will send this data to the project manager to store it in the correct project. controller > project module
+
+### After pseudocode implementation
+- the above starts feeling very unintuitive. Perhaps I should start considering adding classes inside the projects upon creation. Which would basically mean someone should first create a project before tasks can be added to it. I'll try to rewrite it as such for that way the project could be filled with tasks from the project module only.
+
