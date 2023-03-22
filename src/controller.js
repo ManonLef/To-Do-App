@@ -2,10 +2,11 @@ import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
 
+
 class Storage {
   constructor(name) {
     this.name = name;
-    this.projects = [new Project("default"), new Project("noob")];
+    this.projects = [new Project("inbox")];
   }
 
   get allProjects() {
@@ -17,39 +18,40 @@ class Storage {
   }
 }
 
-// default storage for testing
 
 const storage = new Storage("storage");
+
+if (localStorage.getItem("array")) {
+  retrieveStore()
+  }
 
 function store() {
   localStorage.removeItem("array");
 
-  // const myArray = ['a', 'b', 'c', 'd'];
   const myStorage = storage.projects;
-
-  // convert array to JSON string using JSON.stringify()
-  // const jsonArray = JSON.stringify(myArray);
   const jsonArray = JSON.stringify(myStorage);
   console.log(jsonArray);
 
-  // save to localStorage using "array" as the key and jsonArray as the value
   localStorage.setItem("array", jsonArray);
+}
 
-  // get the JSON string from localStorage
-  const str = localStorage.getItem("array");
+function retrieveStore() {
+    // get the JSON string from localStorage
+    const str = localStorage.getItem("array");
 
-  // convert JSON string to relevant object
-  const parsedArray = JSON.parse(str);
-  console.log(parsedArray);
-  console.log("pparsed array above");
-  function returnProto() {
-    for (let i = 0; i < parsedArray.length; i++) {
-     Object.setPrototypeOf(parsedArray[i], Project.prototype);
+    // convert JSON string to relevant object
+    const parsedArray = JSON.parse(str);
+    console.log(parsedArray);
+  
+    function returnProto() {
+      for (let i = 0; i < parsedArray.length; i++) {
+       Object.setPrototypeOf(parsedArray[i], Project.prototype);
+      }
     }
-  }
-  returnProto()
-
-  return (storage.projects = parsedArray);
+  
+    returnProto()
+    console.log(parsedArray);
+    return (storage.projects = parsedArray);  
 }
 
 console.log(storage.projects);
