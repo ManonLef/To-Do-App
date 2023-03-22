@@ -15,11 +15,44 @@ class Storage {
   set newProject(project) {
     this.projects.push(new Project(project));
   }
-
 }
 
 // default storage for testing
+
 const storage = new Storage("storage");
+
+function store() {
+  localStorage.removeItem("array");
+
+  // const myArray = ['a', 'b', 'c', 'd'];
+  const myStorage = storage.projects;
+
+  // convert array to JSON string using JSON.stringify()
+  // const jsonArray = JSON.stringify(myArray);
+  const jsonArray = JSON.stringify(myStorage);
+  console.log(jsonArray);
+
+  // save to localStorage using "array" as the key and jsonArray as the value
+  localStorage.setItem("array", jsonArray);
+
+  // get the JSON string from localStorage
+  const str = localStorage.getItem("array");
+
+  // convert JSON string to relevant object
+  const parsedArray = JSON.parse(str);
+  console.log(parsedArray);
+  console.log("pparsed array above");
+  function returnProto() {
+    for (let i = 0; i < parsedArray.length; i++) {
+     Object.setPrototypeOf(parsedArray[i], Project.prototype);
+    }
+  }
+  returnProto()
+
+  return (storage.projects = parsedArray);
+}
+
+console.log(storage.projects);
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;
@@ -35,27 +68,27 @@ function addTaskToProject(task) {
   // check to see if project already exists
   const index = _.findIndex(storage.projects, { name: task.project });
   if (index >= 0) {
-    return storage.projects[index].tasks = task;
+    // Wouter: geef het object een moeder!
+    storage.projects[index].tasks = task;
   } else {
-    storage.newProject = (task.project);
-    return storage.projects[storage.projects.length - 1].tasks = task;
+    storage.newProject = task.project;
+    storage.projects[storage.projects.length - 1].tasks = task;
   }
+  store();
 }
 
 function workflowNewTask() {
   const newTask = new Task(getTaskFromForm());
-  return addTaskToProject(newTask);
+  addTaskToProject(newTask);
 }
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-
 
 function returnAllTasks() {
   const allProjects = getProjects();
