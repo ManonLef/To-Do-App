@@ -48,6 +48,7 @@ Things to probably create:
 - [x] function to remove a project
 - [x] function to return all tasks
 - [ ] function to remove a task from a project
+  - [ ] add task property unique id to accomplish this
 - [ ] getters and setters for every task property
 
 ## 20230319-2
@@ -67,3 +68,10 @@ After sleeping over the setup I still felt something was missing from my code. S
 ### After pseudocode implementation
 - the above starts feeling very unintuitive. Perhaps I should start considering adding classes inside the projects upon creation. Which would basically mean someone should first create a project before tasks can be added to it. I'll try to rewrite it as such for that way the project could be filled with tasks from the project module only.
 
+## 20230322 Local Storage Jump
+I have been working mostly on refactoring the code, worrying about closure, global storage, limiting cross dependency etc.
+
+All in all very happy about the progress the basic functionality was in place quite quickly. Some issues with local storage were to be expected:
+- the String parsing output the array of objects nicely. But the objects made from classes lost their prototype functions. This was rather quickly fixed by setting their prototype again.
+
+- [ ] Don't forget to remove dev mode for the final build
