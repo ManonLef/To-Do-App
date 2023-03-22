@@ -46,7 +46,7 @@ function retrieveStore() {
     function returnProto() {
       for (let i = 0; i < parsedArray.length; i++) {
        Object.setPrototypeOf(parsedArray[i], Project.prototype);
-       for (let j = 0; j < parsedArray[i].length; j++) {
+       for (let j = 0; j < parsedArray[i].projectTasks.length; j++) {
         Object.setPrototypeOf(parsedArray[i].projectTasks[j], Task.prototype);
        }
       }
