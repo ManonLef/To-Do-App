@@ -75,3 +75,7 @@ All in all very happy about the progress the basic functionality was in place qu
 - the String parsing output the array of objects nicely. But the objects made from classes lost their prototype functions. This was rather quickly fixed by setting their prototype again.
 
 - [ ] Don't forget to remove dev mode for the final build
+
+### UUID
+I'm looking into UUID generation. I am planning to use this uuid for targeting specific tasks eventually.
+- I decided to go for a simple `new Date().getTime().toString()` id creation. There are multiple uuid generators but I feel like it's overkill for this usage.
