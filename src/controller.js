@@ -1,9 +1,9 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
 
-
-class Storage {
+class Vault {
   constructor(name) {
     this.name = name;
     this.projects = [new Project("inbox")];
@@ -18,46 +18,40 @@ class Storage {
   }
 }
 
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 
-const storage = new Storage("storage");
+const vault = new Vault("vault");
 
-if (localStorage.getItem("array")) {
-  retrieveStore()
+function addPrototype(parsedArray) {
+  for (let i = 0; i < parsedArray.length; i += 1) {
+    Object.setPrototypeOf(parsedArray[i], Project.prototype);
+    for (let j = 0; j < parsedArray[i].projectTasks.length; j += 1) {
+      Object.setPrototypeOf(parsedArray[i].projectTasks[j], Task.prototype);
+    }
   }
+}
 
-function store() {
+function retrieveLocalStorage() {
+  if (localStorage.getItem("array")) {
+    const str = localStorage.getItem("array");
+    const parsedArray = JSON.parse(str);
+    addPrototype(parsedArray);
+    vault.projects = parsedArray;
+    console.log(vault.projects)
+    return vault.projects;
+  }
+  return "no local storage available";
+}
+
+function addToStorage() {
   localStorage.removeItem("array");
-
-  const myStorage = storage.projects;
+  const myStorage = vault.projects;
   const jsonArray = JSON.stringify(myStorage);
-  console.log(jsonArray);
-
   localStorage.setItem("array", jsonArray);
 }
-
-function retrieveStore() {
-    // get the JSON string from localStorage
-    const str = localStorage.getItem("array");
-
-    // convert JSON string to relevant object
-    const parsedArray = JSON.parse(str);
-    console.log(parsedArray);
-  
-    function returnProto() {
-      for (let i = 0; i < parsedArray.length; i++) {
-       Object.setPrototypeOf(parsedArray[i], Project.prototype);
-       for (let j = 0; j < parsedArray[i].projectTasks.length; j++) {
-        Object.setPrototypeOf(parsedArray[i].projectTasks[j], Task.prototype);
-       }
-      }
-    }
-  
-    returnProto()
-    console.log(parsedArray);
-    return (storage.projects = parsedArray);  
-}
-
-console.log(storage.projects);
+retrieveLocalStorage();
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;
@@ -70,22 +64,30 @@ function getTaskFromForm() {
 }
 
 function addTaskToProject(task) {
-  // check to see if project already exists
-  const index = _.findIndex(storage.projects, { name: task.project });
+  const index = _.findIndex(vault.projects, { name: task.project });
   if (index >= 0) {
-    // Wouter: geef het object een moeder!
-    storage.projects[index].tasks = task;
+    vault.projects[index].tasks = task;
   } else {
-    storage.newProject = task.project;
-    storage.projects[storage.projects.length - 1].tasks = task;
+    vault.newProject = task.project;
+    vault.projects[vault.projects.length - 1].tasks = task;
   }
-  store();
+  addToStorage();
 }
 
 function workflowNewTask() {
   const newTask = new Task(getTaskFromForm());
   addTaskToProject(newTask);
 }
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+document.querySelector("button").addEventListener("click", () => {
+  workflowNewTask();
+  console.table(vault.projects);
+  console.log(vault.allProjects);
+});
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
@@ -95,40 +97,25 @@ function workflowNewTask() {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-function returnAllTasks() {
-  const allProjects = getProjects();
-  const allTasks = [];
-  for (let i = 0; i < allProjects.length; i += 1) {
-    for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
-      allTasks.push(allProjects[i].projectTasks[j]);
-    }
-  }
-  console.table(allTasks);
-  return allTasks;
-}
+// function returnAllTasks() {
+//   const allProjects = vault.projects;
+//   const allTasks = [];
+//   for (let i = 0; i < allProjects.length; i += 1) {
+//     for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
+//       allTasks.push(allProjects[i].projectTasks[j]);
+//     }
+//   }
+//   console.table(allTasks);
+//   return allTasks;
+// }
 
-function getProjects() {
-  const projectMirror = storage.projects;
-  console.log(`this is the project mirror function running ${projectMirror}`);
-  return projectMirror;
-}
+// function removeProject(index) {
+//   console.log(`splicing out the project at index number ${index}`);
+//   vault.projects.splice(index, 1);
+//   addToStorage()
+// }
 
-function removeProject(index) {
-  console.log(`splicing out the project at index number ${index}`);
-  return storage.projects.splice(index, 1);
-}
-
-function addTaskToNewProject(task, project) {
-  storage.newProject = new Project(project);
-  storage.allProjects[storage.allProjects.length - 1].tasks = task;
-}
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-document.querySelector("button").addEventListener("click", () => {
-  workflowNewTask();
-  returnAllTasks();
-  console.table(storage.projects);
-  console.log(storage.allProjects);
-});
+// function addTaskToNewProject(task, project) {
+//   vault.newProject = new Project(project);
+//   vault.allProjects[vault.allProjects.length - 1].tasks = task;
+// }
