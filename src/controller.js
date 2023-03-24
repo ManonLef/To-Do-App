@@ -93,6 +93,38 @@ function changeProjectName(projectIdentifier, newProjectName) {
 //  ||||||||||||||||||||||||| • Task Manipulation • ||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+function findTaskByUuid(taskUuid) {
+  for (let i = 0; i < vault.projects.length; i += 1) {
+    const taskIndex = _.findIndex(vault.projects[i].projectTasks, { taskUuid });
+    if (taskIndex > -1) {
+      console.log(
+        `found it in project index ${i} named ${vault.projects[i].name}, this is task index ${taskIndex} `
+      );
+      const projectIndex = i;
+      return [projectIndex, taskIndex];
+    }
+  }
+  return "not found";
+}
+
+function getTaskIndex(taskUuid) {
+  const projectAndTaskIndex = findTaskByUuid(taskUuid);
+  const taskIndex = projectAndTaskIndex[1];
+  return taskIndex;
+}
+
+function getProjectIndex(taskUuid) {
+  const projectAndTaskIndex = findTaskByUuid(taskUuid);
+  const projectIndex = projectAndTaskIndex[0];
+  return projectIndex;
+}
+
+function removeTask(taskUuid) {
+  vault.projects[getProjectIndex(taskUuid)].projectTasks.splice(getTaskIndex(taskUuid), 1);
+  addToStorage();
+}
+
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -107,31 +139,6 @@ document.querySelector("button").addEventListener("click", () => {
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-// function changeTaskName(taskUuid, newName) {
-//   const taskIndex = _.findIndex(vault.projects, { taskUuid: taskUuid }); // could be id as well
-// }
-
-function findTaskByUuid(taskUuid) {
-  for (let i = 0; i < vault.projects.length; i += 1) {
-    const taskIndex = _.findIndex(vault.projects[i].projectTasks, { taskUuid });
-    if (taskIndex > -1) {
-      console.log(
-        `found it in project index ${i} named ${vault.projects[i].name}, this is task index ${taskIndex} `
-      );
-      const projectIndex = i
-      return [projectIndex, taskIndex];
-    }
-  }
-  return "not found";
-}
-
-function removeTask(taskUuid) {
-  const tasktarget = findTaskByUuid(taskUuid);
-  const projectIndex = tasktarget[0];
-  const taskIndex = tasktarget[1];
-  vault.projects[projectIndex].projectTasks.splice(taskIndex, 1)
-  addToStorage();
-}
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
