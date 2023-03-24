@@ -5,6 +5,6 @@ export default class Task {
     this.dueDate = dueDate;
     this.priority = priority;
     this.project = project;
-    this.uuid = new Date().getTime().toString()
+    this.taskUuid = new Date().getTime().toString()
   }
 }
