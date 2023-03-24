@@ -79,3 +79,29 @@ All in all very happy about the progress the basic functionality was in place qu
 ### UUID
 I'm looking into UUID generation. I am planning to use this uuid for targeting specific tasks eventually.
 - I decided to go for a simple `new Date().getTime().toString()` id creation. There are multiple uuid generators but I feel like it's overkill for this usage.
+
+## 20230324
+
+I want to start taking the first steps into the viewport planning for now.
+Things to consider:
+- what information from the `controller` does the DOM need to be able to render? export just that plain info as needed with the needed uuid to identify input actions
+- to render ideas:
+  - projects created
+  - when clicking on a project: tasks in said project
+
+### Still Needed functionality before I move to DOM
+- [ ] create a function to return only the tasks inside a project
+- [ ] marking todo's as complete
+- [ ] function to change task name
+- [ ] function to change task priority
+- [ ] function to change dueDate
+- [ ] function to remove a project
+- [ ] function to remove a single task
+
+
+### Optional functionality 
+- [ ] create a function to filter based on priority
+- [ ] look into date-fns for formatting and manipulating times/dates [here](https://github.com/date-fns/date-fns)
+- [ ] consider option to remove project but move tasks to the inbox
+
+
