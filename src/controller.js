@@ -38,7 +38,7 @@ function retrieveLocalStorage() {
     console.log(vault.projects);
     return vault.projects;
   }
-   return console.log("no local storage available");
+  return console.log("no local storage available");
 }
 
 function addToStorage() {
@@ -48,6 +48,10 @@ function addToStorage() {
   localStorage.setItem("array", jsonArray);
 }
 retrieveLocalStorage();
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
   const task = document.querySelector("#task").value;
@@ -76,6 +80,20 @@ function workflowNewTask() {
 }
 
 //  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||| • Project Manipulation • ||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function changeProjectName(projectIdentifier, newProjectName) {
+  const projectIndex = _.findIndex(vault.projects, { name: projectIdentifier }); // could be id as well
+  vault.projects[projectIndex].name = newProjectName;
+  addToStorage();
+}
+
+//  --------------------------------------------------------------------------
+//  ||||||||||||||||||||||||| • Task Manipulation • ||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+//  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
@@ -89,10 +107,22 @@ document.querySelector("button").addEventListener("click", () => {
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-function changeProjectName(projectIdentifier, newProjectName) {
-  const projectIndex = _.findIndex(vault.projects, { name: projectIdentifier });
-  vault.projects[projectIndex].name = newProjectName;
-  addToStorage();
+// function changeTaskName(taskUuid, newName) {
+//   const taskIndex = _.findIndex(vault.projects, { taskUuid: taskUuid }); // could be id as well
+// }
+
+function findTaskByUuid(taskUuid) {
+  for (let i = 0; i < vault.projects.length; i += 1) {
+    const taskIndex = _.findIndex(vault.projects[i].projectTasks, { taskUuid });
+    if (taskIndex > -1) {
+      console.log(
+        `found it in project index ${i} named ${vault.projects[i].name}, this is task index ${taskIndex} `
+      );
+      const projectIndex = i
+      return [projectIndex, taskIndex];
+    }
+  }
+  return "not found";
 }
 
 //  --------------------------------------------------------------------------
@@ -115,9 +145,4 @@ function changeProjectName(projectIdentifier, newProjectName) {
 //   console.log(`splicing out the project at index number ${index}`);
 //   vault.projects.splice(index, 1);
 //   addToStorage()
-// }
-
-// function addTaskToNewProject(task, project) {
-//   vault.newProject = new Project(project);
-//   vault.projects[vault.projects.length - 1].tasks = task;
 // }
