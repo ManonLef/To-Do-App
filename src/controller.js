@@ -125,6 +125,13 @@ function findTaskByUuid(taskUuid) {
   return "not found";
 }
 
+function removeTask(taskUuid) {
+  const tasktarget = findTaskByUuid(taskUuid);
+  const projectIndex = tasktarget[0];
+  const taskIndex = tasktarget[1];
+  vault.projects[projectIndex].projectTasks.splice(taskIndex, 1)
+  addToStorage();
+}
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
