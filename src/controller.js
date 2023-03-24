@@ -85,6 +85,14 @@ function changeProjectName(projectIdentifier, newProjectName) {
   addToStorage();
 }
 
+
+function removeProject(projectIdentifier) {
+  const projectIndex = _.findIndex(vault.projects, { projectUuid: projectIdentifier }); // could be id as well
+  console.log(`splicing out the project at index number ${projectIndex}`);
+  vault.projects.splice(projectIndex, 1);
+  addToStorage()
+}
+
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||| • Task Manipulation • ||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -160,8 +168,3 @@ document.querySelector("button").addEventListener("click", () => {
 //   return allTasks;
 // }
 
-// function removeProject(index) {
-//   console.log(`splicing out the project at index number ${index}`);
-//   vault.projects.splice(index, 1);
-//   addToStorage()
-// }
