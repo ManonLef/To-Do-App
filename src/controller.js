@@ -3,7 +3,7 @@ import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
 import Vault from "./vault";
-
+import { renderTasks } from "./view";
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -84,12 +84,13 @@ function changeProjectName(projectIdentifier, newProjectName) {
   addToStorage();
 }
 
-
 function removeProject(projectIdentifier) {
-  const projectIndex = _.findIndex(vault.projects, { projectUuid: projectIdentifier }); // could be id as well
+  const projectIndex = _.findIndex(vault.projects, {
+    projectUuid: projectIdentifier,
+  }); // could be id as well
   console.log(`splicing out the project at index number ${projectIndex}`);
   vault.projects.splice(projectIndex, 1);
-  addToStorage()
+  addToStorage();
 }
 
 //  --------------------------------------------------------------------------
@@ -143,7 +144,8 @@ function changeTaskName(taskUuid, newName) {
 
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
-  console.table(vault.projects[0]);
+  console.table(vault.projects);
+  console.table(vault.projects.tasks);
   console.log(vault.projects);
 });
 
@@ -151,18 +153,39 @@ document.querySelector("button").addEventListener("click", () => {
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 function getTasksFromProject(projectIdentifier) {
-  console.table(vault.projects[projectIdentifier].projectTasks)
-  return vault.projects[projectIdentifier].projectTasks
+  console.table(vault.projects[projectIdentifier].projectTasks);
+  return vault.projects[projectIdentifier].projectTasks;
 }
-
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+// test add event listeners for delete button
+function addDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button) => {
+    const id = button.getAttribute("data-taskID");
+    console.log(id)
+    button.addEventListener("click", () => {
+      removeTask(id);
+      clickTest()
+    });
+  });
+}
+
 document.querySelector(".test-render").addEventListener("click", () => {
-  console.log("that tickles")
-})
+  console.log("that tickles");
+  clickTest()
+});
+
+function clickTest() {
+  renderTasks(getTasksFromProject("1"));
+  addDeleteListeners();
+}
+
+
+
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
 //   const allTasks = [];
@@ -174,4 +197,3 @@ document.querySelector(".test-render").addEventListener("click", () => {
 //   console.table(allTasks);
 //   return allTasks;
 // }
-
