@@ -160,6 +160,9 @@ function getTasksFromProject(projectIdentifier) {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+document.querySelector(".test-render").addEventListener("click", () => {
+  console.log("that tickles")
+})
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
 //   const allTasks = [];
