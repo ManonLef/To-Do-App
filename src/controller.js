@@ -9,10 +9,6 @@ class Vault {
     this.projects = [new Project("inbox")];
   }
 
-  get allProjects() {
-    return this.projects;
-  }
-
   set newProject(project) {
     this.projects.push(new Project(project));
   }
@@ -39,10 +35,10 @@ function retrieveLocalStorage() {
     const parsedArray = JSON.parse(str);
     addPrototype(parsedArray);
     vault.projects = parsedArray;
-    console.log(vault.projects)
+    console.log(vault.projects);
     return vault.projects;
   }
-  return "no local storage available";
+   return console.log("no local storage available");
 }
 
 function addToStorage() {
@@ -86,12 +82,18 @@ function workflowNewTask() {
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
   console.table(vault.projects);
-  console.log(vault.allProjects);
+  console.log(vault.projects);
 });
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+
+function changeProjectName(projectIdentifier, newProjectName) {
+  const projectIndex = _.findIndex(vault.projects, { name: projectIdentifier });
+  vault.projects[projectIndex].name = newProjectName;
+  addToStorage();
+}
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
@@ -117,5 +119,5 @@ document.querySelector("button").addEventListener("click", () => {
 
 // function addTaskToNewProject(task, project) {
 //   vault.newProject = new Project(project);
-//   vault.allProjects[vault.allProjects.length - 1].tasks = task;
+//   vault.projects[vault.projects.length - 1].tasks = task;
 // }
