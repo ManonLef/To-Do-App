@@ -6,7 +6,7 @@ import Project from "./project";
 class Vault {
   constructor(name) {
     this.name = name;
-    this.projects = [new Project("inbox")];
+    this.projects = [new Project("Default Project")];
   }
 
   set newProject(project) {
@@ -138,6 +138,7 @@ document.querySelector("button").addEventListener("click", () => {
   console.table(vault.projects);
   console.log(vault.projects);
 });
+
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
