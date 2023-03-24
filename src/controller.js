@@ -2,23 +2,19 @@
 import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
-
-class Vault {
-  constructor(name) {
-    this.name = name;
-    this.projects = [new Project("Default Project")];
-  }
-
-  set newProject(project) {
-    this.projects.push(new Project(project));
-  }
-}
+import Vault from "./vault";
 
 //  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||
+//  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+
 
 const vault = new Vault("vault");
+vault.newProject = new Project("Default Project");
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 
 function addPrototype(parsedArray) {
   for (let i = 0; i < parsedArray.length; i += 1) {
@@ -68,7 +64,7 @@ function addTaskToProject(task) {
   if (index >= 0) {
     vault.projects[index].tasks = task;
   } else {
-    vault.newProject = task.project;
+    vault.newProject = new Project(task.project);
     vault.projects[vault.projects.length - 1].tasks = task;
   }
   addToStorage();
@@ -120,13 +116,18 @@ function getProjectIndex(taskUuid) {
 }
 
 function removeTask(taskUuid) {
-  vault.projects[getProjectIndex(taskUuid)].projectTasks.splice(getTaskIndex(taskUuid), 1);
+  vault.projects[getProjectIndex(taskUuid)].projectTasks.splice(
+    getTaskIndex(taskUuid),
+    1
+  );
   addToStorage();
 }
 
 function changeTaskName(taskUuid, newName) {
-  vault.projects[getProjectIndex(taskUuid)].projectTasks[getTaskIndex(taskUuid)].task = newName;
-  addToStorage
+  vault.projects[getProjectIndex(taskUuid)].projectTasks[
+    getTaskIndex(taskUuid)
+  ].task = newName;
+  addToStorage();
 }
 
 //  --------------------------------------------------------------------------
@@ -138,7 +139,6 @@ document.querySelector("button").addEventListener("click", () => {
   console.table(vault.projects);
   console.log(vault.projects);
 });
-
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
