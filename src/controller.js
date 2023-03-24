@@ -124,6 +124,10 @@ function removeTask(taskUuid) {
   addToStorage();
 }
 
+function changeTaskName(taskUuid, newName) {
+  vault.projects[getProjectIndex(taskUuid)].projectTasks[getTaskIndex(taskUuid)].task = newName;
+  addToStorage
+}
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
