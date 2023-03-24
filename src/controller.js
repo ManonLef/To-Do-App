@@ -8,7 +8,6 @@ import Vault from "./vault";
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-
 const vault = new Vault("vault");
 vault.newProject = new Project("Default Project");
 
@@ -144,13 +143,18 @@ function changeTaskName(taskUuid, newName) {
 
 document.querySelector("button").addEventListener("click", () => {
   workflowNewTask();
-  console.table(vault.projects);
+  console.table(vault.projects[0]);
   console.log(vault.projects);
 });
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+function getTasksFromProject(projectIdentifier) {
+  console.table(vault.projects[projectIdentifier].projectTasks)
+  return vault.projects[projectIdentifier].projectTasks
+}
+
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
