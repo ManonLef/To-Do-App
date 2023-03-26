@@ -95,6 +95,13 @@ function removeProject(projectIdentifier) {
   addToStorage();
 }
 
+function findProjectIndex(projectUuid) {
+  const projectIndex = _.findIndex(vault.projects, {
+    projectUuid: projectUuid
+  });
+  return projectIndex
+}
+
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||| • Task Manipulation • ||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -184,7 +191,8 @@ function addProjectListeners() {
     const id = element.getAttribute("data-projectID");
     element.addEventListener("click", () => {
       console.log("I will render this project's tasks when clicked")
-      // renderTasks()
+      const projectIndex = findProjectIndex(id)
+      renderTasks(getTasksFromProject(projectIndex))
     })
   })
 }
