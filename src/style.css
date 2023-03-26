@@ -3,3 +3,7 @@
   width: 100px;
   background-color: palevioletred;
 }
+
+.sidebar-project {
+  border: 1px solid pink;
+}

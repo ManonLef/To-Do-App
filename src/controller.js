@@ -3,7 +3,7 @@ import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
 import Vault from "./vault";
-import { renderTasks } from "./view";
+import { renderTasks, renderProjects } from "./view";
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -78,12 +78,14 @@ function workflowNewTask() {
 //  |||||||||||||||||||||||| • Project Manipulation • ||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+// eslint-disable-next-line no-unused-vars
 function changeProjectName(projectIdentifier, newProjectName) {
   const projectIndex = _.findIndex(vault.projects, { name: projectIdentifier }); // could be id as well
   vault.projects[projectIndex].name = newProjectName;
   addToStorage();
 }
 
+// eslint-disable-next-line no-unused-vars
 function removeProject(projectIdentifier) {
   const projectIndex = _.findIndex(vault.projects, {
     projectUuid: projectIdentifier,
@@ -131,6 +133,7 @@ function removeTask(taskUuid) {
   addToStorage();
 }
 
+// eslint-disable-next-line no-unused-vars
 function changeTaskName(taskUuid, newName) {
   vault.projects[getProjectIndex(taskUuid)].projectTasks[
     getTaskIndex(taskUuid)
@@ -142,7 +145,7 @@ function changeTaskName(taskUuid, newName) {
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-document.querySelector("button").addEventListener("click", () => {
+document.querySelector(".submit-form").addEventListener("click", () => {
   workflowNewTask();
   console.table(vault.projects);
   console.table(vault.projects.tasks);
@@ -161,7 +164,8 @@ function getTasksFromProject(projectIdentifier) {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-// test add event listeners for delete button
+// test add event listeners for delete buttons
+
 function addDeleteListeners() {
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button) => {
@@ -174,16 +178,17 @@ function addDeleteListeners() {
   });
 }
 
-document.querySelector(".test-render").addEventListener("click", () => {
-  console.log("that tickles");
-  clickTest()
-});
-
 function clickTest() {
+  renderProjects(vault.projects)
   renderTasks(getTasksFromProject("1"));
   addDeleteListeners();
 }
 
+// this test render is needed until the actual project list forces a render when clicked
+document.querySelector(".test-render").addEventListener("click", () => {
+  console.log("that tickles");
+  clickTest()
+});
 
 
 // function returnAllTasks() {

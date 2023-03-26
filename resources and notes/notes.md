@@ -105,5 +105,11 @@ Things to consider:
 - [ ] create a function to filter based on priority
 - [ ] look into date-fns for formatting and manipulating times/dates [here](https://github.com/date-fns/date-fns)
 - [ ] consider option to remove project but move tasks to the inbox
+- [ ] create a function to filter on today's date
 
+## 20230326
 
+### Pseudocode for project list render
+- render all projects in a list
+- add event listeners to each project
+- once a project is clicked, render all tasks from said project
