@@ -178,10 +178,22 @@ function addDeleteListeners() {
   });
 }
 
+function addProjectListeners() {
+  const projects = document.querySelectorAll(".sidebar-project");
+  projects.forEach((element) => {
+    const id = element.getAttribute("data-projectID");
+    element.addEventListener("click", () => {
+      console.log("I will render this project's tasks when clicked")
+      // renderTasks()
+    })
+  })
+}
+
 function clickTest() {
   renderProjects(vault.projects)
   renderTasks(getTasksFromProject("1"));
   addDeleteListeners();
+  addProjectListeners();
 }
 
 // this test render is needed until the actual project list forces a render when clicked

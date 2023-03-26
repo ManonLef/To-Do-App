@@ -6,6 +6,7 @@ function createProjectElements(currentProject) {
   const project = document.createElement("div");
   project.className = "sidebar-project";
   project.textContent = currentProject.name;
+  project.setAttribute("data-projectID", currentProject.projectUuid)
   topContainer.appendChild(project);
 }
 
