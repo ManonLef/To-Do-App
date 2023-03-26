@@ -93,10 +93,10 @@ Things to consider:
 - [ ] create a function to return only the tasks inside a project
 - [ ] marking todo's as complete
 - [x] function to change project name
-- [ ] function to change task name
+- [x] function to change task name
 - [ ] function to change task priority
 - [ ] function to change dueDate
-- [ ] function to remove a project
+- [x] function to remove a project
 - [x] function to remove a single task
 - [x] function to target a task by uuid
 
