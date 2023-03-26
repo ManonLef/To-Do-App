@@ -97,9 +97,9 @@ function removeProject(projectIdentifier) {
 
 function findProjectIndex(projectUuid) {
   const projectIndex = _.findIndex(vault.projects, {
-    projectUuid: projectUuid
+    projectUuid,
   });
-  return projectIndex
+  return projectIndex;
 }
 
 //  --------------------------------------------------------------------------
@@ -110,9 +110,6 @@ function findTaskByUuid(taskUuid) {
   for (let i = 0; i < vault.projects.length; i += 1) {
     const taskIndex = _.findIndex(vault.projects[i].projectTasks, { taskUuid });
     if (taskIndex > -1) {
-      console.log(
-        `found it in project index ${i} named ${vault.projects[i].name}, this is task index ${taskIndex} `
-      );
       const projectIndex = i;
       return [projectIndex, taskIndex];
     }
@@ -177,10 +174,11 @@ function addDeleteListeners() {
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button) => {
     const id = button.getAttribute("data-taskID");
-    console.log(id)
+    const projectIndex = getProjectIndex(id);  
     button.addEventListener("click", () => {
       removeTask(id);
-      clickTest()
+      renderTasks(getTasksFromProject(projectIndex));
+      addDeleteListeners();
     });
   });
 }
@@ -189,26 +187,18 @@ function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
     const id = element.getAttribute("data-projectID");
+    const projectIndex = findProjectIndex(id);  
     element.addEventListener("click", () => {
-      console.log("I will render this project's tasks when clicked")
-      const projectIndex = findProjectIndex(id)
-      renderTasks(getTasksFromProject(projectIndex))
-    })
-  })
+      renderTasks(getTasksFromProject(projectIndex));
+      addDeleteListeners();
+    });
+  });
 }
 
-function clickTest() {
-  renderProjects(vault.projects)
-  renderTasks(getTasksFromProject("1"));
-  addDeleteListeners();
-  addProjectListeners();
-}
-
-// this test render is needed until the actual project list forces a render when clicked
-document.querySelector(".test-render").addEventListener("click", () => {
-  console.log("that tickles");
-  clickTest()
-});
+renderProjects(vault.projects);
+addProjectListeners()
+renderTasks(getTasksFromProject(0));
+addDeleteListeners()
 
 
 // function returnAllTasks() {
