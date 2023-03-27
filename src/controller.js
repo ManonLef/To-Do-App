@@ -2,47 +2,18 @@
 import _ from "lodash";
 import Task from "./task";
 import Project from "./project";
-import Vault from "./vault";
 import { renderTasks, renderProjects } from "./view";
+import {
+  vault,
+  addToStorage,
+  setCurrentProject,
+  getCurrentProjectID,
+} from "./model";
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-
-const vault = new Vault("vault");
-vault.newProject = new Project("Default Project");
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-function addPrototype(parsedArray) {
-  for (let i = 0; i < parsedArray.length; i += 1) {
-    Object.setPrototypeOf(parsedArray[i], Project.prototype);
-    for (let j = 0; j < parsedArray[i].projectTasks.length; j += 1) {
-      Object.setPrototypeOf(parsedArray[i].projectTasks[j], Task.prototype);
-    }
-  }
-}
-
-function retrieveLocalStorage() {
-  if (localStorage.getItem("array")) {
-    const str = localStorage.getItem("array");
-    const parsedArray = JSON.parse(str);
-    addPrototype(parsedArray);
-    vault.projects = parsedArray;
-    console.log(vault.projects);
-    return vault.projects;
-  }
-  return console.log("no local storage available");
-}
-
-function addToStorage() {
-  localStorage.removeItem("array");
-  const myStorage = vault.projects;
-  const jsonArray = JSON.stringify(myStorage);
-  localStorage.setItem("array", jsonArray);
-}
-retrieveLocalStorage();
+setCurrentProject(vault.projects[0].projectUuid)
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||
@@ -97,7 +68,7 @@ function removeProject(projectIdentifier) {
 
 function findProjectIndex(projectUuid) {
   const projectIndex = _.findIndex(vault.projects, {
-    projectUuid,
+    projectUuid: projectUuid,
   });
   return projectIndex;
 }
@@ -154,6 +125,7 @@ document.querySelector(".submit-form").addEventListener("click", () => {
   console.table(vault.projects);
   console.table(vault.projects.tasks);
   console.log(vault.projects);
+  renderAll()
 });
 
 //  --------------------------------------------------------------------------
@@ -162,6 +134,18 @@ document.querySelector(".submit-form").addEventListener("click", () => {
 function getTasksFromProject(projectIdentifier) {
   console.table(vault.projects[projectIdentifier].projectTasks);
   return vault.projects[projectIdentifier].projectTasks;
+}
+
+function getTaskArrayFromProjectID(projectID) {
+  const index = findProjectIndex(projectID);
+  return vault.projects[index].projectTasks;
+}
+
+function getTaskArrayCurrentProject() {
+  const id = getCurrentProjectID();
+  const index = findProjectIndex(id)
+    console.log(`ID ${id} at index ${index}`);
+  return vault.projects[index].projectTasks;
 }
 
 //  --------------------------------------------------------------------------
@@ -187,17 +171,15 @@ function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
     const id = element.getAttribute("data-projectID");
-    const projectIndex = findProjectIndex(id);
     element.addEventListener("click", () => {
-      renderTasks(getTasksFromProject(projectIndex));
-      addDeleteListeners();
-      currentProject = id;
+      setCurrentProject(id);
+      renderAll()
     });
   });
 }
 
 function getCurrentProjectName() {
-  const index = findProjectIndex(currentProject);
+  const index = findProjectIndex(getCurrentProjectID());
   const projectName = vault.projects[index].name;
   console.log(projectName);
   return projectName;
@@ -205,23 +187,14 @@ function getCurrentProjectName() {
 
 // state
 
-let currentProject = "";
-
-function setCurrentProject(projectID) {
-  currentProject = projectID;
-  console.log(`current project is ${currentProject}`);
-  return currentProject;
-}
-
-function startUpState() {
-  setCurrentProject(vault.projects[0].projectUuid);
+function renderAll() {
   renderProjects(vault.projects);
   addProjectListeners();
-  renderTasks(getTasksFromProject(0));
+  renderTasks(getTaskArrayCurrentProject());
   addDeleteListeners();
 }
 
-startUpState();
+renderAll();
 
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
