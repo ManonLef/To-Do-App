@@ -191,20 +191,30 @@ function addProjectListeners() {
     element.addEventListener("click", () => {
       renderTasks(getTasksFromProject(projectIndex));
       addDeleteListeners();
-      currentProject(id)
+      currentProject = id;
     });
   });
 }
 
-// state 
-function currentProject(projectID) {
-  const currentProject = projectID
-  console.log(`current project is ${currentProject}`)
+function getCurrentProjectName() {
+  const index = findProjectIndex(currentProject);
+  const projectName = vault.projects[index].name;
+  console.log(projectName);
+  return projectName;
+}
+
+// state
+
+let currentProject = "";
+
+function setCurrentProject(projectID) {
+  currentProject = projectID;
+  console.log(`current project is ${currentProject}`);
   return currentProject;
 }
 
 function startUpState() {
-  currentProject(vault.projects[0].projectUuid)
+  setCurrentProject(vault.projects[0].projectUuid);
   renderProjects(vault.projects);
   addProjectListeners();
   renderTasks(getTasksFromProject(0));

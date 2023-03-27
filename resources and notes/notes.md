@@ -117,3 +117,6 @@ Things to consider:
 ## 2023032 create task design
 
 ![initial design](./task-design-idea.png)
+- above roughly implemented
+- I added a current project state. I think that will come in handy when adding a task based on current project selected.
+- [ ] go through project selection and task assignment based on projectUuid
