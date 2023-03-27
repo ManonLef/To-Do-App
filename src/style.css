@@ -1,7 +1,6 @@
-.test-render {
-  padding: 10px;
-  width: 100px;
-  background-color: palevioletred;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar-project {
@@ -11,4 +10,14 @@
 body {
   display: grid;
   grid-template-columns: 1fr 1fr 3fr;
+}
+
+.task-div {
+  display: flex;
+  gap: 10px;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
 }

@@ -113,3 +113,7 @@ Things to consider:
 - render all projects in a list
 - add event listeners to each project
 - once a project is clicked, render all tasks from said project
+
+## 2023032 create task design
+
+![initial design](./task-design-idea.png)
