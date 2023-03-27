@@ -13,6 +13,21 @@ function createProjectElements(currentProject) {
   project.textContent = currentProject.name;
   project.setAttribute("data-projectID", currentProject.projectUuid);
   topContainer.appendChild(project);
+  // edit button (for now)
+  const editButton = document.createElement("button");
+  editButton.className = "project-edit-button";
+  editButton.textContent = "edit";
+  editButton.setAttribute("data-taskID", currentProject.projectUuid);
+  project.appendChild(editButton);
+  // delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "project-delete-button";
+  deleteButton.textContent = "delete";
+  deleteButton.setAttribute("data-taskID", currentProject.projectUuid);
+  project.appendChild(deleteButton);
+  // disable buttons
+  editButton.disabled = true;
+  deleteButton.disabled = true;
 }
 
 function renderProjects(vaultProjectsArray) {
@@ -39,10 +54,10 @@ function createTaskElement(taskObject) {
   task.className = "task-name";
   taskDiv.appendChild(task);
   // due
-  const dueDate = document.createElement("div")
-  dueDate.className = "task-date"
+  const dueDate = document.createElement("div");
+  dueDate.className = "task-date";
   dueDate.textContent = taskObject.dueDate;
-  taskDiv.appendChild(dueDate)
+  taskDiv.appendChild(dueDate);
   // edit button (for now)
   const editButton = document.createElement("button");
   editButton.className = "edit-button";
@@ -57,9 +72,9 @@ function createTaskElement(taskObject) {
   taskDiv.appendChild(deleteButton);
 }
 
-function renderTasks(projectArray) {
+function renderTasks(projectTasks) {
   removeChildNodes(taskContainer);
-  const tasks = projectArray;
+  const tasks = projectTasks;
   tasks.forEach((taskObject) => {
     createTaskElement(taskObject);
   });
