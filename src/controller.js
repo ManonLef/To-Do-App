@@ -168,18 +168,18 @@ function getTasksFromProject(projectIdentifier) {
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-// test add event listeners for delete buttons
+function deleteTask() {
+  const id = this.getAttribute("data-taskID");
+  const projectIndex = getProjectIndex(id);
+  removeTask(id);
+  renderTasks(getTasksFromProject(projectIndex));
+  addDeleteListeners();
+}
 
 function addDeleteListeners() {
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button) => {
-    const id = button.getAttribute("data-taskID");
-    const projectIndex = getProjectIndex(id);  
-    button.addEventListener("click", () => {
-      removeTask(id);
-      renderTasks(getTasksFromProject(projectIndex));
-      addDeleteListeners();
-    });
+    button.addEventListener("click", deleteTask);
   });
 }
 
@@ -187,7 +187,7 @@ function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
     const id = element.getAttribute("data-projectID");
-    const projectIndex = findProjectIndex(id);  
+    const projectIndex = findProjectIndex(id);
     element.addEventListener("click", () => {
       renderTasks(getTasksFromProject(projectIndex));
       addDeleteListeners();
@@ -195,11 +195,14 @@ function addProjectListeners() {
   });
 }
 
-renderProjects(vault.projects);
-addProjectListeners()
-renderTasks(getTasksFromProject(0));
-addDeleteListeners()
+function startUpState() {
+  renderProjects(vault.projects);
+  addProjectListeners();
+  renderTasks(getTasksFromProject(0));
+  addDeleteListeners();
+}
 
+startUpState();
 
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
