@@ -191,11 +191,20 @@ function addProjectListeners() {
     element.addEventListener("click", () => {
       renderTasks(getTasksFromProject(projectIndex));
       addDeleteListeners();
+      currentProject(id)
     });
   });
 }
 
+// state 
+function currentProject(projectID) {
+  const currentProject = projectID
+  console.log(`current project is ${currentProject}`)
+  return currentProject;
+}
+
 function startUpState() {
+  currentProject(vault.projects[0].projectUuid)
   renderProjects(vault.projects);
   addProjectListeners();
   renderTasks(getTasksFromProject(0));
