@@ -46,29 +46,6 @@ function addToStorage() {
 retrieveLocalStorage();
 
 //  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-function setCurrentProject(projectID) {
-  currentProject = projectID;
-  console.log(`setCurrentProject says: current project is ${currentProject}`);
-  return currentProject;
-}
-
-function addProject(name) {
-  vault.newProject = new Project(name);
-  addToStorage()
-}
-
-function addTaskToProject(taskFromForm) {
-  const task = new Task(taskFromForm);
-  const index = getCurrentProjectIndex();
-  if (index >= 0) {
-    vault.projects[index].tasks = task;
-  }
-  addToStorage();
-}
-//  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||||||| • get data • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
@@ -102,11 +79,94 @@ function getTaskArrayCurrentProject() {
 //  |||||||||||||||||||||||||||||| • helpers • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+
+function findTaskIndex(taskUuid) {
+  const taskIndex = _.findIndex(vault.projects[getCurrentProjectIndex()].projectTasks, {taskUuid})
+  return taskIndex
+}
+
 function findProjectIdFromName(name) {
   const index = _.findIndex(vault.projects, { name: name });
   const projectUuid = vault.projects[index].projectUuid;
   return projectUuid
 }
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function setCurrentProject(projectID) {
+  currentProject = projectID;
+  console.log(`setCurrentProject says: current project is ${currentProject}`);
+  return currentProject;
+}
+
+function addProject(name) {
+  vault.newProject = new Project(name);
+  addToStorage()
+}
+
+function addTaskToProject(taskFromForm) {
+  const task = new Task(taskFromForm);
+  const index = getCurrentProjectIndex();
+  if (index >= 0) {
+    vault.projects[index].tasks = task;
+  }
+  addToStorage();
+}
+
+function removeTask(taskUuid) {
+  vault.projects[getCurrentProjectIndex()].projectTasks.splice(
+    findTaskIndex(taskUuid),
+    1
+  );
+  addToStorage();
+}
+
+
+// unused from controller
+
+// function getProjectIndex(taskUuid) {
+//   const projectAndTaskIndex = findTaskByUuid(taskUuid);
+//   const projectIndex = projectAndTaskIndex[0];
+//   return projectIndex;
+// }
+
+// // eslint-disable-next-line no-unused-vars
+// function changeTaskName(taskUuid, newName) {
+//   vault.projects[getProjectIndex(taskUuid)].projectTasks[
+//     getTaskIndex(taskUuid)
+//   ].task = newName;
+//   addToStorage();
+// }
+//
+// function findTaskByUuid(taskUuid) {
+//   for (let i = 0; i < vault.projects.length; i += 1) {
+//     const taskIndex = _.findIndex(vault.projects[i].projectTasks, { taskUuid });
+//     if (taskIndex > -1) {
+//       const projectIndex = i;
+//       return [projectIndex, taskIndex];
+//     }
+//   }
+//   return "not found";
+// }
+//
+// // eslint-disable-next-line no-unused-vars
+// function changeProjectName(projectIdentifier, newProjectName) {
+//   const projectIndex = _.findIndex(vault.projects, { name: projectIdentifier }); // could be id as well
+//   vault.projects[projectIndex].name = newProjectName;
+//   addToStorage();
+// }
+
+// // eslint-disable-next-line no-unused-vars
+// function removeProject(projectIdentifier) {
+//   const projectIndex = _.findIndex(vault.projects, {
+//     projectUuid: projectIdentifier,
+//   }); // could be id as well
+//   console.log(`splicing out the project at index number ${projectIndex}`);
+//   vault.projects.splice(projectIndex, 1);
+//   addToStorage();
+// }
 
 
 
@@ -123,4 +183,5 @@ export {
   getAllProjects,
   getTaskArrayCurrentProject,
   addTaskToProject,
+  removeTask,
 };
