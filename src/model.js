@@ -1,3 +1,4 @@
+import _ from "lodash";
 import Vault from "./vault";
 import Project from "./project";
 import Task from "./task";
@@ -15,14 +16,27 @@ let currentProject = "";
 //  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
 function setCurrentProject(projectID) {
   currentProject = projectID;
-  console.log(`current project is ${currentProject}`);
+  console.log(`setCurrentProject says: current project is ${currentProject}`);
   return currentProject;
 }
 
 function getCurrentProjectID() {
   return currentProject;
+}
+
+function getCurrentProjectIndex() {
+  const projectUuid = getCurrentProjectID()
+  const projectIndex = _.findIndex(vault.projects, {
+    projectUuid,
+  });
+  console.log(`getCurrentProjectIndex says: hey noob it's me again with index ${projectIndex}`)
+  return projectIndex;
 }
 
 //  --------------------------------------------------------------------------
@@ -58,4 +72,4 @@ function addToStorage() {
 }
 retrieveLocalStorage();
 
-export { vault, addPrototype, retrieveLocalStorage, addToStorage, setCurrentProject, getCurrentProjectID };
+export { vault, addPrototype, retrieveLocalStorage, addToStorage, setCurrentProject, getCurrentProjectID, getCurrentProjectIndex };

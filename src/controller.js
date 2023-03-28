@@ -1,19 +1,27 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import _ from "lodash";
 import Task from "./task";
-import Project from "./project";
 import { renderTasks, renderProjects } from "./view";
 import {
   vault,
   addToStorage,
   setCurrentProject,
   getCurrentProjectID,
+  getCurrentProjectIndex,
 } from "./model";
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-setCurrentProject(vault.projects[0].projectUuid)
+setCurrentProject(vault.projects[0].projectUuid);
+// test
+getCurrentProjectIndex();
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||| • Project Manipulation • ||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||
@@ -30,14 +38,14 @@ function getTaskFromForm() {
 }
 
 function addTaskToProject() {
-  const task = new Task(getTaskFromForm())
-  const index = findProjectIndex(getCurrentProjectID())
+  const task = new Task(getTaskFromForm());
+  const index = getCurrentProjectIndex();
   // const index = _.findIndex(vault.projects, { name: task.project });
   if (index >= 0) {
     vault.projects[index].tasks = task;
-  // } else {
-  //   vault.newProject = new Project(task.project);
-  //   vault.projects[vault.projects.length - 1].tasks = task;
+    // } else {
+    //   vault.newProject = new Project(task.project);
+    //   vault.projects[vault.projects.length - 1].tasks = task;
   }
   addToStorage();
 }
@@ -47,9 +55,6 @@ function addTaskToProject() {
 //   addTaskToProject(newTask);
 // }
 
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||| • Project Manipulation • ||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
 
 // eslint-disable-next-line no-unused-vars
 function changeProjectName(projectIdentifier, newProjectName) {
@@ -68,12 +73,7 @@ function removeProject(projectIdentifier) {
   addToStorage();
 }
 
-function findProjectIndex(projectUuid) {
-  const projectIndex = _.findIndex(vault.projects, {
-    projectUuid,
-  });
-  return projectIndex;
-}
+
 
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||| • Task Manipulation • ||||||||||||||||||||||||||
@@ -126,15 +126,10 @@ function getTasksFromProject(projectIdentifier) {
   return vault.projects[projectIdentifier].projectTasks;
 }
 
-function getTaskArrayFromProjectID(projectID) {
-  const index = findProjectIndex(projectID);
-  return vault.projects[index].projectTasks;
-}
-
 function getTaskArrayCurrentProject() {
-  const id = getCurrentProjectID();
-  const index = findProjectIndex(id)
-    console.log(`ID ${id} at index ${index}`);
+  console.log(`getTaskArrayCurrentProject says: hey it's me`)
+  const index = getCurrentProjectIndex();
+  console.log(`getTaskArrayCurrentProject says: This project resides at index ${index}`);
   return vault.projects[index].projectTasks;
 }
 
@@ -150,13 +145,6 @@ function deleteTask() {
   addDeleteListeners();
 }
 
-function getCurrentProjectName() {
-  const index = findProjectIndex(getCurrentProjectID());
-  const projectName = vault.projects[index].name;
-  console.log(projectName);
-  return projectName;
-}
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -166,7 +154,7 @@ document.querySelector(".submit-form").addEventListener("click", () => {
   console.table(vault.projects);
   console.table(vault.projects.tasks);
   console.log(vault.projects);
-  renderAll()
+  renderAll();
 });
 
 function addProjectListeners() {
@@ -175,7 +163,7 @@ function addProjectListeners() {
     const id = element.getAttribute("data-projectID");
     element.addEventListener("click", () => {
       setCurrentProject(id);
-      renderAll()
+      renderAll();
     });
   });
 }
