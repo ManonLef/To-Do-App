@@ -55,19 +55,30 @@ function setCurrentProject(projectID) {
   return currentProject;
 }
 
-function getCurrentProjectID() {
-  return currentProject;
-}
-
-
 function addProject(name) {
   vault.newProject = new Project(name);
   addToStorage()
 }
 
+function addTaskToProject(taskFromForm) {
+  const task = new Task(taskFromForm);
+  const index = getCurrentProjectIndex();
+  if (index >= 0) {
+    vault.projects[index].tasks = task;
+  }
+  addToStorage();
+}
 //  --------------------------------------------------------------------------
 //  ||||||||||||||||||||||||||||| • get data • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+
+function getCurrentProjectID() {
+  return currentProject;
+}
+
+function getAllProjects() {
+  return vault.projects;
+}
 
 function getCurrentProjectIndex() {
   const projectUuid = getCurrentProjectID();
@@ -78,6 +89,13 @@ function getCurrentProjectIndex() {
     `getCurrentProjectIndex says: hey noob it's me again with index ${projectIndex}`
   );
   return projectIndex;
+}
+
+function getTaskArrayCurrentProject() {
+  console.log(`getTaskArrayCurrentProject says: hey it's me`)
+  const index = getCurrentProjectIndex();
+  console.log(`getTaskArrayCurrentProject says: This project resides at index ${index}`);
+  return vault.projects[index].projectTasks;
 }
 
 //  --------------------------------------------------------------------------
@@ -102,4 +120,7 @@ export {
   getCurrentProjectIndex,
   addProject,
   findProjectIdFromName,
+  getAllProjects,
+  getTaskArrayCurrentProject,
+  addTaskToProject,
 };

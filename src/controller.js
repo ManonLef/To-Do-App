@@ -12,6 +12,7 @@ import {
   findProjectIdFromName,
   getAllProjects,
   getTaskArrayCurrentProject,
+  addTaskToProject,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -41,18 +42,7 @@ function getTaskFromForm() {
   return [task, description, due, prio, projectUuid];
 }
 
-function addTaskToProject() {
-  const task = new Task(getTaskFromForm());
-  const index = getCurrentProjectIndex();
-  // const index = _.findIndex(vault.projects, { name: task.project });
-  if (index >= 0) {
-    vault.projects[index].tasks = task;
-    // } else {
-    //   vault.newProject = new Project(task.project);
-    //   vault.projects[vault.projects.length - 1].tasks = task;
-  }
-  addToStorage();
-}
+
 
 // function workflowNewTask() {
 //   const newTask = new Task(getTaskFromForm());
@@ -170,7 +160,7 @@ function renderAll() {
 //  --------------------------------------------------------------------------
 
 document.querySelector(".submit-form").addEventListener("click", () => {
-  addTaskToProject();
+  addTaskToProject(getTaskFromForm());
   console.table(vault.projects);
   console.table(vault.projects.tasks);
   console.log(vault.projects);
