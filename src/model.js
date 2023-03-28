@@ -1,8 +1,7 @@
 import _ from "lodash";
-import Vault from "./vault";
-import Project from "./project";
-import Task from "./task";
-
+import Vault from "./classes/vault";
+import Project from "./classes/project";
+import Task from "./classes/task";
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
@@ -12,32 +11,6 @@ const vault = new Vault("vault");
 vault.newProject = new Project("Default Project");
 let currentProject = "";
 
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-function setCurrentProject(projectID) {
-  currentProject = projectID;
-  console.log(`setCurrentProject says: current project is ${currentProject}`);
-  return currentProject;
-}
-
-function getCurrentProjectID() {
-  return currentProject;
-}
-
-function getCurrentProjectIndex() {
-  const projectUuid = getCurrentProjectID()
-  const projectIndex = _.findIndex(vault.projects, {
-    projectUuid,
-  });
-  console.log(`getCurrentProjectIndex says: hey noob it's me again with index ${projectIndex}`)
-  return projectIndex;
-}
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
@@ -72,4 +45,61 @@ function addToStorage() {
 }
 retrieveLocalStorage();
 
-export { vault, addPrototype, retrieveLocalStorage, addToStorage, setCurrentProject, getCurrentProjectID, getCurrentProjectIndex };
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function setCurrentProject(projectID) {
+  currentProject = projectID;
+  console.log(`setCurrentProject says: current project is ${currentProject}`);
+  return currentProject;
+}
+
+function getCurrentProjectID() {
+  return currentProject;
+}
+
+
+function addProject(name) {
+  vault.newProject = new Project(name);
+  addToStorage()
+}
+
+//  --------------------------------------------------------------------------
+//  ||||||||||||||||||||||||||||| • get data • |||||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function getCurrentProjectIndex() {
+  const projectUuid = getCurrentProjectID();
+  const projectIndex = _.findIndex(vault.projects, {
+    projectUuid,
+  });
+  console.log(
+    `getCurrentProjectIndex says: hey noob it's me again with index ${projectIndex}`
+  );
+  return projectIndex;
+}
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • helpers • |||||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+function findProjectIdFromName(name) {
+  const index = _.findIndex(vault.projects, { name: name });
+  const projectUuid = vault.projects[index].projectUuid;
+  return projectUuid
+}
+
+
+
+export {
+  vault,
+  addPrototype,
+  retrieveLocalStorage,
+  addToStorage,
+  setCurrentProject,
+  getCurrentProjectID,
+  getCurrentProjectIndex,
+  addProject,
+  findProjectIdFromName,
+};

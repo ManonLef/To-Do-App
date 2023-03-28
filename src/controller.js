@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import _ from "lodash";
-import Task from "./task";
+import Task from "./classes/task";
 import { renderTasks, renderProjects } from "./view";
 import {
   vault,
@@ -8,6 +8,8 @@ import {
   setCurrentProject,
   getCurrentProjectID,
   getCurrentProjectIndex,
+  addProject,
+  findProjectIdFromName,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -145,17 +147,6 @@ function deleteTask() {
   addDeleteListeners();
 }
 
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-document.querySelector(".submit-form").addEventListener("click", () => {
-  addTaskToProject();
-  console.table(vault.projects);
-  console.table(vault.projects.tasks);
-  console.log(vault.projects);
-  renderAll();
-});
 
 function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
@@ -175,6 +166,25 @@ function addDeleteListeners() {
   });
 }
 
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+document.querySelector(".submit-form").addEventListener("click", () => {
+  addTaskToProject();
+  console.table(vault.projects);
+  console.table(vault.projects.tasks);
+  console.log(vault.projects);
+  renderAll();
+});
+
+document.querySelector(".add-project-form").addEventListener("click", () => {
+  const projectName = document.querySelector("#project").value;
+  addProject(projectName);
+  const projectID = findProjectIdFromName(projectName)
+  setCurrentProject(projectID)
+  renderAll();
+})
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
