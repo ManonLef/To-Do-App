@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import _ from "lodash";
 import Task from "./classes/task";
-import { renderTasks, renderProjects } from "./view";
+import { renderCurrent } from "./view";
 import {
   vault,
   addToStorage,
@@ -10,6 +10,8 @@ import {
   getCurrentProjectIndex,
   addProject,
   findProjectIdFromName,
+  getAllProjects,
+  getTaskArrayCurrentProject,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -123,48 +125,45 @@ function changeTaskName(taskUuid, newName) {
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-function getTasksFromProject(projectIdentifier) {
-  console.table(vault.projects[projectIdentifier].projectTasks);
-  return vault.projects[projectIdentifier].projectTasks;
-}
-
-function getTaskArrayCurrentProject() {
-  console.log(`getTaskArrayCurrentProject says: hey it's me`)
-  const index = getCurrentProjectIndex();
-  console.log(`getTaskArrayCurrentProject says: This project resides at index ${index}`);
-  return vault.projects[index].projectTasks;
-}
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-function deleteTask() {
+function deleteTaskOnClick() {
   const id = this.getAttribute("data-taskID");
-  const projectIndex = getProjectIndex(id);
   removeTask(id);
-  renderTasks(getTasksFromProject(projectIndex));
-  addDeleteListeners();
+  renderAll()
+}
+
+function selectProjectOnClick() {
+  const id = this.getAttribute("data-projectID");
+  setCurrentProject(id)
+  renderAll();
 }
 
 
 function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
-    const id = element.getAttribute("data-projectID");
-    element.addEventListener("click", () => {
-      setCurrentProject(id);
-      renderAll();
-    });
+    element.addEventListener("click", selectProjectOnClick);
   });
 }
 
-function addDeleteListeners() {
+function addTaskDeleteListeners() {
   const deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach((button) => {
-    button.addEventListener("click", deleteTask);
+    button.addEventListener("click", deleteTaskOnClick);
   });
 }
+
+function renderAll() {
+  renderCurrent(getAllProjects(), getTaskArrayCurrentProject())
+  console.table(getTaskArrayCurrentProject());
+  addProjectListeners();
+  addTaskDeleteListeners();
+}
+
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
@@ -189,14 +188,11 @@ document.querySelector(".add-project-form").addEventListener("click", () => {
 //  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-function renderAll() {
-  renderProjects(vault.projects);
-  addProjectListeners();
-  renderTasks(getTaskArrayCurrentProject());
-  addDeleteListeners();
-}
+
 
 renderAll();
+
+
 
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
