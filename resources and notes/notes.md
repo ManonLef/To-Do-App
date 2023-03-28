@@ -123,5 +123,8 @@ Things to consider:
 
 ### 20230327 
 - I implemented a model module today for I think it's more convenient to keep storage and variables separated as much as possible. I also read up a bit on MVC and think this is the best approach. Most of the time so far actually went to organizing the code I believe. 
-- I think the next step is considering if any of the helper functions are needed and also focus more on having the uuid's of both the project and task. Keep in minf I may want to have a tab showing all tasks in one view and similar for dates due.
+- I think the next step is considering if any of the helper functions are needed and also focus more on having the uuid's of both the project and task. Keep in mind I may want to have a tab showing all tasks in one view and similar for dates due.
 
+## 20230328 
+- I'm changing the form to not include project. The functions will assume current project.
+- [ ] add function / option to add a new project

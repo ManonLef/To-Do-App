@@ -24,26 +24,28 @@ function getTaskFromForm() {
   const description = document.querySelector("#description").value;
   const due = document.querySelector("#due-date").value;
   const prio = document.querySelector("#priority").value;
-  const project = document.querySelector("#project").value;
+  const projectUuid = getCurrentProjectID();
 
-  return [task, description, due, prio, project];
+  return [task, description, due, prio, projectUuid];
 }
 
-function addTaskToProject(task) {
-  const index = _.findIndex(vault.projects, { name: task.project });
+function addTaskToProject() {
+  const task = new Task(getTaskFromForm())
+  const index = findProjectIndex(getCurrentProjectID())
+  // const index = _.findIndex(vault.projects, { name: task.project });
   if (index >= 0) {
     vault.projects[index].tasks = task;
-  } else {
-    vault.newProject = new Project(task.project);
-    vault.projects[vault.projects.length - 1].tasks = task;
+  // } else {
+  //   vault.newProject = new Project(task.project);
+  //   vault.projects[vault.projects.length - 1].tasks = task;
   }
   addToStorage();
 }
 
-function workflowNewTask() {
-  const newTask = new Task(getTaskFromForm());
-  addTaskToProject(newTask);
-}
+// function workflowNewTask() {
+//   const newTask = new Task(getTaskFromForm());
+//   addTaskToProject(newTask);
+// }
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||| • Project Manipulation • ||||||||||||||||||||||||
@@ -68,7 +70,7 @@ function removeProject(projectIdentifier) {
 
 function findProjectIndex(projectUuid) {
   const projectIndex = _.findIndex(vault.projects, {
-    projectUuid: projectUuid,
+    projectUuid,
   });
   return projectIndex;
 }
@@ -117,18 +119,6 @@ function changeTaskName(taskUuid, newName) {
 }
 
 //  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-document.querySelector(".submit-form").addEventListener("click", () => {
-  workflowNewTask();
-  console.table(vault.projects);
-  console.table(vault.projects.tasks);
-  console.log(vault.projects);
-  renderAll()
-});
-
-//  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 function getTasksFromProject(projectIdentifier) {
@@ -160,12 +150,24 @@ function deleteTask() {
   addDeleteListeners();
 }
 
-function addDeleteListeners() {
-  const deleteButtons = document.querySelectorAll(".delete-button");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", deleteTask);
-  });
+function getCurrentProjectName() {
+  const index = findProjectIndex(getCurrentProjectID());
+  const projectName = vault.projects[index].name;
+  console.log(projectName);
+  return projectName;
 }
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
+
+document.querySelector(".submit-form").addEventListener("click", () => {
+  addTaskToProject();
+  console.table(vault.projects);
+  console.table(vault.projects.tasks);
+  console.log(vault.projects);
+  renderAll()
+});
 
 function addProjectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
@@ -178,14 +180,16 @@ function addProjectListeners() {
   });
 }
 
-function getCurrentProjectName() {
-  const index = findProjectIndex(getCurrentProjectID());
-  const projectName = vault.projects[index].name;
-  console.log(projectName);
-  return projectName;
+function addDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", deleteTask);
+  });
 }
 
-// state
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 
 function renderAll() {
   renderProjects(vault.projects);
