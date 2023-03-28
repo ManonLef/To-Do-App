@@ -30,14 +30,6 @@ function createProjectElements(currentProject) {
   deleteButton.disabled = true;
 }
 
-function renderProjects(vaultProjectsArray) {
-  removeChildNodes(topContainer);
-  const projects = vaultProjectsArray;
-  projects.forEach((project) => {
-    createProjectElements(project);
-  });
-}
-
 function createTaskElement(taskObject) {
   // task div
   const taskDiv = document.createElement("div");
@@ -74,10 +66,22 @@ function createTaskElement(taskObject) {
 
 function renderTasks(projectTasks) {
   removeChildNodes(taskContainer);
-  const tasks = projectTasks;
-  tasks.forEach((taskObject) => {
+  projectTasks.forEach((taskObject) => {
     createTaskElement(taskObject);
   });
 }
 
-export { renderTasks, renderProjects };
+function renderProjects(vaultProjectsArray) {
+  removeChildNodes(topContainer);
+  const projects = vaultProjectsArray;
+  projects.forEach((project) => {
+    createProjectElements(project);
+  });
+}
+
+function renderCurrent(allProjects, currentProjectTasks) {
+  renderProjects(allProjects);
+  renderTasks(currentProjectTasks)
+}
+
+export { renderCurrent };
