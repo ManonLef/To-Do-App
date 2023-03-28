@@ -8,7 +8,7 @@ import {
   getAllProjects,
   getTaskArrayCurrentProject,
   addTaskToProject,
-  removeTask
+  removeTask,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -41,12 +41,12 @@ function getTaskFromForm() {
 function deleteTaskOnClick() {
   const id = this.getAttribute("data-taskID");
   removeTask(id);
-  renderAll()
+  renderAll();
 }
 
 function selectProjectOnClick() {
   const id = this.getAttribute("data-projectID");
-  setCurrentProject(id)
+  setCurrentProject(id);
   renderAll();
 }
 
@@ -65,11 +65,11 @@ function addTaskDeleteListeners() {
 }
 
 function renderAll() {
+  renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();
 }
-
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
@@ -77,26 +77,24 @@ function renderAll() {
 
 document.querySelector(".submit-form").addEventListener("click", () => {
   addTaskToProject(getTaskFromForm());
-  console.table(vault.projects);
-  console.table(vault.projects.tasks);
-  console.log(vault.projects);
+  // console.table(vault.projects);
+  // console.table(vault.projects.tasks);
+  // console.log(vault.projects);
   renderAll();
 });
 
 document.querySelector(".add-project-form").addEventListener("click", () => {
   const projectName = document.querySelector("#project").value;
   addProject(projectName);
-  const projectID = findProjectIdFromName(projectName)
-  setCurrentProject(projectID)
+  const projectID = findProjectIdFromName(projectName);
+  setCurrentProject(projectID);
   renderAll();
-})
+});
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
 renderAll();
-
-
 
 // function returnAllTasks() {
 //   const allProjects = vault.projects;
