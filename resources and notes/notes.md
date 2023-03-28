@@ -127,4 +127,19 @@ Things to consider:
 
 ## 20230328 
 - I'm changing the form to not include project. The functions will assume current project.
-- [ ] add function / option to add a new project
+- [x] add function / option to add a new project
+
+- started working on rendering function in view
+- [x] move some functions from controller to model
+
+- [ ] weirdness: setCurrentProject in controller. Upon moving it to model, errors are had. Probably because the current project is still empty on first load. See if setting it as default in model fixes this
+
+- [ ] add function to remove project
+  - [ ] enable the delete buttons for testing (ensure their classnames are unique and not the same as other buttons)
+  - [ ] add eventlisteners to said delete button (make them console log for now)
+  - [ ] add the delete button eventlisteners upon render
+  - [ ] start with a function in the controller to get the uuid from the delete button on a project
+  - [ ] get the project index from said ID
+  - [ ] create a function in model to remove a project 
+  - [ ] export that function from model and import to controller
+  - [ ] 
