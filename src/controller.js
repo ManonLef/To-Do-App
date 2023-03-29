@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import { renderCurrent } from "./view";
+import renderCurrent from "./view";
 import {
   vault,
   setCurrentProject,
@@ -36,11 +36,7 @@ function getTaskFromForm() {
 }
 
 //  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • New Functionality • |||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • Testing area • ||||||||||||||||||||||||||||
+//  |||||||||||||||||||||||||||| • Functionality • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
 function deleteTaskOnClick() {
@@ -78,6 +74,7 @@ export default function renderAll() {
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
+
 function addProjectListeners() {
   const projects = document.querySelectorAll(".project-name");
   projects.forEach((element) => {
@@ -99,7 +96,8 @@ function addProjectDeleteListeners() {
   });
 }
 
-document.querySelector(".submit-form").addEventListener("click", () => {
+document.querySelector(".submit-form").addEventListener("click", (event) => {
+  event.preventDefault();
   addTaskToProject(getTaskFromForm());
   // console.table(vault.projects);
   // console.table(vault.projects.tasks);
@@ -118,19 +116,3 @@ document
     setCurrentProject(projectID);
     renderAll();
   });
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-// function returnAllTasks() {
-//   const allProjects = vault.projects;
-//   const allTasks = [];
-//   for (let i = 0; i < allProjects.length; i += 1) {
-//     for (let j = 0; j < allProjects[i].projectTasks.length; j += 1) {
-//       allTasks.push(allProjects[i].projectTasks[j]);
-//     }
-//   }
-//   console.table(allTasks);
-//   return allTasks;
-// }

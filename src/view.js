@@ -7,6 +7,87 @@ function removeChildNodes(parent) {
   }
 }
 
+function taskForm() {
+  const newTaskForm = document.createElement("form");
+
+  const taskDiv = document.createElement("div");
+  taskDiv.className = "task";
+
+  const taskLabel = document.createElement("label");
+  taskLabel.setAttribute("for", "task");
+  taskLabel.textContent = "task";
+
+  const inputTask = document.createElement("input");
+  inputTask.setAttribute("type", "text");
+  inputTask.setAttribute("name", "task");
+  inputTask.id = "task"; // check
+
+  const dueDiv = document.createElement("div");
+  dueDiv.className = "due-date";
+
+  const dueLabel = document.createElement("label");
+  dueLabel.setAttribute("for", "due-date");
+  dueLabel.textContent = "due";
+
+  const inputDue = document.createElement("input");
+  inputDue.setAttribute("type", "text");
+  inputDue.setAttribute("name", "due-date");
+  inputDue.id = "due-date"; // check
+
+  const priorityDiv = document.createElement("div");
+  priorityDiv.className = "priority";
+
+  const priorityLabel = document.createElement("label");
+  priorityLabel.setAttribute("for", "priority");
+  priorityLabel.textContent = "priority";
+
+  const prioritySelect = document.createElement("select");
+  prioritySelect.setAttribute("name", "priority");
+  prioritySelect.id = "priority";
+
+  const priorityOptionOne = document.createElement("option");
+  priorityOptionOne.setAttribute("value", "low");
+  priorityOptionOne.textContent = "low";
+
+  const priorityOptionTwo = document.createElement("option");
+  priorityOptionTwo.setAttribute("value", "medium");
+  priorityOptionTwo.textContent = "medium";
+
+  const priorityOptionThree = document.createElement("option");
+  priorityOptionThree.setAttribute("value", "high");
+  priorityOptionThree.textContent = "high";
+
+  const descriptionDiv = document.createElement("div");
+  descriptionDiv.className = "description";
+
+  const descriptionLabel = document.createElement("label");
+  descriptionLabel.setAttribute("for", "description");
+  descriptionLabel.textContent = "description";
+
+  const inputDescription = document.createElement("input");
+  inputDescription.setAttribute("type", "text");
+  inputDescription.setAttribute("name", "description");
+  inputDescription.id = "description"; // check
+
+  const button = document.createElement("button");
+  button.setAttribute("type", "submit");
+  button.className = "submit-form";
+  button.textContent = "submit";
+
+  taskDiv.append(taskLabel, inputTask);
+  dueDiv.append(dueLabel, inputDue);
+  prioritySelect.append(
+    priorityOptionOne,
+    priorityOptionTwo,
+    priorityOptionThree
+  );
+  priorityDiv.append(priorityLabel, prioritySelect);
+  descriptionDiv.append(descriptionLabel, inputDescription);
+
+  newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
+  body.appendChild(newTaskForm);
+}
+
 function projectForm() {
   const newProjectForm = document.createElement("form");
 
@@ -27,9 +108,9 @@ function projectForm() {
   submit.setAttribute("class", "add-project-form");
   submit.textContent = "add project noob";
 
-  body.appendChild(newProjectForm);
   newProjectDiv.append(label, input);
   newProjectForm.append(newProjectDiv, submit);
+  body.appendChild(newProjectForm);
 }
 
 function createProjectElements(currentProject) {
@@ -109,11 +190,9 @@ function renderProjects(vaultProjectsArray) {
   });
 }
 
-function renderCurrent(allProjects, currentProjectTasks) {
+export default function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
-
+taskForm();
 projectForm();
-
-export { renderCurrent, projectForm };
