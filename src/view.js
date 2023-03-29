@@ -8,26 +8,30 @@ function removeChildNodes(parent) {
 }
 
 function createProjectElements(currentProject) {
-  const project = document.createElement("div");
-  project.className = "sidebar-project";
-  project.textContent = currentProject.name;
-  project.setAttribute("data-projectID", currentProject.projectUuid);
-  topContainer.appendChild(project);
+  const projectDiv = document.createElement("div");
+  projectDiv.className = "sidebar-project";
+  topContainer.appendChild(projectDiv);
   // edit button (for now)
+  const projectName = document.createElement("p");
+  projectName.className = "project-name";
+  projectName.textContent = currentProject.name;
+  projectName.setAttribute("data-projectID", currentProject.projectUuid);
+  projectDiv.appendChild(projectName)
+
   const editButton = document.createElement("button");
   editButton.className = "project-edit-button";
   editButton.textContent = "edit";
-  editButton.setAttribute("data-taskID", currentProject.projectUuid);
-  project.appendChild(editButton);
+  editButton.setAttribute("data-projectID", currentProject.projectUuid);
+  projectDiv.appendChild(editButton);
   // delete button
   const deleteButton = document.createElement("button");
   deleteButton.className = "project-delete-button";
   deleteButton.textContent = "delete";
-  deleteButton.setAttribute("data-taskID", currentProject.projectUuid);
-  project.appendChild(deleteButton);
+  deleteButton.setAttribute("data-projectID", currentProject.projectUuid);
+  projectDiv.appendChild(deleteButton);
   // disable buttons
   editButton.disabled = true;
-  deleteButton.disabled = true;
+  deleteButton.disabled = false;
 }
 
 function createTaskElement(taskObject) {
@@ -79,9 +83,7 @@ function renderProjects(vaultProjectsArray) {
   });
 }
 
-function renderCurrent(allProjects, currentProjectTasks) {
+export default function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks)
 }
-
-export { renderCurrent };
