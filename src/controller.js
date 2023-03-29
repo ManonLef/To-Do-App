@@ -1,4 +1,5 @@
-import { renderCurrent } from "./view";
+/* eslint no-use-before-define: ["error", { "functions": false }] */
+import renderCurrent from "./view";
 import {
   vault,
   setCurrentProject,
@@ -9,6 +10,8 @@ import {
   getTaskArrayCurrentProject,
   addTaskToProject,
   removeTask,
+  findProjectIndexFromId,
+  removeProject,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -44,14 +47,47 @@ function deleteTaskOnClick() {
   renderAll();
 }
 
+function deleteProjectOnClick() {
+  const id = this.getAttribute("data-projectID");
+  const index = findProjectIndexFromId(id);
+  console.log(
+    `deleteProjectOnClick says: HI!!! I'm a project delete button for project ${id} at index ${index}<----------------`
+  );
+  removeProject(id);
+  setCurrentProject(vault.projects[0].projectUuid);
+  renderAll();
+}
+
 function selectProjectOnClick() {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
   renderAll();
 }
 
+function renderAll() {
+  console.log("* renderALL rendercurrent*");
+  renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
+
+  console.log("* renderALL getTaskArray*");
+  console.table(getTaskArrayCurrentProject());
+
+  console.log("* renderALL addProjectListeners*");
+  addProjectListeners();
+
+  console.log("* renderALL addTaskDeleteListeners*");
+  addTaskDeleteListeners();
+
+  console.log("* renderALL addProjectDeleteListeners*");
+  addProjectDeleteListeners();
+
+  console.table(vault.projects);
+}
+
+//  --------------------------------------------------------------------------
+//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
+//  --------------------------------------------------------------------------
 function addProjectListeners() {
-  const projects = document.querySelectorAll(".sidebar-project");
+  const projects = document.querySelectorAll(".project-name");
   projects.forEach((element) => {
     element.addEventListener("click", selectProjectOnClick);
   });
@@ -64,16 +100,12 @@ function addTaskDeleteListeners() {
   });
 }
 
-function renderAll() {
-  renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
-  console.table(getTaskArrayCurrentProject());
-  addProjectListeners();
-  addTaskDeleteListeners();
+function addProjectDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".project-delete-button");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", deleteProjectOnClick);
+  });
 }
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
 
 document.querySelector(".submit-form").addEventListener("click", () => {
   addTaskToProject(getTaskFromForm());
@@ -90,6 +122,7 @@ document.querySelector(".add-project-form").addEventListener("click", () => {
   setCurrentProject(projectID);
   renderAll();
 });
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------

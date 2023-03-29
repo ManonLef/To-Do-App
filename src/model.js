@@ -11,7 +11,6 @@ const vault = new Vault("vault");
 vault.newProject = new Project("Default Project");
 let currentProject = "";
 
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -69,9 +68,11 @@ function getCurrentProjectIndex() {
 }
 
 function getTaskArrayCurrentProject() {
-  console.log(`getTaskArrayCurrentProject says: hey it's me`)
+  console.log(`getTaskArrayCurrentProject says: hey it's me`);
   const index = getCurrentProjectIndex();
-  console.log(`getTaskArrayCurrentProject says: This project resides at index ${index}`);
+  console.log(
+    `getTaskArrayCurrentProject says: This project resides at index ${index}`
+  );
   return vault.projects[index].projectTasks;
 }
 
@@ -79,16 +80,24 @@ function getTaskArrayCurrentProject() {
 //  |||||||||||||||||||||||||||||| • helpers • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-
 function findTaskIndex(taskUuid) {
-  const taskIndex = _.findIndex(vault.projects[getCurrentProjectIndex()].projectTasks, {taskUuid})
-  return taskIndex
+  const taskIndex = _.findIndex(
+    vault.projects[getCurrentProjectIndex()].projectTasks,
+    { taskUuid }
+  );
+  return taskIndex;
 }
 
 function findProjectIdFromName(name) {
-  const index = _.findIndex(vault.projects, { name: name });
-  const projectUuid = vault.projects[index].projectUuid;
-  return projectUuid
+  const index = _.findIndex(vault.projects, { name });
+  const {projectUuid} = vault.projects[index];
+  return projectUuid;
+}
+
+function findProjectIndexFromId(id) {
+  const projectUuid = id;
+  const projectIndex = _.findIndex(vault.projects, { projectUuid });
+  return projectIndex;
 }
 
 //  --------------------------------------------------------------------------
@@ -103,7 +112,7 @@ function setCurrentProject(projectID) {
 
 function addProject(name) {
   vault.newProject = new Project(name);
-  addToStorage()
+  addToStorage();
 }
 
 function addTaskToProject(taskFromForm) {
@@ -123,6 +132,10 @@ function removeTask(taskUuid) {
   addToStorage();
 }
 
+function removeProject(projectUuid) {
+  vault.projects.splice(findProjectIndexFromId(projectUuid), 1);
+  addToStorage();
+}
 
 // unused from controller
 
@@ -168,8 +181,6 @@ function removeTask(taskUuid) {
 //   addToStorage();
 // }
 
-
-
 export {
   vault,
   addPrototype,
@@ -184,4 +195,6 @@ export {
   getTaskArrayCurrentProject,
   addTaskToProject,
   removeTask,
+  findProjectIndexFromId,
+  removeProject,
 };

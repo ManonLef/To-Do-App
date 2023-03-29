@@ -134,12 +134,17 @@ Things to consider:
 
 - [ ] weirdness: setCurrentProject in controller. Upon moving it to model, errors are had. Probably because the current project is still empty on first load. See if setting it as default in model fixes this
 
-- [ ] add function to remove project
-  - [ ] enable the delete buttons for testing (ensure their classnames are unique and not the same as other buttons)
-  - [ ] add eventlisteners to said delete button (make them console log for now)
-  - [ ] add the delete button eventlisteners upon render
-  - [ ] start with a function in the controller to get the uuid from the delete button on a project
-  - [ ] get the project index from said ID
+## 20230329
+- [x] add function to remove project
+  - [x] enable the delete buttons for testing (ensure their classnames are unique and not the same as other buttons)
+  - [x] add eventlisteners to said delete button (make them console log for now)
+  - [x] add the delete button eventlisteners upon render
+  - [x] start with a function in the controller to get the uuid from the delete button on a project
+  - [x] get the project index from said ID
   - [ ] create a function in model to remove a project 
-  - [ ] export that function from model and import to controller
-  - [ ] 
+  - [x] export that function from model and import to controller
+  - [x] make default project the current project
+
+
+  - [ ] empty form upon submit
+  - [ ] consider model function to set current project to the default project
