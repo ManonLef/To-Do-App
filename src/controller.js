@@ -12,12 +12,14 @@ import {
   removeTask,
   findProjectIndexFromId,
   removeProject,
+  setCurrentProjectToDefault,
 } from "./model";
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-setCurrentProject(vault.projects[0].projectUuid);
+
+setCurrentProjectToDefault()
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||

@@ -147,4 +147,4 @@ Things to consider:
 
 
   - [ ] empty form upon submit
-  - [ ] consider model function to set current project to the default project
+  - [x] consider model function to set current project to the default project

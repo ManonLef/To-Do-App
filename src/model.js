@@ -90,7 +90,7 @@ function findTaskIndex(taskUuid) {
 
 function findProjectIdFromName(name) {
   const index = _.findIndex(vault.projects, { name });
-  const {projectUuid} = vault.projects[index];
+  const { projectUuid } = vault.projects[index];
   return projectUuid;
 }
 
@@ -108,6 +108,10 @@ function setCurrentProject(projectID) {
   currentProject = projectID;
   console.log(`setCurrentProject says: current project is ${currentProject}`);
   return currentProject;
+}
+
+function setCurrentProjectToDefault() {
+  setCurrentProject(vault.projects[0].projectUuid);
 }
 
 function addProject(name) {
@@ -197,4 +201,5 @@ export {
   removeTask,
   findProjectIndexFromId,
   removeProject,
+  setCurrentProjectToDefault,
 };
