@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import renderCurrent from "./view";
+import { renderCurrent } from "./view";
 import {
   vault,
   setCurrentProject,
@@ -19,7 +19,7 @@ import {
 //  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
-setCurrentProjectToDefault()
+setCurrentProjectToDefault();
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||
@@ -66,22 +66,12 @@ function selectProjectOnClick() {
   renderAll();
 }
 
-function renderAll() {
-  console.log("* renderALL rendercurrent*");
+export default function renderAll() {
   renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
-
-  console.log("* renderALL getTaskArray*");
   console.table(getTaskArrayCurrentProject());
-
-  console.log("* renderALL addProjectListeners*");
   addProjectListeners();
-
-  console.log("* renderALL addTaskDeleteListeners*");
   addTaskDeleteListeners();
-
-  console.log("* renderALL addProjectDeleteListeners*");
   addProjectDeleteListeners();
-
   console.table(vault.projects);
 }
 
@@ -117,19 +107,21 @@ document.querySelector(".submit-form").addEventListener("click", () => {
   renderAll();
 });
 
-document.querySelector(".add-project-form").addEventListener("click", () => {
-  const projectName = document.querySelector("#project").value;
-  addProject(projectName);
-  const projectID = findProjectIdFromName(projectName);
-  setCurrentProject(projectID);
-  renderAll();
-});
+document
+  .querySelector(".add-project-form")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    const projectName = document.querySelector("#project").value;
+    // document.querySelector("#project").value = "";
+    addProject(projectName);
+    const projectID = findProjectIdFromName(projectName);
+    setCurrentProject(projectID);
+    renderAll();
+  });
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • View Update • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-
-renderAll();
 
 // function returnAllTasks() {
 //   const allProjects = vault.projects;

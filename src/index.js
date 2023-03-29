@@ -1,3 +1,5 @@
 // test module imports
-import "./controller";
-import "./style.css"
+import renderAll from "./controller";
+import "./style.css";
+
+renderAll()

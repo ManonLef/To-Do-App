@@ -22,17 +22,17 @@ function projectForm() {
   input.setAttribute("name", "project");
   input.setAttribute("id", "project");
 
-  const submit = document.createElement("button")
-  submit.setAttribute("type", "submit")
-  submit.setAttribute("class", "add-project-form")
-  submit.textContent = "add project noob"
+  const submit = document.createElement("button");
+  submit.setAttribute("type", "submit");
+  submit.setAttribute("class", "add-project-form");
+  submit.textContent = "add project noob";
 
-  body.appendChild(newProjectForm)
-  newProjectDiv.append(label, input)
-  newProjectForm.append(newProjectDiv, submit)
+  body.appendChild(newProjectForm);
+  newProjectDiv.append(label, input);
+  newProjectForm.append(newProjectDiv, submit);
 }
 
-projectForm()
+projectForm();
 
 function createProjectElements(currentProject) {
   const projectDiv = document.createElement("div");
@@ -110,7 +110,9 @@ function renderProjects(vaultProjectsArray) {
   });
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks) {
+function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
+
+export { renderCurrent, projectForm };
