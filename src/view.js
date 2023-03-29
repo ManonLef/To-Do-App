@@ -32,8 +32,6 @@ function projectForm() {
   newProjectForm.append(newProjectDiv, submit);
 }
 
-projectForm();
-
 function createProjectElements(currentProject) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
@@ -65,6 +63,7 @@ function createTaskElement(taskObject) {
   // task div
   const taskDiv = document.createElement("div");
   taskDiv.className = "task-div";
+  taskDiv.setAttribute("data-taskID", taskObject.taskUuid);
   taskContainer.appendChild(taskDiv);
   // checkbox
   const checkbox = document.createElement("input");
@@ -114,5 +113,7 @@ function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
+
+projectForm();
 
 export { renderCurrent, projectForm };
