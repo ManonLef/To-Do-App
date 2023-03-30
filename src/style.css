@@ -11,7 +11,7 @@
 
 body {
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-columns: 1fr 5fr;
   gap: 30px;
 }
 
@@ -23,4 +23,9 @@ body {
 .task-container {
   display: flex;
   flex-direction: column;
+}
+
+.add-project-icon-container {
+  padding: 10px;
+  background-color: lightblue;
 }

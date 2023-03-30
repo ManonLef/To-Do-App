@@ -1,6 +1,20 @@
-const taskContainer = document.querySelector(".task-container");
-const topContainer = document.querySelector(".container");
 const body = document.querySelector("body");
+
+const projectElement = document.createElement("div");
+projectElement.className = "project-sidebar"
+body.appendChild(projectElement)
+
+const projectContainer = document.createElement("div");
+projectContainer.className = "container";
+projectElement.appendChild(projectContainer);
+
+const taskElement = document.createElement("div")
+taskElement.className = 'task-element'
+body.appendChild(taskElement)
+
+const taskContainer = document.createElement("div");
+taskContainer.className = "task-container";
+taskElement.appendChild(taskContainer);
 
 function removeChildNodes(parent) {
   while (parent.firstChild) {
@@ -86,13 +100,13 @@ function taskForm() {
   descriptionDiv.append(descriptionLabel, inputDescription);
 
   newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
-  body.appendChild(newTaskForm);
+  taskElement.appendChild(newTaskForm);
 }
 
 function projectForm() {
   const newProjectForm = document.createElement("form");
-  newProjectForm.className = "project-form"
-  newProjectForm.setAttribute("hidden", "true")
+  newProjectForm.className = "project-form";
+  newProjectForm.setAttribute("hidden", "true");
 
   const newProjectDiv = document.createElement("div");
   newProjectDiv.className = "project";
@@ -113,15 +127,15 @@ function projectForm() {
 
   newProjectDiv.append(label, input);
   newProjectForm.append(newProjectDiv, submit);
-  body.appendChild(newProjectForm);
+  projectElement.appendChild(newProjectForm);
 }
 
 function showProjectForm() {
-  document.querySelector(".project-form").removeAttribute("hidden")
+  document.querySelector(".project-form").removeAttribute("hidden");
 }
 
 function hideProjectForm() {
-  document.querySelector(".project-form").setAttribute("hidden", "true")
+  document.querySelector(".project-form").setAttribute("hidden", "true");
 }
 
 function addProjectIcon() {
@@ -129,17 +143,17 @@ function addProjectIcon() {
   addProject.className = "add-project-icon-container";
   addProject.textContent = "+";
 
-  topContainer.appendChild(addProject);
+  projectContainer.appendChild(addProject);
 
   addProject.addEventListener("click", () => {
     showProjectForm();
-  })
+  });
 }
 
 function createProjectElements(project) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
-  topContainer.appendChild(projectDiv);
+  projectContainer.appendChild(projectDiv);
   // edit button (for now)
   const projectName = document.createElement("p");
   projectName.className = "project-name";
@@ -206,12 +220,12 @@ function renderTasks(projectTasks) {
 }
 
 function renderProjects(vaultProjectsArray) {
-  removeChildNodes(topContainer);
+  removeChildNodes(projectContainer);
   const projects = vaultProjectsArray;
   projects.forEach((project) => {
     createProjectElements(project);
   });
-  addProjectIcon()
+  addProjectIcon();
 }
 
 function renderCurrent(allProjects, currentProjectTasks) {
@@ -223,4 +237,4 @@ taskForm();
 projectForm();
 addProjectIcon();
 
-export { renderCurrent, hideProjectForm}
+export { renderCurrent, hideProjectForm };
