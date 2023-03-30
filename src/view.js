@@ -117,6 +117,39 @@ function addTaskIcon() {
   });
 }
 
+function showProjectForm() {
+  document.querySelector(".project-form").removeAttribute("hidden");
+}
+
+function hideProjectForm() {
+  document.querySelector(".project-form").setAttribute("hidden", "true");
+}
+
+function hideProjectIcon() {
+  document
+    .querySelector(".add-project-icon-container")
+    .setAttribute("hidden", "true");
+}
+
+function showProjectIcon() {
+  document
+    .querySelector(".add-project-icon-container")
+    .removeAttribute("hidden");
+}
+
+function addProjectIcon() {
+  const addProject = document.createElement("div");
+  addProject.className = "add-project-icon-container";
+  addProject.textContent = "+";
+
+  projectElement.appendChild(addProject);
+
+  addProject.addEventListener("click", () => {
+    showProjectForm();
+    hideProjectIcon();
+  });
+}
+
 function projectForm() {
   const newProjectForm = document.createElement("form");
   newProjectForm.className = "project-form";
@@ -151,39 +184,6 @@ function projectForm() {
     hideProjectForm();
     showProjectIcon();
   });
-}
-
-function addProjectIcon() {
-  const addProject = document.createElement("div");
-  addProject.className = "add-project-icon-container";
-  addProject.textContent = "+";
-
-  projectElement.appendChild(addProject);
-
-  addProject.addEventListener("click", () => {
-    showProjectForm();
-    hideProjectIcon();
-  });
-}
-
-function showProjectForm() {
-  document.querySelector(".project-form").removeAttribute("hidden");
-}
-
-function hideProjectForm() {
-  document.querySelector(".project-form").setAttribute("hidden", "true");
-}
-
-function hideProjectIcon() {
-  document
-    .querySelector(".add-project-icon-container")
-    .setAttribute("hidden", "true");
-}
-
-function showProjectIcon() {
-  document
-    .querySelector(".add-project-icon-container")
-    .removeAttribute("hidden");
 }
 
 function createProjectElements(project) {
