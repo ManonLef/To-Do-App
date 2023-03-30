@@ -227,7 +227,6 @@ function createProjectElements(project) {
   newProjectName.setAttribute("hidden", "true");
   newProjectName.setAttribute("data-projectID", project.projectUuid);
 
-
   const labelNewProjectName = document.createElement("label");
   labelNewProjectName.setAttribute("for", "input");
 
@@ -271,24 +270,36 @@ function createProjectElements(project) {
   editButton.disabled = false;
   deleteButton.disabled = false;
 
+  projectName.addEventListener("dblclick", () => {
+    disableEditbuttons();
+    if (projectName.getAttribute("hidden") === "true") {
+      projectName.removeAttribute("hidden");
+      newProjectName.setAttribute("hidden", "true");
+    } else {
+      projectName.setAttribute("hidden", "true");
+      newProjectName.removeAttribute("hidden");
+      inputNewProjectName.focus();
+    }
+  });
+
   editButton.addEventListener("click", () => {
     disableEditbuttons();
     if (projectName.getAttribute("hidden") === "true") {
       projectName.removeAttribute("hidden");
-      newProjectName.setAttribute("hidden", "true");  
+      newProjectName.setAttribute("hidden", "true");
     } else {
-    projectName.setAttribute("hidden", "true");
-    newProjectName.removeAttribute("hidden");
-    inputNewProjectName.focus()
+      projectName.setAttribute("hidden", "true");
+      newProjectName.removeAttribute("hidden");
+      inputNewProjectName.focus();
     }
   });
 }
 
 function disableEditbuttons() {
-  const editButtons = document.querySelectorAll(".project-edit-button")
+  const editButtons = document.querySelectorAll(".project-edit-button");
   editButtons.forEach((button) => {
-    button.setAttribute("disabled", "true")
-  })
+    button.setAttribute("disabled", "true");
+  });
 }
 
 function createTaskElement(taskObject) {
@@ -341,7 +352,7 @@ function renderProjects(vaultProjectsArray) {
   });
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks) {
+function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
@@ -351,3 +362,5 @@ taskForm();
 
 addProjectIcon();
 projectForm();
+
+export { renderCurrent, renderTasks, renderProjects };

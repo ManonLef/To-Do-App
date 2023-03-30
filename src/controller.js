@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import renderCurrent from "./view";
+import {renderCurrent, renderProjects, renderTasks} from "./view";
 import {
   vault,
   setCurrentProject,
@@ -72,7 +72,7 @@ function deleteProjectOnClick() {
 function selectProjectOnClick() {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
-  renderAll();
+  renderTasks(getTaskArrayCurrentProject())
 }
 
 export default function renderAll() {
@@ -108,7 +108,7 @@ function addProjectDeleteListeners() {
     button.addEventListener("click", deleteProjectOnClick);
   });
   // edit name of project
-  const editForm = document.querySelectorAll(".edit-project-name-submit");
+  const editForm = document.querySelectorAll(".edit-project-name-submit");  
   editForm.forEach((button) => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
