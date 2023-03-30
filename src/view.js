@@ -30,6 +30,18 @@ function hideTaskForm() {
   document.querySelector(".task-form").setAttribute("hidden", "true");
 }
 
+function showTaskIcon() {
+  document
+    .querySelector(".add-task-icon-container")
+    .removeAttribute("hidden");
+}
+
+function hideTaskIcon() {
+  document
+  .querySelector(".add-task-icon-container")
+  .setAttribute("hidden", "true");
+}
+
 function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form"
@@ -112,7 +124,10 @@ function taskForm() {
   newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
   taskElement.appendChild(newTaskForm);
 
-  button.addEventListener("click", hideTaskForm)
+  button.addEventListener("click", () => {
+    hideTaskForm();
+    showTaskIcon();
+  })
 }
 
 function addTaskIcon() {
@@ -124,7 +139,7 @@ function addTaskIcon() {
 
   addTask.addEventListener("click", () => {
     showTaskForm();
-    // hideProjectIcon();
+    hideTaskIcon()
   });
 }
 
