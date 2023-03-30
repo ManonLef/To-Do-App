@@ -7,12 +7,17 @@
   border: 1px solid pink;
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 body {
   display: grid;
   grid-template-columns: 1fr 5fr;
   gap: 30px;
+}
+
+.task-form {
+  border: 2px solid lightcoral;
 }
 
 .task-div {
@@ -25,7 +30,8 @@ body {
   flex-direction: column;
 }
 
-.add-project-icon-container {
+.add-project-icon-container,
+.add-task-icon-container {
   padding: 10px;
   background-color: lightblue;
 }

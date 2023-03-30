@@ -49,6 +49,10 @@ function taskForm() {
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
 
+  const checkbox = document.createElement("input");
+  checkbox.id = "checkbox"
+  checkbox.setAttribute("type", "checkbox");
+
   const taskLabel = document.createElement("label");
   taskLabel.setAttribute("for", "task");
   taskLabel.textContent = "task";
@@ -80,6 +84,10 @@ function taskForm() {
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.id = "priority";
+
+  const priorityOptionNone = document.createElement("option");
+  priorityOptionNone.setAttribute("value", "");
+  priorityOptionNone.textContent = "";
 
   const priorityOptionOne = document.createElement("option");
   priorityOptionOne.setAttribute("value", "low");
@@ -113,6 +121,7 @@ function taskForm() {
   taskDiv.append(taskLabel, inputTask);
   dueDiv.append(dueLabel, inputDue);
   prioritySelect.append(
+    priorityOptionNone,
     priorityOptionOne,
     priorityOptionTwo,
     priorityOptionThree
@@ -120,7 +129,7 @@ function taskForm() {
   priorityDiv.append(priorityLabel, prioritySelect);
   descriptionDiv.append(descriptionLabel, inputDescription);
 
-  newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
+  newTaskForm.append(checkbox, taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
   taskElement.appendChild(newTaskForm);
 
   button.addEventListener("click", () => {

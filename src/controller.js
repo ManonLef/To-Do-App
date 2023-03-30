@@ -28,13 +28,14 @@ setCurrentProjectToDefault();
 //  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
+  const checked = document.querySelector("#checkbox").checked;
   const task = document.querySelector("#task").value;
-  const description = document.querySelector("#description").value;
   const due = document.querySelector("#due-date").value;
   const prio = document.querySelector("#priority").value;
   const projectUuid = getCurrentProjectID();
+  const description = document.querySelector("#description").value;
 
-  return [task, description, due, prio, projectUuid];
+  return [checked, task, due, prio, projectUuid, description];
 }
 
 //  --------------------------------------------------------------------------

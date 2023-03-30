@@ -1,10 +1,11 @@
 export default class Task {
-  constructor([task, description, dueDate, priority, project]) {
+  constructor([checked, task, dueDate, priority, project, description]) {
+    this.checked = checked
     this.task = task;
-    this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.taskUuid = new Date().getTime().toString()
     this.projectUuid = project;
+    this.description = description;
   }
 }
