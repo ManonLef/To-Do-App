@@ -44,13 +44,13 @@ function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form";
   newTaskForm.setAttribute("hidden", "true");
-  newTaskForm.setAttribute("onsubmit", "return false")
+  newTaskForm.setAttribute("onsubmit", "return false");
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
 
   const checkbox = document.createElement("input");
-  checkbox.id = "checkbox"
+  checkbox.id = "checkbox";
   checkbox.setAttribute("type", "checkbox");
 
   const taskLabel = document.createElement("label");
@@ -129,7 +129,14 @@ function taskForm() {
   priorityDiv.append(priorityLabel, prioritySelect);
   descriptionDiv.append(descriptionLabel, inputDescription);
 
-  newTaskForm.append(checkbox, taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
+  newTaskForm.append(
+    checkbox,
+    taskDiv,
+    dueDiv,
+    priorityDiv,
+    descriptionDiv,
+    button
+  );
   taskElement.appendChild(newTaskForm);
 
   button.addEventListener("click", () => {
@@ -188,7 +195,7 @@ function projectForm() {
   const newProjectForm = document.createElement("form");
   newProjectForm.className = "project-form";
   newProjectForm.setAttribute("hidden", "true");
-  newProjectForm.setAttribute("onsubmit", "return false")
+  newProjectForm.setAttribute("onsubmit", "return false");
 
   const fieldsContainer = document.createElement("div");
   fieldsContainer.className = "new-project-input-and-button";
@@ -237,7 +244,7 @@ function createProjectElements(project) {
   newProjectName.className = "edit-project-form";
   newProjectName.setAttribute("hidden", "true");
   newProjectName.setAttribute("data-projectID", project.projectUuid);
-  newProjectName.setAttribute("onsubmit", "return false")
+  newProjectName.setAttribute("onsubmit", "return false");
 
   const labelNewProjectName = document.createElement("label");
   labelNewProjectName.setAttribute("for", "input");
@@ -319,6 +326,10 @@ function createTaskElement(taskObject) {
   task.textContent = taskObject.task;
   task.className = "task-name";
   taskDiv.appendChild(task);
+  if (taskObject.checked) {
+    checkbox.setAttribute("checked", true);
+    task.className = "task-div checked"
+  }
   // due
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";

@@ -163,8 +163,16 @@ Things to consider:
 - [x] add button to add task (check workflow project hide/un-hide)
   - [x] add `addTaskicon` function
   - [x] add hide and un-hide functionality for form when clicking the button
-- [ ] add hide and un-hide for task icon when form is open
-- [ ] add checked task styling
+- [x] add hide and un-hide for task icon when form is open
+- [x] add checked task styling
+  - [x] add checkmark to task as value
+- [x] create function to edit project name
+- [x] create visuals to edit project name
+  - [x] consider adding a hidden form in the spot of that project that hides and un-hides with edit fields that submit on enter
 - [ ] create function(s) to edit a task 
-  - [ ] think through the workflow and perhaps start with just the taskname or checkmark first
+  - [ ] think through the workflow and perhaps start with just the task name or checkmark first
 - add color to task div based on priority
+- [x] look into `form.reset()` instead of my current functions to clear the form
+  - [x] use `form.reset()` for project submit as well
+- [ ] look into errors upon deleting last project or make sure the first project default is non-deletable 
+- add event listener to checkbox on render to add classname

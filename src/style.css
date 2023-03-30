@@ -17,12 +17,17 @@ body {
 }
 
 .task-form {
-  border: 2px solid lightcoral;
+  border: 2px solid rgb(200, 200, 200);
 }
 
 .task-div {
   display: flex;
   gap: 10px;
+}
+
+.checked {
+  color: rgb(186, 186, 186);
+  text-decoration: line-through rgb(133, 133, 133);
 }
 
 .task-container {
