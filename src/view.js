@@ -109,6 +109,9 @@ function projectForm() {
   newProjectForm.className = "project-form";
   newProjectForm.setAttribute("hidden", "true");
 
+  const fieldsContainer = document.createElement("div")
+  fieldsContainer.className = "new-project-input-and-button"
+
   const newProjectDiv = document.createElement("div");
   newProjectDiv.className = "project";
 
@@ -124,10 +127,11 @@ function projectForm() {
   const submit = document.createElement("button");
   submit.setAttribute("type", "submit");
   submit.setAttribute("class", "add-project-button");
-  submit.textContent = "add project noob";
+  submit.textContent = "add project";
 
   newProjectDiv.append(label, input);
-  newProjectForm.append(newProjectDiv, submit);
+  fieldsContainer.append(newProjectDiv, submit)
+  newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
   submit.addEventListener("click", () => {

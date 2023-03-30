@@ -29,3 +29,8 @@ body {
   padding: 10px;
   background-color: lightblue;
 }
+
+.new-project-input-and-button {
+  display: flex;
+  justify-content: space-between;
+}
