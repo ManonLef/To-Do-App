@@ -225,13 +225,15 @@ function createProjectElements(project) {
   const newProjectName = document.createElement("form");
   newProjectName.className = "edit-project-form";
   newProjectName.setAttribute("hidden", "true");
+  newProjectName.setAttribute("data-projectID", project.projectUuid);
+
 
   const labelNewProjectName = document.createElement("label");
   labelNewProjectName.setAttribute("for", "input");
 
   const inputNewProjectName = document.createElement("input");
   inputNewProjectName.setAttribute("type", "text");
-  inputNewProjectName.id = "";
+  inputNewProjectName.id = "edit-project-input";
   inputNewProjectName.className = `edit-${project.projectUuid}`;
   inputNewProjectName.value = project.name;
 
@@ -270,14 +272,23 @@ function createProjectElements(project) {
   deleteButton.disabled = false;
 
   editButton.addEventListener("click", () => {
+    disableEditbuttons();
     if (projectName.getAttribute("hidden") === "true") {
       projectName.removeAttribute("hidden");
       newProjectName.setAttribute("hidden", "true");  
     } else {
     projectName.setAttribute("hidden", "true");
     newProjectName.removeAttribute("hidden");
+    inputNewProjectName.focus()
     }
   });
+}
+
+function disableEditbuttons() {
+  const editButtons = document.querySelectorAll(".project-edit-button")
+  editButtons.forEach((button) => {
+    button.setAttribute("disabled", "true")
+  })
 }
 
 function createTaskElement(taskObject) {
