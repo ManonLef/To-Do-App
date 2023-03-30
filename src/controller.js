@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import { renderCurrent, renderProjects, renderTasks } from "./view";
+import { renderCurrent, renderTasks } from "./view";
 import {
   vault,
   setCurrentProject,
@@ -28,7 +28,7 @@ setCurrentProjectToDefault();
 //  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
-  const checked = document.querySelector("#checkbox").checked;
+  const {checked} = document.querySelector("#checkbox");
   const task = document.querySelector("#task").value;
   const due = document.querySelector("#due-date").value;
   const prio = document.querySelector("#priority").value;
