@@ -154,7 +154,6 @@ Things to consider:
   - [x] on click of that button:
     - [x] open form 
     - [x] add event listener (was not needed since the element is already there)
-- [ ] add color/style to current project in project list
 
 ## 20230330 
 - [x] rename task form submit class
@@ -169,10 +168,19 @@ Things to consider:
 - [x] create function to edit project name
 - [x] create visuals to edit project name
   - [x] consider adding a hidden form in the spot of that project that hides and un-hides with edit fields that submit on enter
-- [ ] create function(s) to edit a task 
-  - [ ] think through the workflow and perhaps start with just the task name or checkmark first
 - add color to task div based on priority
 - [x] look into `form.reset()` instead of my current functions to clear the form
   - [x] use `form.reset()` for project submit as well
+- [x] add event listener to checkbox on render to add classname
+
+### end of day notes
+- I ran into some issues when adding event listeners for blur and focusout. It made the click eventlisteners malfunction. Eventually I fixed that by using a mousedown event instead of click. I'm still not entirely sure what caused it so I'd like to look into that 
+  - [ ] look into the above issue for research 
+- It's getting a lot harder to keep track of all the different elements. I'm glad I separated many of the concerns during the earlier stages and took my time to achieve some sort of organization and responsibilities for my modules.
+
+### Extracted to-do's to carry over to next days
+- [ ] create function(s) to edit a task 
+  - [ ] think through the workflow and perhaps start with just the task name or checkmark first
 - [ ] look into errors upon deleting last project or make sure the first project default is non-deletable 
-- add event listener to checkbox on render to add classname
+- [ ] add color/style to current project in project list
+
