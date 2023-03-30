@@ -24,6 +24,7 @@ function removeChildNodes(parent) {
 
 function taskForm() {
   const newTaskForm = document.createElement("form");
+  newTaskForm.className = "task-form"
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
