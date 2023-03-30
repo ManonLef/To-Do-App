@@ -31,21 +31,19 @@ function hideTaskForm() {
 }
 
 function showTaskIcon() {
-  document
-    .querySelector(".add-task-icon-container")
-    .removeAttribute("hidden");
+  document.querySelector(".add-task-icon-container").removeAttribute("hidden");
 }
 
 function hideTaskIcon() {
   document
-  .querySelector(".add-task-icon-container")
-  .setAttribute("hidden", "true");
+    .querySelector(".add-task-icon-container")
+    .setAttribute("hidden", "true");
 }
 
 function taskForm() {
   const newTaskForm = document.createElement("form");
-  newTaskForm.className = "task-form"
-  newTaskForm.setAttribute("hidden", 'true')
+  newTaskForm.className = "task-form";
+  newTaskForm.setAttribute("hidden", "true");
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -127,7 +125,7 @@ function taskForm() {
   button.addEventListener("click", () => {
     hideTaskForm();
     showTaskIcon();
-  })
+  });
 }
 
 function addTaskIcon() {
@@ -139,7 +137,7 @@ function addTaskIcon() {
 
   addTask.addEventListener("click", () => {
     showTaskForm();
-    hideTaskIcon()
+    hideTaskIcon();
   });
 }
 
@@ -181,8 +179,8 @@ function projectForm() {
   newProjectForm.className = "project-form";
   newProjectForm.setAttribute("hidden", "true");
 
-  const fieldsContainer = document.createElement("div")
-  fieldsContainer.className = "new-project-input-and-button"
+  const fieldsContainer = document.createElement("div");
+  fieldsContainer.className = "new-project-input-and-button";
 
   const newProjectDiv = document.createElement("div");
   newProjectDiv.className = "project";
@@ -202,7 +200,7 @@ function projectForm() {
   submit.textContent = "add project";
 
   newProjectDiv.append(label, input);
-  fieldsContainer.append(newProjectDiv, submit)
+  fieldsContainer.append(newProjectDiv, submit);
   newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
@@ -216,18 +214,41 @@ function createProjectElements(project) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
   projectContainer.appendChild(projectDiv);
-  // edit button (for now)
+
   const projectName = document.createElement("p");
   projectName.className = "project-name";
   projectName.textContent = project.name;
   projectName.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(projectName);
 
+  // project name edit form ---------------------------------------------------------------------------------
+  const newProjectName = document.createElement("form");
+  newProjectName.className = "edit-project-form";
+  newProjectName.setAttribute("hidden", "true")
+
+  const input = document.createElement("input");
+  input.className = "edit-project-name";
+  input.setAttribute("type", "text");
+  input.value = project.name;
+
+  const submitNewProjectName = document.createElement("button");
+  submitNewProjectName.setAttribute("type", "submit");
+  submitNewProjectName.setAttribute("hidden", "true");
+
+  newProjectName.append(input, submitNewProjectName);
+  projectDiv.appendChild(newProjectName);
+
+  submitNewProjectName.addEventListener("click", () => {
+    newProjectName.setAttribute("hidden", "true");
+    projectName.removeAttribute("hidden")
+  })
+  //-------------------------------------------------------------------------------------------------------
   const editButton = document.createElement("button");
   editButton.className = "project-edit-button";
   editButton.textContent = "edit";
   editButton.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(editButton);
+
   // delete button
   const deleteButton = document.createElement("button");
   deleteButton.className = "project-delete-button";
@@ -235,8 +256,14 @@ function createProjectElements(project) {
   deleteButton.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(deleteButton);
   // disable buttons
-  editButton.disabled = true;
+  editButton.disabled = false;
   deleteButton.disabled = false;
+
+  editButton.addEventListener("click", () => {
+    projectName.setAttribute("hidden", "true")
+    newProjectName.removeAttribute("hidden")
+  })
+
 }
 
 function createTaskElement(taskObject) {
