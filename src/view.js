@@ -1,16 +1,16 @@
 const body = document.querySelector("body");
 
 const projectElement = document.createElement("div");
-projectElement.className = "project-sidebar"
-body.appendChild(projectElement)
+projectElement.className = "project-sidebar";
+body.appendChild(projectElement);
 
 const projectContainer = document.createElement("div");
 projectContainer.className = "container";
 projectElement.appendChild(projectContainer);
 
-const taskElement = document.createElement("div")
-taskElement.className = 'task-element'
-body.appendChild(taskElement)
+const taskElement = document.createElement("div");
+taskElement.className = "task-element";
+body.appendChild(taskElement);
 
 const taskContainer = document.createElement("div");
 taskContainer.className = "task-container";
@@ -128,6 +128,11 @@ function projectForm() {
   newProjectDiv.append(label, input);
   newProjectForm.append(newProjectDiv, submit);
   projectElement.appendChild(newProjectForm);
+
+  submit.addEventListener("click", () => {
+    hideProjectForm();
+    showProjectIcon();
+  });
 }
 
 function showProjectForm() {
@@ -143,11 +148,24 @@ function addProjectIcon() {
   addProject.className = "add-project-icon-container";
   addProject.textContent = "+";
 
-  projectContainer.appendChild(addProject);
+  projectElement.appendChild(addProject);
 
   addProject.addEventListener("click", () => {
     showProjectForm();
+    hideProjectIcon();
   });
+}
+
+function hideProjectIcon() {
+  document
+    .querySelector(".add-project-icon-container")
+    .setAttribute("hidden", "true");
+}
+
+function showProjectIcon() {
+  document
+    .querySelector(".add-project-icon-container")
+    .removeAttribute("hidden");
 }
 
 function createProjectElements(project) {
@@ -225,16 +243,13 @@ function renderProjects(vaultProjectsArray) {
   projects.forEach((project) => {
     createProjectElements(project);
   });
-  addProjectIcon();
 }
 
-function renderCurrent(allProjects, currentProjectTasks) {
+export default function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
 
 taskForm();
-projectForm();
 addProjectIcon();
-
-export { renderCurrent, hideProjectForm };
+projectForm();

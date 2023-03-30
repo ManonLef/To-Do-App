@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import {renderCurrent, hideProjectForm} from "./view";
+import renderCurrent from "./view";
 import {
   vault,
   setCurrentProject,
@@ -114,6 +114,5 @@ document
     addProject(projectName);
     const projectID = findProjectIdFromName(projectName);
     setCurrentProject(projectID);
-    hideProjectForm();
     renderAll();
   });
