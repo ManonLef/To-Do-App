@@ -84,6 +84,14 @@ export default function renderAll() {
   console.table(vault.projects);
 }
 
+function addProjectInputListener() {
+  const projectUuid = this.getAttribute("data-projectID");
+      const newNameTarget = `.edit-${projectUuid}`;
+      const newName = document.querySelector(newNameTarget).value;
+      editProjectName(projectUuid, newName);
+      renderAll()
+}
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -91,7 +99,7 @@ export default function renderAll() {
 function addProjectListeners() {
   const projects = document.querySelectorAll(".project-name");
   projects.forEach((element) => {
-    element.addEventListener("click", selectProjectOnClick);
+    element.addEventListener("mousedown", selectProjectOnClick);
   });
 }
 
@@ -110,33 +118,19 @@ function addProjectEditListeners() {
   // edit name of project through enter
   const editForm = document.querySelectorAll(".edit-project-name-submit");
   editForm.forEach((button) => {
-    button.addEventListener("mousedown", (event) => {
-      event.preventDefault();
-      const projectUuid = button.getAttribute("data-projectID");
-      const newNameTarget = `.edit-${projectUuid}`;
-      const newName = document.querySelector(newNameTarget).value;
-      editProjectName(projectUuid, newName);
-      renderAll();
-    });
+    button.addEventListener("mousedown", addProjectInputListener);
   });
 
   const inputField = document.querySelectorAll("#edit-project-input");
   inputField.forEach((field) => {
-    field.addEventListener("focusout", () => {
-      const projectUuid = field.getAttribute("data-projectID");
-      const newNameTarget = `.edit-${projectUuid}`;
-      const newName = document.querySelector(newNameTarget).value;
-      editProjectName(projectUuid, newName);
-      renderAll();
-    });
+    field.addEventListener("focusout", addProjectInputListener);
   });
 }
 
 // new task and new form submit buttons (hidden by default)
 document
   .querySelector(".add-task-button")
-  .addEventListener("click", (event) => {
-    event.preventDefault();
+  .addEventListener("click", () => {
     addTaskToProject(getTaskFromForm());
     resetTaskForm();
     renderAll();
@@ -144,8 +138,7 @@ document
 
 document
   .querySelector(".add-project-button")
-  .addEventListener("click", (event) => {
-    event.preventDefault();
+  .addEventListener("click", () => {
     const projectName = document.querySelector("#project").value;
     resetProjectForm();
     addProject(projectName);

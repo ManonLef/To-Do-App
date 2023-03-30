@@ -44,6 +44,7 @@ function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form";
   newTaskForm.setAttribute("hidden", "true");
+  newTaskForm.setAttribute("onsubmit", "return false")
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -131,7 +132,7 @@ function taskForm() {
 function addTaskIcon() {
   const addTask = document.createElement("div");
   addTask.className = "add-task-icon-container";
-  addTask.textContent = "+ task";
+  addTask.textContent = "+";
 
   taskElement.appendChild(addTask);
 
@@ -178,6 +179,7 @@ function projectForm() {
   const newProjectForm = document.createElement("form");
   newProjectForm.className = "project-form";
   newProjectForm.setAttribute("hidden", "true");
+  newProjectForm.setAttribute("onsubmit", "return false")
 
   const fieldsContainer = document.createElement("div");
   fieldsContainer.className = "new-project-input-and-button";
@@ -226,6 +228,7 @@ function createProjectElements(project) {
   newProjectName.className = "edit-project-form";
   newProjectName.setAttribute("hidden", "true");
   newProjectName.setAttribute("data-projectID", project.projectUuid);
+  newProjectName.setAttribute("onsubmit", "return false")
 
   const labelNewProjectName = document.createElement("label");
   labelNewProjectName.setAttribute("for", "input");
