@@ -41,13 +41,6 @@ function resetProjectForm() {
   document.querySelector("#project").value = "";
 }
 
-function resetTaskForm() {
-  document.querySelector("#task").value = "";
-  document.querySelector("#due-date").value = "";
-  document.querySelector("#priority").value = "";
-  document.querySelector("#description").value = "";
-}
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Functionality • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -132,7 +125,7 @@ document
   .querySelector(".add-task-button")
   .addEventListener("click", () => {
     addTaskToProject(getTaskFromForm());
-    resetTaskForm();
+    document.querySelector(".task-form").reset()
     renderAll();
   });
 
