@@ -37,10 +37,6 @@ function getTaskFromForm() {
   return [task, description, due, prio, projectUuid];
 }
 
-function resetProjectForm() {
-  document.querySelector("#project").value = "";
-}
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||| • Functionality • |||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -133,7 +129,7 @@ document
   .querySelector(".add-project-button")
   .addEventListener("click", () => {
     const projectName = document.querySelector("#project").value;
-    resetProjectForm();
+    document.querySelector(".project-form").reset()
     addProject(projectName);
     const projectID = findProjectIdFromName(projectName);
     setCurrentProject(projectID);
