@@ -22,7 +22,7 @@ import {
 setCurrentProjectToDefault();
 
 //  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • New Tasks • |||||||||||||||||||||||||||||
+//  |||||||||||||||||||||||||||||||| • Forms • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
@@ -33,6 +33,17 @@ function getTaskFromForm() {
   const projectUuid = getCurrentProjectID();
 
   return [task, description, due, prio, projectUuid];
+}
+
+function resetProjectForm() {
+  document.querySelector("#project").value = "";
+}
+
+function resetTaskForm() {
+  document.querySelector("#task").value = "";
+  document.querySelector("#due-date").value = "";
+  document.querySelector("#priority").value = "";
+  document.querySelector("#description").value = "";
 }
 
 //  --------------------------------------------------------------------------
@@ -96,21 +107,24 @@ function addProjectDeleteListeners() {
   });
 }
 
-document.querySelector(".add-task-button").addEventListener("click", (event) => {
-  event.preventDefault();
-  addTaskToProject(getTaskFromForm());
-  // console.table(vault.projects);
-  // console.table(vault.projects.tasks);
-  // console.log(vault.projects);
-  renderAll();
-});
+document
+  .querySelector(".add-task-button")
+  .addEventListener("click", (event) => {
+    event.preventDefault();
+    addTaskToProject(getTaskFromForm());
+    resetTaskForm();
+    // console.table(vault.projects);
+    // console.table(vault.projects.tasks);
+    // console.log(vault.projects);
+    renderAll();
+  });
 
 document
   .querySelector(".add-project-button")
   .addEventListener("click", (event) => {
     event.preventDefault();
     const projectName = document.querySelector("#project").value;
-    document.querySelector("#project").value = "";
+    resetProjectForm();
     addProject(projectName);
     const projectID = findProjectIdFromName(projectName);
     setCurrentProject(projectID);

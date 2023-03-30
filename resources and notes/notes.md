@@ -145,7 +145,7 @@ Things to consider:
   - [x] export that function from model and import to controller
   - [x] make default project the current project
 
-- [x] empty new projectform upon submit
+- [x] empty new project form upon submit
 - [x] consider model function to set current project to the default project
 
 ## 20230329-2
@@ -153,18 +153,19 @@ Things to consider:
 - [x] add button to open project add form:
   - [x] on click of that button:
     - [x] open form 
-    - [x] add eventlistener (was not needed since the element is already there)
+    - [x] add event listener (was not needed since the element is already there)
 - [ ] add color/style to current project in project list
 
 ## 20230330 
 - [x] rename task form submit class
-- [ ] empty task form on submit
+- [x] empty task form on submit
 - [x] reorganize task container to mirror project setup
-- [ ] add button to add task (check workflow project hide/unhide)
-  - [x] add addTaskicon function
-  - [ ] add hide and unhide functionality for form when clicking the button
+- [ ] add button to add task (check workflow project hide/un-hide)
+  - [x] add `addTaskicon` function
+  - [ ] add hide and un-hide functionality for form when clicking the button
 - [ ] edit actions upon task submit
   - [ ] remove description for now
 - [ ] add checked task styling
 - [ ] create function(s) to edit a task 
   - [ ] think through the workflow and perhaps start with just the taskname or checkmark first
+- add color to task div based on priority
