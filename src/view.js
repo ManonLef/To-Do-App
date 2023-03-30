@@ -22,9 +22,18 @@ function removeChildNodes(parent) {
   }
 }
 
+function showTaskForm() {
+  document.querySelector(".task-form").removeAttribute("hidden");
+}
+
+function hideTaskForm() {
+  document.querySelector(".task-form").setAttribute("hidden", "true");
+}
+
 function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form"
+  newTaskForm.setAttribute("hidden", 'true')
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -102,6 +111,8 @@ function taskForm() {
 
   newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
   taskElement.appendChild(newTaskForm);
+
+  button.addEventListener("click", hideTaskForm)
 }
 
 function addTaskIcon() {
@@ -112,7 +123,7 @@ function addTaskIcon() {
   taskElement.appendChild(addTask);
 
   addTask.addEventListener("click", () => {
-    // showProjectForm();
+    showTaskForm();
     // hideProjectIcon();
   });
 }

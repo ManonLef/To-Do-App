@@ -160,11 +160,10 @@ Things to consider:
 - [x] rename task form submit class
 - [x] empty task form on submit
 - [x] reorganize task container to mirror project setup
-- [ ] add button to add task (check workflow project hide/un-hide)
+- [x] add button to add task (check workflow project hide/un-hide)
   - [x] add `addTaskicon` function
-  - [ ] add hide and un-hide functionality for form when clicking the button
-- [ ] edit actions upon task submit
-  - [ ] remove description for now
+  - [x] add hide and un-hide functionality for form when clicking the button
+- [ ] add hide and un-hide for task icon when form is open
 - [ ] add checked task styling
 - [ ] create function(s) to edit a task 
   - [ ] think through the workflow and perhaps start with just the taskname or checkmark first
