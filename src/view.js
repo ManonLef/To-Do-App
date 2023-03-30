@@ -224,24 +224,34 @@ function createProjectElements(project) {
   // project name edit form ---------------------------------------------------------------------------------
   const newProjectName = document.createElement("form");
   newProjectName.className = "edit-project-form";
-  newProjectName.setAttribute("hidden", "true")
+  newProjectName.setAttribute("hidden", "true");
 
-  const input = document.createElement("input");
-  input.className = "edit-project-name";
-  input.setAttribute("type", "text");
-  input.value = project.name;
+  const labelNewProjectName = document.createElement("label");
+  labelNewProjectName.setAttribute("for", "input");
+
+  const inputNewProjectName = document.createElement("input");
+  inputNewProjectName.setAttribute("type", "text");
+  inputNewProjectName.id = "";
+  inputNewProjectName.className = `edit-${project.projectUuid}`;
+  inputNewProjectName.value = project.name;
 
   const submitNewProjectName = document.createElement("button");
+  submitNewProjectName.className = "edit-project-name-submit";
   submitNewProjectName.setAttribute("type", "submit");
   submitNewProjectName.setAttribute("hidden", "true");
+  submitNewProjectName.setAttribute("data-projectID", project.projectUuid);
 
-  newProjectName.append(input, submitNewProjectName);
+  newProjectName.append(
+    labelNewProjectName,
+    inputNewProjectName,
+    submitNewProjectName
+  );
   projectDiv.appendChild(newProjectName);
 
   submitNewProjectName.addEventListener("click", () => {
     newProjectName.setAttribute("hidden", "true");
-    projectName.removeAttribute("hidden")
-  })
+    projectName.removeAttribute("hidden");
+  });
   //-------------------------------------------------------------------------------------------------------
   const editButton = document.createElement("button");
   editButton.className = "project-edit-button";
@@ -260,10 +270,14 @@ function createProjectElements(project) {
   deleteButton.disabled = false;
 
   editButton.addEventListener("click", () => {
-    projectName.setAttribute("hidden", "true")
-    newProjectName.removeAttribute("hidden")
-  })
-
+    if (projectName.getAttribute("hidden") === "true") {
+      projectName.removeAttribute("hidden");
+      newProjectName.setAttribute("hidden", "true");  
+    } else {
+    projectName.setAttribute("hidden", "true");
+    newProjectName.removeAttribute("hidden");
+    }
+  });
 }
 
 function createTaskElement(taskObject) {

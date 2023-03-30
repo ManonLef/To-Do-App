@@ -13,6 +13,7 @@ import {
   findProjectIndexFromId,
   removeProject,
   setCurrentProjectToDefault,
+  editProjectName,
   // editProjectName,
 } from "./model";
 
@@ -106,17 +107,27 @@ function addProjectDeleteListeners() {
   deleteButtons.forEach((button) => {
     button.addEventListener("click", deleteProjectOnClick);
   });
+  // edit name of project
+  const editForm = document.querySelectorAll(".edit-project-name-submit");
+  editForm.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      const projectUuid = button.getAttribute("data-projectID");
+      const newNameTarget = (`.edit-${projectUuid}`)
+      const newName = document.querySelector(newNameTarget).value
+      editProjectName(projectUuid, newName);
+      renderAll();
+    });
+  });
 }
 
+// new task and new form submit buttons (hidden by default)
 document
   .querySelector(".add-task-button")
   .addEventListener("click", (event) => {
     event.preventDefault();
     addTaskToProject(getTaskFromForm());
     resetTaskForm();
-    // console.table(vault.projects);
-    // console.table(vault.projects.tasks);
-    // console.log(vault.projects);
     renderAll();
   });
 
