@@ -46,7 +46,7 @@ function taskForm() {
   dueLabel.textContent = "due";
 
   const inputDue = document.createElement("input");
-  inputDue.setAttribute("type", "text");
+  inputDue.setAttribute("type", "date");
   inputDue.setAttribute("name", "due-date");
   inputDue.id = "due-date"; // check
 
