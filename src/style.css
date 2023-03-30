@@ -11,8 +11,9 @@
 }
 
 body {
+  width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 2fr 5fr;
   gap: 30px;
 }
 
@@ -21,6 +22,12 @@ body {
 }
 
 .task-div {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.check-and-task-container {
   display: flex;
   gap: 10px;
 }

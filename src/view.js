@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: ["error", { "functions": false }] */
 const body = document.querySelector("body");
 
 const projectElement = document.createElement("div");
@@ -316,19 +317,23 @@ function createTaskElement(taskObject) {
   taskDiv.className = "task-div";
   taskDiv.setAttribute("data-taskID", taskObject.taskUuid);
   taskContainer.appendChild(taskDiv);
+  // checkbox and task container to keep them together
+  const checkboxTaskDiv = document.createElement("div");
+  checkboxTaskDiv.className = "check-and-task-container";
+  taskDiv.appendChild(checkboxTaskDiv)
   // checkbox
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("data-taskID", taskObject.taskUuid);
-  taskDiv.appendChild(checkbox);
+  checkboxTaskDiv.appendChild(checkbox);
   // task
   const task = document.createElement("p");
   task.textContent = taskObject.task;
   task.className = "task-name";
-  taskDiv.appendChild(task);
+  checkboxTaskDiv.appendChild(task);
   if (taskObject.checked) {
     checkbox.setAttribute("checked", true);
-    task.className = "task-div checked"
+    task.className = "task-div checked";
   }
   // due
   const dueDate = document.createElement("div");
@@ -336,11 +341,11 @@ function createTaskElement(taskObject) {
   dueDate.textContent = taskObject.dueDate;
   taskDiv.appendChild(dueDate);
   // edit button (for now)
-  const editButton = document.createElement("button");
-  editButton.className = "edit-button";
-  editButton.textContent = "edit";
-  editButton.setAttribute("data-taskID", taskObject.taskUuid);
-  taskDiv.appendChild(editButton);
+  // const editButton = document.createElement("button");
+  // editButton.className = "edit-button";
+  // editButton.textContent = "edit";
+  // editButton.setAttribute("data-taskID", taskObject.taskUuid);
+  // taskDiv.appendChild(editButton);
   // delete button
   const deleteButton = document.createElement("button");
   deleteButton.className = "delete-button";
