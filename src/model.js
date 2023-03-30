@@ -141,6 +141,12 @@ function removeProject(projectUuid) {
   addToStorage();
 }
 
+function editProjectName(projectUuid, newName) {
+  const index = findProjectIndexFromId(projectUuid)
+  vault.projects[index].name = newName
+  addToStorage()
+}
+
 // unused from controller
 
 // function getProjectIndex(taskUuid) {
@@ -202,4 +208,5 @@ export {
   findProjectIndexFromId,
   removeProject,
   setCurrentProjectToDefault,
+  editProjectName,
 };

@@ -13,6 +13,7 @@ import {
   findProjectIndexFromId,
   removeProject,
   setCurrentProjectToDefault,
+  // editProjectName,
 } from "./model";
 
 //  --------------------------------------------------------------------------
