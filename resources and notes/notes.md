@@ -39,7 +39,7 @@ To be honest I'm massively intimidated by this project. Not because of the proje
 
 For later: 
 - [x] for the addTaskToProject function, add some sort of check if the project is an existing one, not being inbox.
-- [ ] consider some sort of controller in between. Tasks get sent there, it decides how it should be sent to the project manager. It should probably have access to some kind of storage module as well where all the projects are stored.
+- [x] consider some sort of controller in between. Tasks get sent there, it decides how it should be sent to the project manager. It should probably have access to some kind of storage module as well where all the projects are stored.
 
 ## 20230319 
 - I added a check for existing project not being inbox. The addTask to project function now does have a bunch of if/else which I think is not desirable. Will have to ponder an alternative setup. 
@@ -47,13 +47,13 @@ For later:
 Things to probably create:
 - [x] function to remove a project
 - [x] function to return all tasks
-- [ ] function to remove a task from a project
-  - [ ] add task property unique id to accomplish this
-- [ ] getters and setters for every task property
+- [x] function to remove a task from a project
+  - [x] add task property unique id to accomplish this
+- [x] getters and setters for every needed task property
 
 ## 20230319-2
 - I made a basic form to play around a bit with ui 
-- [ ] set task project to inbox when none defined.
+- ~~set task project to inbox when none defined.~~
 
 ## 20230320
 After sleeping over the setup I still felt something was missing from my code. Some functions still end with calling another function. I feel like a pubsub kind of implementation would be nicer but instead of handling this with a plugin, I'd much rather set up a different way. And I'm thinking of implementing a controller that gathers information from the other modules and uses said information.
@@ -141,10 +141,18 @@ Things to consider:
   - [x] add the delete button eventlisteners upon render
   - [x] start with a function in the controller to get the uuid from the delete button on a project
   - [x] get the project index from said ID
-  - [ ] create a function in model to remove a project 
+  - [x] create a function in model to remove a project 
   - [x] export that function from model and import to controller
   - [x] make default project the current project
 
+- [x] empty new projectform upon submit
+- [x] consider model function to set current project to the default project
 
-  - [ ] empty form upon submit
-  - [x] consider model function to set current project to the default project
+## 20230329-2
+- [x] recreate task form in DOM
+- [x] add button to open project add form:
+  - [x] on click of that button:
+    - [x] open form 
+    - [x] add eventlistener (was not needed since the element is already there)
+- [ ] add button to open task form once implemented
+- [ ] add color/style to current project in project list

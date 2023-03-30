@@ -1,6 +1,7 @@
 const taskContainer = document.querySelector(".task-container");
 const topContainer = document.querySelector(".container");
 const body = document.querySelector("body");
+
 function removeChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
@@ -90,6 +91,8 @@ function taskForm() {
 
 function projectForm() {
   const newProjectForm = document.createElement("form");
+  newProjectForm.className = "project-form"
+  newProjectForm.setAttribute("hidden", "true")
 
   const newProjectDiv = document.createElement("div");
   newProjectDiv.className = "project";
@@ -105,7 +108,7 @@ function projectForm() {
 
   const submit = document.createElement("button");
   submit.setAttribute("type", "submit");
-  submit.setAttribute("class", "add-project-form");
+  submit.setAttribute("class", "add-project-button");
   submit.textContent = "add project noob";
 
   newProjectDiv.append(label, input);
@@ -113,27 +116,47 @@ function projectForm() {
   body.appendChild(newProjectForm);
 }
 
-function createProjectElements(currentProject) {
+function showProjectForm() {
+  document.querySelector(".project-form").removeAttribute("hidden")
+}
+
+function hideProjectForm() {
+  document.querySelector(".project-form").setAttribute("hidden", "true")
+}
+
+function addProjectIcon() {
+  const addProject = document.createElement("div");
+  addProject.className = "add-project-icon-container";
+  addProject.textContent = "+";
+
+  topContainer.appendChild(addProject);
+
+  addProject.addEventListener("click", () => {
+    showProjectForm();
+  })
+}
+
+function createProjectElements(project) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
   topContainer.appendChild(projectDiv);
   // edit button (for now)
   const projectName = document.createElement("p");
   projectName.className = "project-name";
-  projectName.textContent = currentProject.name;
-  projectName.setAttribute("data-projectID", currentProject.projectUuid);
+  projectName.textContent = project.name;
+  projectName.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(projectName);
 
   const editButton = document.createElement("button");
   editButton.className = "project-edit-button";
   editButton.textContent = "edit";
-  editButton.setAttribute("data-projectID", currentProject.projectUuid);
+  editButton.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(editButton);
   // delete button
   const deleteButton = document.createElement("button");
   deleteButton.className = "project-delete-button";
   deleteButton.textContent = "delete";
-  deleteButton.setAttribute("data-projectID", currentProject.projectUuid);
+  deleteButton.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(deleteButton);
   // disable buttons
   editButton.disabled = true;
@@ -188,11 +211,16 @@ function renderProjects(vaultProjectsArray) {
   projects.forEach((project) => {
     createProjectElements(project);
   });
+  addProjectIcon()
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks) {
+function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
+
 taskForm();
 projectForm();
+addProjectIcon();
+
+export { renderCurrent, hideProjectForm}

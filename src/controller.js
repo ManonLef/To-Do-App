@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import renderCurrent from "./view";
+import {renderCurrent, hideProjectForm} from "./view";
 import {
   vault,
   setCurrentProject,
@@ -106,13 +106,14 @@ document.querySelector(".submit-form").addEventListener("click", (event) => {
 });
 
 document
-  .querySelector(".add-project-form")
+  .querySelector(".add-project-button")
   .addEventListener("click", (event) => {
     event.preventDefault();
     const projectName = document.querySelector("#project").value;
-    // document.querySelector("#project").value = "";
+    document.querySelector("#project").value = "";
     addProject(projectName);
     const projectID = findProjectIdFromName(projectName);
     setCurrentProject(projectID);
+    hideProjectForm();
     renderAll();
   });
