@@ -154,5 +154,17 @@ Things to consider:
   - [x] on click of that button:
     - [x] open form 
     - [x] add eventlistener (was not needed since the element is already there)
-- [ ] add button to open task form once implemented
 - [ ] add color/style to current project in project list
+
+## 20230330 
+- [x] rename task form submit class
+- [ ] empty task form on submit
+- [x] reorganize task container to mirror project setup
+- [ ] add button to add task (check workflow project hide/unhide)
+  - [x] add addTaskicon function
+  - [ ] add hide and unhide functionality for form when clicking the button
+- [ ] edit actions upon task submit
+  - [ ] remove description for now
+- [ ] add checked task styling
+- [ ] create function(s) to edit a task 
+  - [ ] think through the workflow and perhaps start with just the taskname or checkmark first

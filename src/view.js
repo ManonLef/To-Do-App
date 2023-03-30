@@ -5,7 +5,7 @@ projectElement.className = "project-sidebar";
 body.appendChild(projectElement);
 
 const projectContainer = document.createElement("div");
-projectContainer.className = "container";
+projectContainer.className = "project-container";
 projectElement.appendChild(projectContainer);
 
 const taskElement = document.createElement("div");
@@ -87,7 +87,7 @@ function taskForm() {
 
   const button = document.createElement("button");
   button.setAttribute("type", "submit");
-  button.className = "submit-form";
+  button.className = "add-task-button";
   button.textContent = "submit";
 
   taskDiv.append(taskLabel, inputTask);
@@ -102,6 +102,19 @@ function taskForm() {
 
   newTaskForm.append(taskDiv, dueDiv, priorityDiv, descriptionDiv, button);
   taskElement.appendChild(newTaskForm);
+}
+
+function addTaskIcon() {
+  const addTask = document.createElement("div");
+  addTask.className = "add-task-icon-container";
+  addTask.textContent = "+ task";
+
+  taskElement.appendChild(addTask);
+
+  addTask.addEventListener("click", () => {
+    // showProjectForm();
+    // hideProjectIcon();
+  });
 }
 
 function projectForm() {
@@ -140,14 +153,6 @@ function projectForm() {
   });
 }
 
-function showProjectForm() {
-  document.querySelector(".project-form").removeAttribute("hidden");
-}
-
-function hideProjectForm() {
-  document.querySelector(".project-form").setAttribute("hidden", "true");
-}
-
 function addProjectIcon() {
   const addProject = document.createElement("div");
   addProject.className = "add-project-icon-container";
@@ -159,6 +164,14 @@ function addProjectIcon() {
     showProjectForm();
     hideProjectIcon();
   });
+}
+
+function showProjectForm() {
+  document.querySelector(".project-form").removeAttribute("hidden");
+}
+
+function hideProjectForm() {
+  document.querySelector(".project-form").setAttribute("hidden", "true");
 }
 
 function hideProjectIcon() {
@@ -255,6 +268,8 @@ export default function renderCurrent(allProjects, currentProjectTasks) {
   renderTasks(currentProjectTasks);
 }
 
+addTaskIcon();
 taskForm();
+
 addProjectIcon();
 projectForm();

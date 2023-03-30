@@ -96,7 +96,7 @@ function addProjectDeleteListeners() {
   });
 }
 
-document.querySelector(".submit-form").addEventListener("click", (event) => {
+document.querySelector(".add-task-button").addEventListener("click", (event) => {
   event.preventDefault();
   addTaskToProject(getTaskFromForm());
   // console.table(vault.projects);
