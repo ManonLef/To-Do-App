@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import {renderCurrent, renderProjects, renderTasks} from "./view";
+import { renderCurrent, renderProjects, renderTasks } from "./view";
 import {
   vault,
   setCurrentProject,
@@ -72,7 +72,7 @@ function deleteProjectOnClick() {
 function selectProjectOnClick() {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
-  renderTasks(getTaskArrayCurrentProject())
+  renderTasks(getTaskArrayCurrentProject());
 }
 
 export default function renderAll() {
@@ -80,7 +80,7 @@ export default function renderAll() {
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();
-  addProjectDeleteListeners();
+  addProjectEditListeners();
   console.table(vault.projects);
 }
 
@@ -102,19 +102,30 @@ function addTaskDeleteListeners() {
   });
 }
 
-function addProjectDeleteListeners() {
+function addProjectEditListeners() {
   const deleteButtons = document.querySelectorAll(".project-delete-button");
   deleteButtons.forEach((button) => {
     button.addEventListener("click", deleteProjectOnClick);
   });
-  // edit name of project
-  const editForm = document.querySelectorAll(".edit-project-name-submit");  
+  // edit name of project through enter
+  const editForm = document.querySelectorAll(".edit-project-name-submit");
   editForm.forEach((button) => {
-    button.addEventListener("click", (event) => {
+    button.addEventListener("mousedown", (event) => {
       event.preventDefault();
       const projectUuid = button.getAttribute("data-projectID");
-      const newNameTarget = (`.edit-${projectUuid}`)
-      const newName = document.querySelector(newNameTarget).value
+      const newNameTarget = `.edit-${projectUuid}`;
+      const newName = document.querySelector(newNameTarget).value;
+      editProjectName(projectUuid, newName);
+      renderAll();
+    });
+  });
+
+  const inputField = document.querySelectorAll("#edit-project-input");
+  inputField.forEach((field) => {
+    field.addEventListener("focusout", () => {
+      const projectUuid = field.getAttribute("data-projectID");
+      const newNameTarget = `.edit-${projectUuid}`;
+      const newName = document.querySelector(newNameTarget).value;
       editProjectName(projectUuid, newName);
       renderAll();
     });

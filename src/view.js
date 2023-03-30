@@ -233,6 +233,7 @@ function createProjectElements(project) {
   const inputNewProjectName = document.createElement("input");
   inputNewProjectName.setAttribute("type", "text");
   inputNewProjectName.id = "edit-project-input";
+  inputNewProjectName.setAttribute("data-projectID", project.projectUuid);
   inputNewProjectName.className = `edit-${project.projectUuid}`;
   inputNewProjectName.value = project.name;
 
@@ -271,18 +272,6 @@ function createProjectElements(project) {
   deleteButton.disabled = false;
 
   projectName.addEventListener("dblclick", () => {
-    disableEditbuttons();
-    if (projectName.getAttribute("hidden") === "true") {
-      projectName.removeAttribute("hidden");
-      newProjectName.setAttribute("hidden", "true");
-    } else {
-      projectName.setAttribute("hidden", "true");
-      newProjectName.removeAttribute("hidden");
-      inputNewProjectName.focus();
-    }
-  });
-
-  editButton.addEventListener("click", () => {
     disableEditbuttons();
     if (projectName.getAttribute("hidden") === "true") {
       projectName.removeAttribute("hidden");
