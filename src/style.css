@@ -7,13 +7,13 @@
   border: 1px solid pink;
   display: grid;
   grid-template-columns: 3fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 body {
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 2fr 5fr;
+  grid-template-columns: 2fr 2fr 3fr;
   gap: 30px;
 }
 
