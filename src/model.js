@@ -1,4 +1,4 @@
-import _, { constant } from "lodash";
+import _ from "lodash";
 import Vault from "./classes/vault";
 import Project from "./classes/project";
 import Task from "./classes/task";
@@ -80,16 +80,16 @@ function getTaskArrayCurrentProject() {
 function sortedArray() {
   // sorted by (unchecked + dueDate ascending > no dueDate) > (checked + dueDate ascending > no dueDate)
   console.log("sorted array says: I'm on it");
-  const unchecked = _.filter(getTaskArrayCurrentProject(), o => !o.checked)
-  const uncheckedWithDue = _.filter(unchecked, o => o.dueDate)
-  const uncheckedWithDueDesc = _.sortBy(uncheckedWithDue, o => o.dueDate)
-  const uncheckedWithoutDue = _.filter(unchecked, o => !o.dueDate)
+  const unchecked = _.filter(getTaskArrayCurrentProject(), task => !task.checked)
+  const uncheckedWithDue = _.filter(unchecked, task => task.dueDate)
+  const uncheckedWithDueDesc = _.sortBy(uncheckedWithDue, task => task.dueDate)
+  const uncheckedWithoutDue = _.filter(unchecked, task => !task.dueDate)
   const sortedUnchecked = uncheckedWithDueDesc.concat(uncheckedWithoutDue)
 
-  const checked = _.filter(getTaskArrayCurrentProject(), o => o.checked)
-  const checkedWithDue = _.filter(checked, o => o.dueDate)
-  const checkedWithDueDesc = _.sortBy(checkedWithDue, o => o.dueDate)
-  const checkedWithoutDue = _.filter(checked, o => !o.dueDate)
+  const checked = _.filter(getTaskArrayCurrentProject(), task => task.checked)
+  const checkedWithDue = _.filter(checked, task => task.dueDate)
+  const checkedWithDueDesc = _.sortBy(checkedWithDue, task => task.dueDate)
+  const checkedWithoutDue = _.filter(checked, task => !task.dueDate)
   const sortedChecked = checkedWithDueDesc.concat(checkedWithoutDue)
 
   const sorted = sortedUnchecked.concat(sortedChecked)

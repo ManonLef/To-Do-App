@@ -374,7 +374,7 @@ function renderProjects(vaultProjectsArray) {
   });
 }
 
-function renderCurrent(allProjects, currentProjectTasks) {
+export default function renderCurrent(allProjects, currentProjectTasks) {
   renderProjects(allProjects);
   renderTasks(currentProjectTasks);
 }
@@ -385,4 +385,3 @@ taskForm();
 addProjectIcon();
 projectForm();
 
-export { renderCurrent, renderTasks, renderProjects };

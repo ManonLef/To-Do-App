@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import { renderCurrent, renderTasks } from "./view";
+import renderCurrent from "./view";
 import {
   vault,
   setCurrentProject,
@@ -63,7 +63,7 @@ function deleteProjectOnClick() {
 function selectProjectOnClick() {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
-  renderTasks(getTaskArrayCurrentProject());
+  renderAll();
 }
 
 function toggleCheckBox() {
