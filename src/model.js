@@ -163,6 +163,7 @@ function toggleStatus(taskUuid) {
     console.log("this task is NOT checked")
     taskToToggle.checked = true
   }
+  addToStorage();
 }
 
 // unused from controller
