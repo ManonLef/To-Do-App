@@ -8,8 +8,10 @@ import Task from "./classes/task";
 //  --------------------------------------------------------------------------
 
 const vault = new Vault("vault");
-vault.newProject = new Project("Default Project");
+vault.newProject = new Project("Inbox");
 let currentProject = "";
+vault.projects[0].default = "default"
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------

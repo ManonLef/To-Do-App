@@ -179,8 +179,10 @@ Things to consider:
 - It's getting a lot harder to keep track of all the different elements. I'm glad I separated many of the concerns during the earlier stages and took my time to achieve some sort of organization and responsibilities for my modules.
 
 ### Extracted to-do's to carry over to next days
-- [ ] create function(s) to edit a task 
-  - [ ] think through the workflow and perhaps start with just the task name or checkmark first
-- [ ] look into errors upon deleting last project or make sure the first project default is non-deletable 
+- [x] look into errors upon deleting last project or make sure the first project default is non-deletable 
 - [ ] add color/style to current project in project list
+
+## 20230331
+- [ ] create function(s) to edit a task 
+  - [x] create function to edit checked status of a specific task
 

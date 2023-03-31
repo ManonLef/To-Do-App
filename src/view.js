@@ -275,21 +275,25 @@ function createProjectElements(project) {
     projectName.removeAttribute("hidden");
   });
   //-------------------------------------------------------------------------------------------------------
+  // delete button (but not for default inbox)
+  if (!project.default) {
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "project-delete-button";
+    deleteButton.textContent = "delete";
+    deleteButton.setAttribute("data-projectID", project.projectUuid);
+    projectDiv.appendChild(deleteButton);
+
+    deleteButton.disabled = false;
+  }
+
   const editButton = document.createElement("button");
   editButton.className = "project-edit-button";
   editButton.textContent = "edit";
   editButton.setAttribute("data-projectID", project.projectUuid);
   projectDiv.appendChild(editButton);
 
-  // delete button
-  const deleteButton = document.createElement("button");
-  deleteButton.className = "project-delete-button";
-  deleteButton.textContent = "delete";
-  deleteButton.setAttribute("data-projectID", project.projectUuid);
-  projectDiv.appendChild(deleteButton);
   // disable buttons
   editButton.disabled = false;
-  deleteButton.disabled = false;
 
   projectName.addEventListener("dblclick", () => {
     disableEditButtons();
@@ -320,12 +324,12 @@ function createTaskElement(taskObject) {
   // checkbox and task container to keep them together
   const checkboxTaskDiv = document.createElement("div");
   checkboxTaskDiv.className = "check-and-task-container";
-  taskDiv.appendChild(checkboxTaskDiv)
+  taskDiv.appendChild(checkboxTaskDiv);
   // checkbox
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("data-taskID", taskObject.taskUuid);
-  checkbox.className = "checkbox"
+  checkbox.className = "checkbox";
   checkboxTaskDiv.appendChild(checkbox);
   // task
   const task = document.createElement("p");
