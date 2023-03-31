@@ -292,7 +292,7 @@ function createProjectElements(project) {
   deleteButton.disabled = false;
 
   projectName.addEventListener("dblclick", () => {
-    disableEditbuttons();
+    disableEditButtons();
     if (projectName.getAttribute("hidden") === "true") {
       projectName.removeAttribute("hidden");
       newProjectName.setAttribute("hidden", "true");
@@ -304,7 +304,7 @@ function createProjectElements(project) {
   });
 }
 
-function disableEditbuttons() {
+function disableEditButtons() {
   const editButtons = document.querySelectorAll(".project-edit-button");
   editButtons.forEach((button) => {
     button.setAttribute("disabled", "true");
@@ -325,6 +325,7 @@ function createTaskElement(taskObject) {
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("data-taskID", taskObject.taskUuid);
+  checkbox.className = "checkbox"
   checkboxTaskDiv.appendChild(checkbox);
   // task
   const task = document.createElement("p");

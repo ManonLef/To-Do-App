@@ -10,7 +10,6 @@ import Task from "./classes/task";
 const vault = new Vault("vault");
 vault.newProject = new Project("Default Project");
 let currentProject = "";
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -85,6 +84,7 @@ function findTaskIndex(taskUuid) {
     vault.projects[getCurrentProjectIndex()].projectTasks,
     { taskUuid }
   );
+  console.log(`task ID ${taskIndex}`)
   return taskIndex;
 }
 
@@ -104,6 +104,8 @@ function findProjectIndexFromId(id) {
 //  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
 
+// projects
+
 function setCurrentProject(projectID) {
   currentProject = projectID;
   console.log(`setCurrentProject says: current project is ${currentProject}`);
@@ -118,6 +120,19 @@ function addProject(name) {
   vault.newProject = new Project(name);
   addToStorage();
 }
+
+function removeProject(projectUuid) {
+  vault.projects.splice(findProjectIndexFromId(projectUuid), 1);
+  addToStorage();
+}
+
+function editProjectName(projectUuid, newName) {
+  const index = findProjectIndexFromId(projectUuid);
+  vault.projects[index].name = newName;
+  addToStorage();
+}
+
+// tasks
 
 function addTaskToProject(taskFromForm) {
   const task = new Task(taskFromForm);
@@ -136,15 +151,18 @@ function removeTask(taskUuid) {
   addToStorage();
 }
 
-function removeProject(projectUuid) {
-  vault.projects.splice(findProjectIndexFromId(projectUuid), 1);
-  addToStorage();
-}
-
-function editProjectName(projectUuid, newName) {
-  const index = findProjectIndexFromId(projectUuid)
-  vault.projects[index].name = newName
-  addToStorage()
+function toggleStatus(taskUuid) {
+  const taskIndex = findTaskIndex(taskUuid);
+  const projectIndex = getCurrentProjectIndex();
+  const taskToToggle = vault.projects[projectIndex].projectTasks[taskIndex]
+  console.log(taskToToggle.checked)
+  if (taskToToggle.checked) {
+    console.log("this task is checked")
+    taskToToggle.checked = false
+  } else {
+    console.log("this task is NOT checked")
+    taskToToggle.checked = true
+  }
 }
 
 // unused from controller
@@ -209,4 +227,5 @@ export {
   removeProject,
   setCurrentProjectToDefault,
   editProjectName,
+  toggleStatus,
 };

@@ -15,6 +15,7 @@ import {
   setCurrentProjectToDefault,
   editProjectName,
   // editProjectName,
+  toggleStatus,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -28,7 +29,7 @@ setCurrentProjectToDefault();
 //  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
-  const {checked} = document.querySelector("#checkbox");
+  const { checked } = document.querySelector("#checkbox");
   const task = document.querySelector("#task").value;
   const due = document.querySelector("#due-date").value;
   const prio = document.querySelector("#priority").value;
@@ -65,21 +66,28 @@ function selectProjectOnClick() {
   renderTasks(getTaskArrayCurrentProject());
 }
 
+function toggleCheckBox() {
+  const id = this.getAttribute("data-taskID");
+  toggleStatus(id);
+  renderAll();
+}
+
 export default function renderAll() {
   renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();
   addProjectEditListeners();
+  addCheckBoxListeners();
   console.table(vault.projects);
 }
 
-function addProjectInputListener() {
+function changeProjectName() {
   const projectUuid = this.getAttribute("data-projectID");
-      const newNameTarget = `.edit-${projectUuid}`;
-      const newName = document.querySelector(newNameTarget).value;
-      editProjectName(projectUuid, newName);
-      renderAll()
+  const newNameTarget = `.edit-${projectUuid}`;
+  const newName = document.querySelector(newNameTarget).value;
+  editProjectName(projectUuid, newName);
+  renderAll();
 }
 
 //  --------------------------------------------------------------------------
@@ -108,31 +116,34 @@ function addProjectEditListeners() {
   // edit name of project through enter
   const editForm = document.querySelectorAll(".edit-project-name-submit");
   editForm.forEach((button) => {
-    button.addEventListener("mousedown", addProjectInputListener);
+    button.addEventListener("mousedown", changeProjectName);
   });
 
   const inputField = document.querySelectorAll("#edit-project-input");
   inputField.forEach((field) => {
-    field.addEventListener("focusout", addProjectInputListener);
+    field.addEventListener("focusout", changeProjectName);
+  });
+}
+
+function addCheckBoxListeners() {
+  const checkBox = document.querySelectorAll(".checkbox");
+  checkBox.forEach((box) => {
+    box.addEventListener("change", toggleCheckBox);
   });
 }
 
 // new task and new form submit buttons (hidden by default)
-document
-  .querySelector(".add-task-button")
-  .addEventListener("click", () => {
-    addTaskToProject(getTaskFromForm());
-    document.querySelector(".task-form").reset()
-    renderAll();
-  });
+document.querySelector(".add-task-button").addEventListener("click", () => {
+  addTaskToProject(getTaskFromForm());
+  document.querySelector(".task-form").reset();
+  renderAll();
+});
 
-document
-  .querySelector(".add-project-button")
-  .addEventListener("click", () => {
-    const projectName = document.querySelector("#project").value;
-    document.querySelector(".project-form").reset()
-    addProject(projectName);
-    const projectID = findProjectIdFromName(projectName);
-    setCurrentProject(projectID);
-    renderAll();
-  });
+document.querySelector(".add-project-button").addEventListener("click", () => {
+  const projectName = document.querySelector("#project").value;
+  document.querySelector(".project-form").reset();
+  addProject(projectName);
+  const projectID = findProjectIdFromName(projectName);
+  setCurrentProject(projectID);
+  renderAll();
+});
