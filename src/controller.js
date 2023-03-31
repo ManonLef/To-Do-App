@@ -14,8 +14,8 @@ import {
   removeProject,
   setCurrentProjectToDefault,
   editProjectName,
-  // editProjectName,
   toggleStatus,
+  sortedArray,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -73,7 +73,7 @@ function toggleCheckBox() {
 }
 
 export default function renderAll() {
-  renderCurrent(getAllProjects(), getTaskArrayCurrentProject());
+  renderCurrent(getAllProjects(), sortedArray());
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();

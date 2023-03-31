@@ -185,4 +185,6 @@ Things to consider:
 ## 20230331
 - [ ] create function(s) to edit a task 
   - [x] create function to edit checked status of a specific task
+- [x] add function to move all checked items to bottom of the list
+  - [x] test lodash sortBy
 

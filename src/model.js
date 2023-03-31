@@ -10,7 +10,7 @@ import Task from "./classes/task";
 const vault = new Vault("vault");
 vault.newProject = new Project("Inbox");
 let currentProject = "";
-vault.projects[0].default = "default"
+vault.projects[0].default = "default";
 
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Storage • |||||||||||||||||||||||||||||||
@@ -77,6 +77,13 @@ function getTaskArrayCurrentProject() {
   return vault.projects[index].projectTasks;
 }
 
+function sortedArray() {
+  console.log("sorted array says: I'm on it");
+  const defaultArray = getTaskArrayCurrentProject();
+  const sorted = _.sortBy(defaultArray, o => o.checked)
+  return sorted;
+}
+
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • helpers • |||||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
@@ -86,7 +93,7 @@ function findTaskIndex(taskUuid) {
     vault.projects[getCurrentProjectIndex()].projectTasks,
     { taskUuid }
   );
-  console.log(`task ID ${taskIndex}`)
+  console.log(`task ID ${taskIndex}`);
   return taskIndex;
 }
 
@@ -156,14 +163,14 @@ function removeTask(taskUuid) {
 function toggleStatus(taskUuid) {
   const taskIndex = findTaskIndex(taskUuid);
   const projectIndex = getCurrentProjectIndex();
-  const taskToToggle = vault.projects[projectIndex].projectTasks[taskIndex]
-  console.log(taskToToggle.checked)
+  const taskToToggle = vault.projects[projectIndex].projectTasks[taskIndex];
+  console.log(taskToToggle.checked);
   if (taskToToggle.checked) {
-    console.log("this task is checked")
-    taskToToggle.checked = false
+    console.log("this task is checked");
+    taskToToggle.checked = false;
   } else {
-    console.log("this task is NOT checked")
-    taskToToggle.checked = true
+    console.log("this task is NOT checked");
+    taskToToggle.checked = true;
   }
   addToStorage();
 }
@@ -231,4 +238,5 @@ export {
   setCurrentProjectToDefault,
   editProjectName,
   toggleStatus,
+  sortedArray,
 };
