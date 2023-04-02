@@ -299,6 +299,18 @@ function createProjectElements(project, currentProjectId) {
   if (currentProjectId === project.projectUuid) {
     projectDiv.classList.add("active-project")
   }
+
+  // projectName.addEventListener("dblclick", () => {
+  //   disableEditButtons();
+    // if (projectName.getAttribute("hidden") === "true") {
+    //   projectName.removeAttribute("hidden");
+    //   newProjectName.setAttribute("hidden", "true");
+    // } else {
+    //   projectName.setAttribute("hidden", "true");
+    //   newProjectName.removeAttribute("hidden");
+    //   inputNewProjectName.focus();
+    // }
+  // });
 }
 
 function disableEditButtons() {
