@@ -229,7 +229,7 @@ function projectForm() {
   });
 }
 
-function createProjectElements(project) {
+function createProjectElements(project, currentProjectId) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
   projectContainer.appendChild(projectDiv);
@@ -294,6 +294,11 @@ function createProjectElements(project) {
 
   // disable buttons
   editButton.disabled = false;
+
+  // special class for currentProject
+  if (currentProjectId === project.projectUuid) {
+    projectDiv.classList.add("active-project")
+  }
 
   projectName.addEventListener("dblclick", () => {
     disableEditButtons();
@@ -366,16 +371,16 @@ function renderTasks(projectTasks) {
   });
 }
 
-function renderProjects(vaultProjectsArray) {
+function renderProjects(vaultProjectsArray, currentProjectId) {
   removeChildNodes(projectContainer);
   const projects = vaultProjectsArray;
   projects.forEach((project) => {
-    createProjectElements(project);
+    createProjectElements(project, currentProjectId);
   });
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks) {
-  renderProjects(allProjects);
+export default function renderCurrent(allProjects, currentProjectTasks, currentProjectId) {
+  renderProjects(allProjects, currentProjectId);
   renderTasks(currentProjectTasks);
 }
 

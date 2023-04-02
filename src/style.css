@@ -52,3 +52,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
+.active-project {
+  background-color: lightcoral;
+}

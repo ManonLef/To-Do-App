@@ -90,22 +90,13 @@ Things to consider:
   - when clicking on a project: tasks in said project
 
 ### Still Needed functionality before I move to DOM
-- [ ] create a function to return only the tasks inside a project
-- [ ] marking todo's as complete
+- [x] create a function to return only the tasks inside a project
+- [x] marking todo's as complete
 - [x] function to change project name
 - [x] function to change task name
-- [ ] function to change task priority
-- [ ] function to change dueDate
 - [x] function to remove a project
 - [x] function to remove a single task
 - [x] function to target a task by uuid
-
-
-### Optional functionality 
-- [ ] create a function to filter based on priority
-- [ ] look into date-fns for formatting and manipulating times/dates [here](https://github.com/date-fns/date-fns)
-- [ ] consider option to remove project but move tasks to the inbox
-- [ ] create a function to filter on today's date
 
 ## 20230326
 
@@ -131,8 +122,6 @@ Things to consider:
 
 - started working on rendering function in view
 - [x] move some functions from controller to model
-
-- [ ] weirdness: setCurrentProject in controller. Upon moving it to model, errors are had. Probably because the current project is still empty on first load. See if setting it as default in model fixes this
 
 ## 20230329
 - [x] add function to remove project
@@ -168,7 +157,6 @@ Things to consider:
 - [x] create function to edit project name
 - [x] create visuals to edit project name
   - [x] consider adding a hidden form in the spot of that project that hides and un-hides with edit fields that submit on enter
-- add color to task div based on priority
 - [x] look into `form.reset()` instead of my current functions to clear the form
   - [x] use `form.reset()` for project submit as well
 - [x] add event listener to checkbox on render to add classname
@@ -180,11 +168,25 @@ Things to consider:
 
 ### Extracted to-do's to carry over to next days
 - [x] look into errors upon deleting last project or make sure the first project default is non-deletable 
-- [ ] add color/style to current project in project list
 
 ## 20230331
-- [ ] create function(s) to edit a task 
-  - [x] create function to edit checked status of a specific task
 - [x] add function to move all checked items to bottom of the list
   - [x] test lodash sortBy
+
+## 20230402
+### Carried over tasks:
+- [x] add color/style to current project in project list
+- [ ] create function(s) to edit a task 
+  - [x] create function to edit checked status of a specific task
+- [ ] function to change task priority
+- [ ] function to change dueDate
+- [ ] add color to task div based on priority
+
+
+## future ideas
+- [ ] move deleted items to a trashbin
+- [ ] create a function to filter based on priority
+- [ ] look into date-fns for formatting and manipulating times/dates [here](https://github.com/date-fns/date-fns)
+- [ ] consider option to remove project but move tasks to the inbox
+- [ ] create a function to filter on today's date
 

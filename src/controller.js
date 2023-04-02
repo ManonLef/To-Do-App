@@ -73,7 +73,7 @@ function toggleCheckBox() {
 }
 
 export default function renderAll() {
-  renderCurrent(getAllProjects(), sortedArray());
+  renderCurrent(getAllProjects(), sortedArray(), getCurrentProjectID());
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();
