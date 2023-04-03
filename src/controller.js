@@ -80,15 +80,22 @@ export default function renderAll() {
   console.table(vault.projects);
 }
 
-function changeProjectName() {
+function changeProjectName(e) {
+  console.log(e.type);
+  // remove focusout listener to avoid double event invocation
+  if (e.type === "click") {
+    const inputField = document.querySelectorAll("#edit-project-input");
+    inputField.forEach((field) => {
+      field.removeEventListener("focusout", changeProjectName);
+    });
+  }
+
   const projectUuid = this.getAttribute("data-projectID");
   const newNameTarget = `.edit-${projectUuid}`;
   const newName = document.querySelector(newNameTarget).value;
   editProjectName(projectUuid, newName);
-  // timeout needed to avoid rendering before target form submit
-  setTimeout(() => {
+  console.log("timeout");
   renderAll();
-  }, 100);
 }
 
 //  --------------------------------------------------------------------------
