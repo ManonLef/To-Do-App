@@ -89,7 +89,8 @@ function changeProjectName(e) {
       field.removeEventListener("focusout", changeProjectName);
     });
   }
-
+  // to avoid submitting of the form
+  e.preventDefault()
   const projectUuid = this.getAttribute("data-projectID");
   const newNameTarget = `.edit-${projectUuid}`;
   const newName = document.querySelector(newNameTarget).value;

@@ -199,3 +199,11 @@ Today I ran into a bunch of issues suddenly with my single and double click even
 `Failed to execute 'removeChild' on 'Node': The node to be removed is no longer a child of this node. Perhaps it was moved in a 'blur' event handler?` 
 also mentioned [here](#end-of-day-notes) 
 This seems to be caused by the form submit 
+
+- the above is finally fixed after a lot of debugging:
+  - the focusout and click event were both fired upon click.
+  - I now remove the focusout listener in case it was a click event
+- then there was another error with the form not being connected. What happened was the form submit was firing (even though I had submit/return false set as attribute)
+
+- [ ] consider form being necessary or just using the input field instead without it being a form for the change of project name.
+- I can test the above on the task editing 

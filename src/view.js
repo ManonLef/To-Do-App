@@ -256,7 +256,6 @@ function createProjectElements(project, currentProjectId) {
   const newProjectName = document.createElement("form");
   newProjectName.className = "edit-project-form";
   newProjectName.setAttribute("data-projectID", project.projectUuid);
-  newProjectName.setAttribute("onsubmit", "return false");
 
   const labelNewProjectName = document.createElement("label");
   labelNewProjectName.setAttribute("for", "edit-project-input");
