@@ -190,3 +190,12 @@ Things to consider:
 - [ ] consider option to remove project but move tasks to the inbox
 - [ ] create a function to filter on today's date
 
+Today I ran into a bunch of issues suddenly with my single and double click events clashing for editing the project names. I still haven't figured out where that came from all of a sudden. I went and rewrote and transfered the edit part to the controller to get it fixed. However, I really prefer the view to handle this.
+- [ ] look into creating an edit state for project where it picks which fields or elements are shown.
+
+## 20230403
+- I will get started on rewriting the above. Probably wrapping them both in their own section and basing which one to show on edit state.
+- another issue and error I came across. The project Edit didn't work on enter anymore. I needed to add the click event but that has the issue of throwing the following error:
+`Failed to execute 'removeChild' on 'Node': The node to be removed is no longer a child of this node. Perhaps it was moved in a 'blur' event handler?` 
+also mentioned [here](#end-of-day-notes) 
+This seems to be caused by the form submit 

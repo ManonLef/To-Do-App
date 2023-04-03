@@ -234,21 +234,32 @@ function createProjectElements(project, currentProjectId) {
   projectDiv.className = "sidebar-project";
   projectContainer.appendChild(projectDiv);
 
+  // regular container 
+  const regContainer = document.createElement("div");
+  regContainer.className = `regular-${project.projectUuid}`;
+  regContainer.setAttribute("data-projectID", project.projectUuid);
+  projectDiv.appendChild(regContainer);
+
   const projectName = document.createElement("p");
   projectName.className = "project-name";
   projectName.textContent = project.name;
   projectName.setAttribute("data-projectID", project.projectUuid);
-  projectDiv.appendChild(projectName);
+  regContainer.appendChild(projectName);
 
-  // project name edit form ---------------------------------------------------------------------------------
+  // project name edit form default hidden
+  const editContainer = document.createElement("div");
+  editContainer.className = `edit-container-${project.projectUuid}`;
+  editContainer.setAttribute("data-projectID", project.projectUuid);
+  editContainer.setAttribute("hidden", "true");
+  projectDiv.appendChild(editContainer);
+
   const newProjectName = document.createElement("form");
   newProjectName.className = "edit-project-form";
-  newProjectName.setAttribute("hidden", "true");
   newProjectName.setAttribute("data-projectID", project.projectUuid);
   newProjectName.setAttribute("onsubmit", "return false");
 
   const labelNewProjectName = document.createElement("label");
-  labelNewProjectName.setAttribute("for", "input");
+  labelNewProjectName.setAttribute("for", "edit-project-input");
 
   const inputNewProjectName = document.createElement("input");
   inputNewProjectName.setAttribute("type", "text");
@@ -268,13 +279,10 @@ function createProjectElements(project, currentProjectId) {
     inputNewProjectName,
     submitNewProjectName
   );
-  projectDiv.appendChild(newProjectName);
-
-  submitNewProjectName.addEventListener("click", () => {
-    newProjectName.setAttribute("hidden", "true");
-    projectName.removeAttribute("hidden");
-  });
+  editContainer.append(newProjectName);
+  projectDiv.appendChild(editContainer);
   //-------------------------------------------------------------------------------------------------------
+
   // delete button (but not for default inbox)
   if (!project.default) {
     const deleteButton = document.createElement("button");
@@ -285,40 +293,32 @@ function createProjectElements(project, currentProjectId) {
 
     deleteButton.disabled = false;
   }
-
-  const editButton = document.createElement("button");
-  editButton.className = "project-edit-button";
-  editButton.textContent = "edit";
-  editButton.setAttribute("data-projectID", project.projectUuid);
-  projectDiv.appendChild(editButton);
-
-  // disable buttons
-  editButton.disabled = false;
-
   // special class for currentProject
   if (currentProjectId === project.projectUuid) {
-    projectDiv.classList.add("active-project")
+    projectDiv.classList.add("active-project");
   }
-
-  // projectName.addEventListener("dblclick", () => {
-  //   disableEditButtons();
-    // if (projectName.getAttribute("hidden") === "true") {
-    //   projectName.removeAttribute("hidden");
-    //   newProjectName.setAttribute("hidden", "true");
-    // } else {
-    //   projectName.setAttribute("hidden", "true");
-    //   newProjectName.removeAttribute("hidden");
-    //   inputNewProjectName.focus();
-    // }
-  // });
 }
 
-function disableEditButtons() {
-  const editButtons = document.querySelectorAll(".project-edit-button");
-  editButtons.forEach((button) => {
-    button.setAttribute("disabled", "true");
-  });
+function toggleEditProject(currentProjectId) {
+  const projectDiv = document.querySelector(`.regular-${currentProjectId}`);
+  const editDiv = document.querySelector(`.edit-container-${currentProjectId}`);
+  const inputForm = document.querySelector(`.edit-${currentProjectId}`);
+  if (projectDiv.getAttribute("hidden") === "true") {
+    projectDiv.removeAttribute("hidden");
+    editDiv.setAttribute("hidden", "true");
+  } else {
+    projectDiv.setAttribute("hidden", "true");
+    editDiv.removeAttribute("hidden");
+    inputForm.focus();
+  }
 }
+
+// function disableEditButtons() {
+//   const editButtons = document.querySelectorAll(".project-edit-button");
+//   editButtons.forEach((button) => {
+//     button.setAttribute("disabled", "true");
+//   });
+// }
 
 function createTaskElement(taskObject) {
   // task div
@@ -379,7 +379,7 @@ function renderProjects(vaultProjectsArray, currentProjectId) {
   });
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks, currentProjectId) {
+function renderCurrent(allProjects, currentProjectTasks, currentProjectId) {
   renderProjects(allProjects, currentProjectId);
   renderTasks(currentProjectTasks);
 }
@@ -390,3 +390,4 @@ taskForm();
 addProjectIcon();
 projectForm();
 
+export { renderCurrent, toggleEditProject };

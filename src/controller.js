@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import renderCurrent from "./view";
+import { renderCurrent, toggleEditProject } from "./view";
 import {
   vault,
   setCurrentProject,
@@ -62,26 +62,10 @@ function deleteProjectOnClick() {
 
 function selectProjectOnClick(event) {
   const id = this.getAttribute("data-projectID");
-
-  if (event.detail === 1) {
-    setCurrentProject(id);
-    renderAll();
-    console.log(`event detail = ${event.detail}`)
-  } else {
-    console.log(`event detail = ${event.detail}`)
-
-    // refactor by giving the view more descriptive classnames or id's with uuid
-    console.log(this.nextSibling);
-    if (this.getAttribute("hidden") === "true") {
-      this.removeAttribute("hidden");
-      this.nextSibling.setAttribute("hidden", "true");
-      console.log("hidden");
-    } else {
-      this.setAttribute("hidden", "true");
-      this.nextSibling.removeAttribute("hidden");
-      document.querySelector(`.edit-${id}`).focus();
-      console.log("unhidden");
-    }
+  setCurrentProject(id);
+  renderAll();
+  if (event.detail === 2) {
+    toggleEditProject(id);
   }
 }
 
@@ -106,7 +90,10 @@ function changeProjectName() {
   const newNameTarget = `.edit-${projectUuid}`;
   const newName = document.querySelector(newNameTarget).value;
   editProjectName(projectUuid, newName);
+  // timeout needed to avoid rendering before target form submit
+  setTimeout(() => {
   renderAll();
+  }, 100);
 }
 
 //  --------------------------------------------------------------------------
@@ -135,7 +122,7 @@ function addProjectEditListeners() {
   // edit name of project through enter
   const editForm = document.querySelectorAll(".edit-project-name-submit");
   editForm.forEach((button) => {
-    button.addEventListener("mouseup", changeProjectName);
+    button.addEventListener("click", changeProjectName);
   });
 
   const inputField = document.querySelectorAll("#edit-project-input");
@@ -158,13 +145,11 @@ document.querySelector(".add-task-button").addEventListener("click", () => {
   renderAll();
 });
 
-document
-  .querySelector(".add-project-button")
-  .addEventListener("click", () => {
-    const projectName = document.querySelector("#project").value;
-    document.querySelector(".project-form").reset();
-    addProject(projectName);
-    const projectID = findProjectIdFromName(projectName);
-    setCurrentProject(projectID);
-    renderAll();
-  });
+document.querySelector(".add-project-button").addEventListener("click", () => {
+  const projectName = document.querySelector("#project").value;
+  document.querySelector(".project-form").reset();
+  addProject(projectName);
+  const projectID = findProjectIdFromName(projectName);
+  setCurrentProject(projectID);
+  renderAll();
+});
