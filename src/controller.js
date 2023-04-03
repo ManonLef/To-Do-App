@@ -10,7 +10,6 @@ import {
   getTaskArrayCurrentProject,
   addTaskToProject,
   removeTask,
-  findProjectIndexFromId,
   removeProject,
   setCurrentProjectToDefault,
   editProjectName,
@@ -51,10 +50,6 @@ function deleteTaskOnClick() {
 
 function deleteProjectOnClick() {
   const id = this.getAttribute("data-projectID");
-  const index = findProjectIndexFromId(id);
-  console.log(
-    `deleteProjectOnClick says: HI!!! I'm a project delete button for project ${id} at index ${index}<----------------`
-  );
   removeProject(id);
   setCurrentProject(vault.projects[0].projectUuid);
   renderAll();

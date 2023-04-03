@@ -62,24 +62,16 @@ function getCurrentProjectIndex() {
   const projectIndex = _.findIndex(vault.projects, {
     projectUuid,
   });
-  console.log(
-    `getCurrentProjectIndex says: hey noob it's me again with index ${projectIndex}`
-  );
   return projectIndex;
 }
 
 function getTaskArrayCurrentProject() {
-  console.log(`getTaskArrayCurrentProject says: hey it's me`);
   const index = getCurrentProjectIndex();
-  console.log(
-    `getTaskArrayCurrentProject says: This project resides at index ${index}`
-  );
   return vault.projects[index].projectTasks;
 }
 
 function sortedArray() {
   // sorted by (unchecked + dueDate ascending > no dueDate) > (checked + dueDate ascending > no dueDate)
-  console.log("sorted array says: I'm on it");
   const unchecked = _.filter(getTaskArrayCurrentProject(), task => !task.checked)
   const uncheckedWithDue = _.filter(unchecked, task => task.dueDate)
   const uncheckedWithDueDesc = _.sortBy(uncheckedWithDue, task => task.dueDate)
@@ -105,7 +97,6 @@ function findTaskIndex(taskUuid) {
     vault.projects[getCurrentProjectIndex()].projectTasks,
     { taskUuid }
   );
-  console.log(`task ID ${taskIndex}`);
   return taskIndex;
 }
 
@@ -129,7 +120,6 @@ function findProjectIndexFromId(id) {
 
 function setCurrentProject(projectID) {
   currentProject = projectID;
-  console.log(`setCurrentProject says: current project is ${currentProject}`);
   return currentProject;
 }
 
@@ -176,12 +166,9 @@ function toggleStatus(taskUuid) {
   const taskIndex = findTaskIndex(taskUuid);
   const projectIndex = getCurrentProjectIndex();
   const taskToToggle = vault.projects[projectIndex].projectTasks[taskIndex];
-  console.log(taskToToggle.checked);
   if (taskToToggle.checked) {
-    console.log("this task is checked");
     taskToToggle.checked = false;
   } else {
-    console.log("this task is NOT checked");
     taskToToggle.checked = true;
   }
   addToStorage();
