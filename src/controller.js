@@ -15,6 +15,7 @@ import {
   editProjectName,
   toggleStatus,
   sortedArray,
+  changeTaskName,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -48,13 +49,6 @@ function deleteTaskOnClick() {
   renderAll();
 }
 
-function deleteProjectOnClick() {
-  const id = this.getAttribute("data-projectID");
-  removeProject(id);
-  setCurrentProject(vault.projects[0].projectUuid);
-  renderAll();
-}
-
 function selectProjectOnClick(event) {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
@@ -62,12 +56,6 @@ function selectProjectOnClick(event) {
   if (event.detail === 2) {
     toggleEditProject(id);
   }
-}
-
-function toggleCheckBox() {
-  const id = this.getAttribute("data-taskID");
-  toggleStatus(id);
-  renderAll();
 }
 
 export default function renderAll() {
@@ -118,6 +106,7 @@ function addTaskDeleteListeners() {
   });
 }
 
+// project edit or delete listeners
 function addProjectEditListeners() {
   const deleteButtons = document.querySelectorAll(".project-delete-button");
   deleteButtons.forEach((button) => {
@@ -128,13 +117,21 @@ function addProjectEditListeners() {
   editForm.forEach((button) => {
     button.addEventListener("click", changeProjectName);
   });
-
+  // edit name of project when out of focus
   const inputField = document.querySelectorAll("#edit-project-input");
   inputField.forEach((field) => {
     field.addEventListener("focusout", changeProjectName);
   });
 }
 
+function deleteProjectOnClick() {
+  const id = this.getAttribute("data-projectID");
+  removeProject(id);
+  setCurrentProject(vault.projects[0].projectUuid);
+  renderAll();
+}
+
+// task checkbox field listener
 function addCheckBoxListeners() {
   const checkBox = document.querySelectorAll(".checkbox");
   checkBox.forEach((box) => {
@@ -142,8 +139,15 @@ function addCheckBoxListeners() {
   });
 }
 
+function toggleCheckBox() {
+  const id = this.getAttribute("data-taskID");
+  toggleStatus(id);
+  renderAll();
+}
+
+// task name field edit listeners
 function addTaskNameEditListeners() {
-  const taskNameFields = document.querySelectorAll(".task-name");
+  const taskNameFields = document.querySelectorAll(".task-name,.checked");
   taskNameFields.forEach((field) => {
     field.addEventListener("dblclick", makeFieldEditable);
   });
@@ -152,38 +156,26 @@ function addTaskNameEditListeners() {
 function makeFieldEditable() {
   this.setAttribute("contenteditable", "true");
   this.focus();
-  this.addEventListener("keydown", editTaskName);
-  this.addEventListener("focusout", editTaskName);
+  this.addEventListener("keydown", editName);
+  this.addEventListener("focusout", editName);
 }
 
-function editTaskName(e) {
+function editName(e) {
   if (e.key === "Enter" || e.type === "focusout" || e.key === "Escape") {
     this.removeAttribute("contenteditable", "true");
-    this.removeEventListener("focusout", editTaskName);
-    this.removeEventListener("keydown", editTaskName);
+    this.removeEventListener("focusout", editName);
+    this.removeEventListener("keydown", editName);
   }
-  const taskID = this.getAttribute("data-taskID")
-  console.log(taskID)
-  // function here to edit taskbyID 
+
+  const ID = this.getAttribute("data-taskID")
+  const newName = this.textContent;
+
+  // prepping this for re-use on project
+  if (this.classList.contains("task-name")) {
+    changeTaskName(ID, newName)
+  }
+  // no need to render now since this already shows the correct name
 }
-
-// task.addEventListener("dblclick", () => {
-//   task.setAttribute("contenteditable", "true");
-//   task.focus();
-
-//   task.addEventListener("keydown", editTaskNameEventKey);
-
-//   task.addEventListener("focusout", editTaskNameEventKey);
-
-//   function editTaskNameEventKey(e) {
-//     if (e.key === "Enter" || e.type === "focusout") {
-//       task.removeAttribute("contenteditable", "true");
-//       task.removeEventListener("focusout", editTaskNameEventKey);
-//       task.removeEventListener("keydown", editTaskNameEventKey);
-//       console.log(this.getAttribute("data-taskID"))
-//     }
-//   }
-// });
 
 // new task and new form submit buttons (hidden by default)
 document.querySelector(".add-task-button").addEventListener("click", () => {

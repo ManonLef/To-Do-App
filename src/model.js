@@ -162,6 +162,13 @@ function removeTask(taskUuid) {
   addToStorage();
 }
 
+function changeTaskName(taskUuid, newName) {
+  const index = findTaskIndex(taskUuid)
+  const task = vault.projects[getCurrentProjectIndex()].projectTasks[index];
+  task.task = newName
+  addToStorage()
+}
+
 function toggleStatus(taskUuid) {
   const taskIndex = findTaskIndex(taskUuid);
   const projectIndex = getCurrentProjectIndex();
@@ -238,4 +245,5 @@ export {
   editProjectName,
   toggleStatus,
   sortedArray,
+  changeTaskName,
 };

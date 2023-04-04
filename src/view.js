@@ -364,7 +364,7 @@ function createTaskElement(taskObject) {
   checkboxTaskDiv.appendChild(task);
   if (taskObject.checked) {
     checkbox.setAttribute("checked", true);
-    task.className = "task-div checked";
+    task.className = "task-name checked";
   }
   // due
   const dueDate = document.createElement("div");
