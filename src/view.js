@@ -209,7 +209,7 @@ function projectForm() {
   label.textContent = "project";
 
   const input = document.createElement("input");
-  input.className = "new-project-input"
+  input.className = "new-project-input";
   input.setAttribute("type", "text");
   input.setAttribute("name", "project");
   input.setAttribute("id", "project");
@@ -227,7 +227,7 @@ function projectForm() {
   submit.addEventListener("click", (event) => {
     if (event.type === "click") {
       // to avoid the focusout to fire on click as well
-      input.removeEventListener("focusout", resetForm)
+      input.removeEventListener("focusout", resetForm);
     }
     hideProjectForm();
     showProjectIcon();
@@ -238,26 +238,23 @@ function projectForm() {
     if (event.key === "Escape") {
       resetForm();
     } else {
-      console.log("do nothing")
+      console.log("do nothing");
     }
-    
-  })
+  });
 
   function resetForm() {
     newProjectForm.reset();
-    hideProjectForm()
+    hideProjectForm();
     showProjectIcon();
   }
 }
-
-
 
 function createProjectElements(project, currentProjectId) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
   projectContainer.appendChild(projectDiv);
 
-  // regular container 
+  // regular container
   const regContainer = document.createElement("div");
   regContainer.className = `regular-${project.projectUuid}`;
   regContainer.setAttribute("data-projectID", project.projectUuid);
@@ -362,6 +359,8 @@ function createTaskElement(taskObject) {
   const task = document.createElement("p");
   task.textContent = taskObject.task;
   task.className = "task-name";
+  task.setAttribute("data-taskID", taskObject.taskUuid);
+
   checkboxTaskDiv.appendChild(task);
   if (taskObject.checked) {
     checkbox.setAttribute("checked", true);
@@ -384,6 +383,24 @@ function createTaskElement(taskObject) {
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);
   taskDiv.appendChild(deleteButton);
+
+  task.addEventListener("dblclick", () => {
+    task.setAttribute("contenteditable", "true");
+    task.focus();
+
+    task.addEventListener("keydown", editTaskNameEventKey);
+
+    task.addEventListener("focusout", editTaskNameEventKey);
+
+    function editTaskNameEventKey(e) {
+      if (e.key === "Enter" || e.type === "focusout") {
+        task.removeAttribute("contenteditable", "true");
+        task.removeEventListener("focusout", editTaskNameEventKey);
+        task.removeEventListener("keydown", editTaskNameEventKey);
+        console.log(this.getAttribute("data-taskID"))
+      }
+    }
+  });
 }
 
 function renderTasks(projectTasks) {
