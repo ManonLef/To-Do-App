@@ -224,6 +224,7 @@ This seems to be caused by the form submit
 ## 20230404 continued
 - [ ] refactor project edit to same as task name edit
   - [ ] remove hidden form from the view
-  - [ ] remove all associated functions
+  - [ ] remove all associated functions in view
+  - [ ] remove associated listeners in controller
   - [ ] add listeners for edit similar to task edit
 
