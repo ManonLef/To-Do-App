@@ -157,7 +157,7 @@ function makeFieldEditable() {
 }
 
 function editTaskName(e) {
-  if (e.key === "Enter" || e.type === "focusout") {
+  if (e.key === "Enter" || e.type === "focusout" || e.key === "Escape") {
     this.removeAttribute("contenteditable", "true");
     this.removeEventListener("focusout", editTaskName);
     this.removeEventListener("keydown", editTaskName);
