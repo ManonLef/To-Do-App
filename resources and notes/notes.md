@@ -205,12 +205,25 @@ This seems to be caused by the form submit
   - I now remove the focusout listener in case it was a click event
 - then there was another error with the form not being connected. What happened was the form submit was firing (even though I had submit/return false set as attribute)
 
-- [ ] consider form being necessary or just using the input field instead without it being a form for the change of project name.
-- I can test the above on the task editing 
-
 ## 20230404
 
 - I will start today by making the forms (add project and tasks) exitable while clicking out  of them or maybe hitting esc
 - [x] make add project form dissapear when clicking outside.
 - [ ] addProject function jumping to first item with said project name
   - when you add a project, it will make the project active by name. When you add a project with the same name as a previous one, it will jump to the first one in the array. Consider using the vault projects array last item instead.
+
+- I used contenteditable for the taskname field which worked out lovely. 
+- I want to refactor the project name edit to do the same thing. Sadly that one took me a lot of time to set up but this task edit approach seems so much cleaner and more reusable.
+
+### transferred task
+- [x] consider form being necessary or just using the input field instead without it being a form for the change of project name.
+- I can test the above on the task editing 
+
+- today I tested this on task name editing and no, the form isn't needed. The task edit is a whole lot cleaner not having to deal with a form
+
+## 20230404 continued
+- [ ] refactor project edit to same as task name edit
+  - [ ] remove hidden form from the view
+  - [ ] remove all associated functions
+  - [ ] add listeners for edit similar to task edit
+
