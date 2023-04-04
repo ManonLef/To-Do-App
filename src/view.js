@@ -266,42 +266,6 @@ function createProjectElements(project, currentProjectId) {
   projectName.setAttribute("data-projectID", project.projectUuid);
   regContainer.appendChild(projectName);
 
-  // // project name edit form default hidden
-  // const editContainer = document.createElement("div");
-  // editContainer.className = `edit-container-${project.projectUuid}`;
-  // editContainer.setAttribute("data-projectID", project.projectUuid);
-  // editContainer.setAttribute("hidden", "true");
-  // projectDiv.appendChild(editContainer);
-
-  // const newProjectName = document.createElement("form");
-  // newProjectName.className = "edit-project-form";
-  // newProjectName.setAttribute("data-projectID", project.projectUuid);
-
-  // const labelNewProjectName = document.createElement("label");
-  // labelNewProjectName.setAttribute("for", "edit-project-input");
-
-  // const inputNewProjectName = document.createElement("input");
-  // inputNewProjectName.setAttribute("type", "text");
-  // inputNewProjectName.id = "edit-project-input";
-  // inputNewProjectName.setAttribute("data-projectID", project.projectUuid);
-  // inputNewProjectName.className = `edit-${project.projectUuid}`;
-  // inputNewProjectName.value = project.name;
-
-  // const submitNewProjectName = document.createElement("button");
-  // submitNewProjectName.className = "edit-project-name-submit";
-  // submitNewProjectName.setAttribute("type", "submit");
-  // submitNewProjectName.setAttribute("hidden", "true");
-  // submitNewProjectName.setAttribute("data-projectID", project.projectUuid);
-
-  // newProjectName.append(
-  //   labelNewProjectName,
-  //   inputNewProjectName,
-  //   submitNewProjectName
-  // );
-  // editContainer.append(newProjectName);
-  // projectDiv.appendChild(editContainer);
-  //-------------------------------------------------------------------------------------------------------
-
   // delete button (but not for default inbox)
   if (!project.default) {
     const deleteButton = document.createElement("button");
@@ -317,27 +281,6 @@ function createProjectElements(project, currentProjectId) {
     projectDiv.classList.add("active-project");
   }
 }
-
-// function toggleEditProject(currentProjectId) {
-//   const projectDiv = document.querySelector(`.regular-${currentProjectId}`);
-//   const editDiv = document.querySelector(`.edit-container-${currentProjectId}`);
-//   const inputForm = document.querySelector(`.edit-${currentProjectId}`);
-//   if (projectDiv.getAttribute("hidden") === "true") {
-//     projectDiv.removeAttribute("hidden");
-//     editDiv.setAttribute("hidden", "true");
-//   } else {
-//     projectDiv.setAttribute("hidden", "true");
-//     editDiv.removeAttribute("hidden");
-//     inputForm.focus();
-//   }
-// }
-
-// function disableEditButtons() {
-//   const editButtons = document.querySelectorAll(".project-edit-button");
-//   editButtons.forEach((button) => {
-//     button.setAttribute("disabled", "true");
-//   });
-// }
 
 function createTaskElement(taskObject) {
   // task div
