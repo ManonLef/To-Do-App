@@ -25,6 +25,7 @@ function removeChildNodes(parent) {
 
 function showTaskForm() {
   document.querySelector(".task-form").removeAttribute("hidden");
+  document.querySelector("#task").focus();
 }
 
 function hideTaskForm() {
@@ -114,10 +115,10 @@ function taskForm() {
   inputDescription.setAttribute("name", "description");
   inputDescription.id = "description"; // check
 
-  const button = document.createElement("button");
-  button.setAttribute("type", "submit");
-  button.className = "add-task-button";
-  button.textContent = "submit";
+  const submit = document.createElement("button");
+  submit.setAttribute("type", "submit");
+  submit.className = "add-task-button";
+  submit.textContent = "submit";
 
   taskDiv.append(taskLabel, inputTask);
   dueDiv.append(dueLabel, inputDue);
@@ -136,14 +137,31 @@ function taskForm() {
     dueDiv,
     priorityDiv,
     descriptionDiv,
-    button
+    submit
   );
   taskElement.appendChild(newTaskForm);
 
-  button.addEventListener("click", () => {
+  submit.addEventListener("click", () => {
     hideTaskForm();
     showTaskIcon();
   });
+
+  newTaskForm.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      resetTaskForm();
+    }
+  });
+  
+  newTaskForm.addEventListener("focusout", (event) => {
+    if (newTaskForm.contains(event.relatedTarget)) return;
+    resetTaskForm();
+  });
+
+  function resetTaskForm() {
+    newTaskForm.reset();
+    hideTaskForm();
+    showTaskIcon();
+  }
 }
 
 function addTaskIcon() {
@@ -237,8 +255,6 @@ function projectForm() {
   input.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       resetForm();
-    } else {
-      console.log("do nothing");
     }
   });
 
@@ -343,7 +359,11 @@ function renderProjects(vaultProjectsArray, currentProjectId) {
   });
 }
 
-export default function renderCurrent(allProjects, currentProjectTasks, currentProjectId) {
+export default function renderCurrent(
+  allProjects,
+  currentProjectTasks,
+  currentProjectId
+) {
   renderProjects(allProjects, currentProjectId);
   renderTasks(currentProjectTasks);
 }
