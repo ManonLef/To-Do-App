@@ -77,6 +77,7 @@ export default function renderAll() {
   addTaskDeleteListeners();
   addProjectEditListeners();
   addCheckBoxListeners();
+  addTaskNameEditListeners();
   console.table(vault.projects);
 }
 
@@ -90,7 +91,7 @@ function changeProjectName(e) {
     });
   }
   // to avoid submitting of the form
-  e.preventDefault()
+  e.preventDefault();
   const projectUuid = this.getAttribute("data-projectID");
   const newNameTarget = `.edit-${projectUuid}`;
   const newName = document.querySelector(newNameTarget).value;
@@ -141,6 +142,49 @@ function addCheckBoxListeners() {
   });
 }
 
+function addTaskNameEditListeners() {
+  const taskNameFields = document.querySelectorAll(".task-name");
+  taskNameFields.forEach((field) => {
+    field.addEventListener("dblclick", makeFieldEditable);
+  });
+}
+
+function makeFieldEditable() {
+  this.setAttribute("contenteditable", "true");
+  this.focus();
+  this.addEventListener("keydown", editTaskName);
+  this.addEventListener("focusout", editTaskName);
+}
+
+function editTaskName(e) {
+  if (e.key === "Enter" || e.type === "focusout") {
+    this.removeAttribute("contenteditable", "true");
+    this.removeEventListener("focusout", editTaskName);
+    this.removeEventListener("keydown", editTaskName);
+  }
+  const taskID = this.getAttribute("data-taskID")
+  console.log(taskID)
+  // function here to edit taskbyID 
+}
+
+// task.addEventListener("dblclick", () => {
+//   task.setAttribute("contenteditable", "true");
+//   task.focus();
+
+//   task.addEventListener("keydown", editTaskNameEventKey);
+
+//   task.addEventListener("focusout", editTaskNameEventKey);
+
+//   function editTaskNameEventKey(e) {
+//     if (e.key === "Enter" || e.type === "focusout") {
+//       task.removeAttribute("contenteditable", "true");
+//       task.removeEventListener("focusout", editTaskNameEventKey);
+//       task.removeEventListener("keydown", editTaskNameEventKey);
+//       console.log(this.getAttribute("data-taskID"))
+//     }
+//   }
+// });
+
 // new task and new form submit buttons (hidden by default)
 document.querySelector(".add-task-button").addEventListener("click", () => {
   addTaskToProject(getTaskFromForm());
@@ -156,4 +200,3 @@ document.querySelector(".add-project-button").addEventListener("click", () => {
   setCurrentProject(projectID);
   renderAll();
 });
-
