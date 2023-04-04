@@ -52,9 +52,9 @@ function deleteTaskOnClick() {
 function selectProjectOnClick(event) {
   const id = this.getAttribute("data-projectID");
   setCurrentProject(id);
-  // in case of doubleclick we want to continue to the edit field
+  // in case of doubleclick we want to continue to the edit field but remove the listener for single click
   if (event.detail === 2) {
-   return
+    this.removeEventListener("mouseup", selectProjectOnClick)
   }
   // if this is just single click, rerender
   if (event.detail === 1) {
@@ -73,42 +73,9 @@ export default function renderAll() {
   console.table(vault.projects);
 }
 
-// function changeProjectName(e) {
-//   // console.log(e.type);
-//   // // remove focusout listener to avoid double event invocation
-//   // if (e.type === "click") {
-//   //   const inputField = document.querySelectorAll("#edit-project-input");
-//   //   inputField.forEach((field) => {
-//   //     field.removeEventListener("focusout", changeProjectName);
-//   //   });
-//   // }
-//   // to avoid submitting of the form
-//   e.preventDefault();
-//   const projectUuid = this.getAttribute("data-projectID");
-//   const newNameTarget = `.edit-${projectUuid}`;
-//   const newName = document.querySelector(newNameTarget).value;
-//   editProjectName(projectUuid, newName);
-//   console.log("timeout");
-//   renderAll();
-// }
-
 //  --------------------------------------------------------------------------
 //  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
 //  --------------------------------------------------------------------------
-
-// function addProjectListeners() {
-//   const projects = document.querySelectorAll(".project-name");
-//   projects.forEach((element) => {
-//     element.addEventListener("mouseup", selectProjectOnClick);
-//   });
-// }
-
-function addTaskDeleteListeners() {
-  const deleteButtons = document.querySelectorAll(".delete-button");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("mouseup", deleteTaskOnClick);
-  });
-}
 
 // project edit or delete listeners
 function addProjectListeners() {
@@ -120,20 +87,10 @@ function addProjectListeners() {
   projects.forEach((element) => {
     element.addEventListener("mouseup", selectProjectOnClick);
   });
-  // edit name of project through enter
-  // const editForm = document.querySelectorAll(".edit-project-name-submit");
-  // editForm.forEach((button) => {
-  //   button.addEventListener("click", changeProjectName);
-  // });
-  // // edit name of project when out of focus
-  // const inputField = document.querySelectorAll("#edit-project-input");
-  // inputField.forEach((field) => {
-  //   field.addEventListener("focusout", changeProjectName);
-  // });
   const projectNameFields = document.querySelectorAll(".project-name");
   projectNameFields.forEach((field) => {
-    field.addEventListener("dblclick", makeFieldEditable)
-  })
+    field.addEventListener("dblclick", makeFieldEditable);
+  });
 }
 
 function deleteProjectOnClick() {
@@ -179,16 +136,24 @@ function editName(e) {
     this.removeEventListener("keydown", editName);
   }
 
-  const id = (this.getAttribute("data-taskID") || this.getAttribute("data-projectID"))
+  const id =
+    this.getAttribute("data-taskID") || this.getAttribute("data-projectID");
   const newName = this.textContent;
 
   if (this.classList.contains("task-name")) {
-    changeTaskName(id, newName)
+    changeTaskName(id, newName);
   }
 
   if (this.classList.contains("project-name")) {
-    editProjectName(id, newName)
+    editProjectName(id, newName);
   }
+}
+
+function addTaskDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("mouseup", deleteTaskOnClick);
+  });
 }
 
 // new task and new form submit buttons (hidden by default)
