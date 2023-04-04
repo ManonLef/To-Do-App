@@ -383,24 +383,6 @@ function createTaskElement(taskObject) {
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);
   taskDiv.appendChild(deleteButton);
-
-  task.addEventListener("dblclick", () => {
-    task.setAttribute("contenteditable", "true");
-    task.focus();
-
-    task.addEventListener("keydown", editTaskNameEventKey);
-
-    task.addEventListener("focusout", editTaskNameEventKey);
-
-    function editTaskNameEventKey(e) {
-      if (e.key === "Enter" || e.type === "focusout") {
-        task.removeAttribute("contenteditable", "true");
-        task.removeEventListener("focusout", editTaskNameEventKey);
-        task.removeEventListener("keydown", editTaskNameEventKey);
-        console.log(this.getAttribute("data-taskID"))
-      }
-    }
-  });
 }
 
 function renderTasks(projectTasks) {
