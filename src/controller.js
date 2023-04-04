@@ -156,3 +156,4 @@ document.querySelector(".add-project-button").addEventListener("click", () => {
   setCurrentProject(projectID);
   renderAll();
 });
+

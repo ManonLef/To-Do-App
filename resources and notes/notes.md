@@ -207,3 +207,10 @@ This seems to be caused by the form submit
 
 - [ ] consider form being necessary or just using the input field instead without it being a form for the change of project name.
 - I can test the above on the task editing 
+
+## 20230404
+
+- I will start today by making the forms (add project and tasks) exitable while clicking out  of them or maybe hitting esc
+- [x] make add project form dissapear when clicking outside.
+- [ ] addProject function jumping to first item with said project name
+  - when you add a project, it will make the project active by name. When you add a project with the same name as a previous one, it will jump to the first one in the array. Consider using the vault projects array last item instead.

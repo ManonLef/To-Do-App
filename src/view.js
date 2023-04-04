@@ -161,6 +161,7 @@ function addTaskIcon() {
 
 function showProjectForm() {
   document.querySelector(".project-form").removeAttribute("hidden");
+  document.querySelector(".new-project-input").focus();
 }
 
 function hideProjectForm() {
@@ -183,7 +184,6 @@ function addProjectIcon() {
   const addProject = document.createElement("div");
   addProject.className = "add-project-icon-container";
   addProject.textContent = "+";
-
   projectElement.appendChild(addProject);
 
   addProject.addEventListener("click", () => {
@@ -209,6 +209,7 @@ function projectForm() {
   label.textContent = "project";
 
   const input = document.createElement("input");
+  input.className = "new-project-input"
   input.setAttribute("type", "text");
   input.setAttribute("name", "project");
   input.setAttribute("id", "project");
@@ -223,11 +224,33 @@ function projectForm() {
   newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
-  submit.addEventListener("click", () => {
+  submit.addEventListener("click", (event) => {
+    if (event.type === "click") {
+      // to avoid the focusout to fire on click as well
+      input.removeEventListener("focusout", resetForm)
+    }
     hideProjectForm();
     showProjectIcon();
   });
+
+  input.addEventListener("focusout", resetForm);
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      resetForm();
+    } else {
+      console.log("do nothing")
+    }
+    
+  })
+
+  function resetForm() {
+    newProjectForm.reset();
+    hideProjectForm()
+    showProjectIcon();
+  }
 }
+
+
 
 function createProjectElements(project, currentProjectId) {
   const projectDiv = document.createElement("div");
