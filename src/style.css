@@ -13,12 +13,9 @@
 body {
   width: 100vw;
   display: grid;
-  grid-template-columns: 2fr 2fr 3fr;
+  grid-template-columns: 2fr 5fr 1fr;
+  padding: 50px;
   gap: 30px;
-}
-
-.task-form {
-  border: 2px solid rgb(200, 200, 200);
 }
 
 .task-div {
@@ -37,9 +34,15 @@ body {
   text-decoration: line-through rgb(133, 133, 133);
 }
 
+.task-element {
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr 2fr;
+  grid-template-rows: auto 1fr 1fr;
+}
+
 .task-container {
-  display: flex;
-  flex-direction: column;
+  grid-column-start: 1;
+  grid-column-end: 5;
 }
 
 .add-project-icon-container,
@@ -48,8 +51,10 @@ body {
   background-color: lightblue;
 }
 
-.new-project-input-and-button {
+.new-project-input-and-button,
+.new-task-form-container {
   display: flex;
+  gap: 10px;
   justify-content: space-between;
 }
 

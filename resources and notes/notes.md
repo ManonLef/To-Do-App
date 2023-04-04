@@ -163,7 +163,8 @@ Things to consider:
 
 ### end of day notes
 - I ran into some issues when adding event listeners for blur and focusout. It made the click eventlisteners malfunction. Eventually I fixed that by using a mousedown event instead of click. I'm still not entirely sure what caused it so I'd like to look into that 
-  - [ ] look into the above issue for research 
+  - ~~[ ] look into the above issue for research~~
+  - ^ two event were firing a function simultaneously
 - It's getting a lot harder to keep track of all the different elements. I'm glad I separated many of the concerns during the earlier stages and took my time to achieve some sort of organization and responsibilities for my modules.
 
 ### Extracted to-do's to carry over to next days
@@ -176,7 +177,7 @@ Things to consider:
 ## 20230402
 ### Carried over tasks:
 - [x] add color/style to current project in project list
-- [ ] create function(s) to edit a task 
+- [x] create function(s) to edit a task 
   - [x] create function to edit checked status of a specific task
 - [ ] function to change task priority
 - [ ] function to change dueDate
@@ -191,7 +192,7 @@ Things to consider:
 - [ ] create a function to filter on today's date
 
 Today I ran into a bunch of issues suddenly with my single and double click events clashing for editing the project names. I still haven't figured out where that came from all of a sudden. I went and rewrote and transfered the edit part to the controller to get it fixed. However, I really prefer the view to handle this.
-- [ ] look into creating an edit state for project where it picks which fields or elements are shown.
+- ~~[ ] look into creating an edit state for project where it picks which fields or elements are shown.~~
 
 ## 20230403
 - I will get started on rewriting the above. Probably wrapping them both in their own section and basing which one to show on edit state.
@@ -209,7 +210,7 @@ This seems to be caused by the form submit
 
 - I will start today by making the forms (add project and tasks) exitable while clicking out  of them or maybe hitting esc
 - [x] make add project form dissapear when clicking outside.
-- [ ] addProject function jumping to first item with said project name
+- [ ] ISSUE addProject function jumping to first item with said project name
   - when you add a project, it will make the project active by name. When you add a project with the same name as a previous one, it will jump to the first one in the array. Consider using the vault projects array last item instead.
 
 - I used contenteditable for the taskname field which worked out lovely. 
@@ -222,9 +223,11 @@ This seems to be caused by the form submit
 - today I tested this on task name editing and no, the form isn't needed. The task edit is a whole lot cleaner not having to deal with a form
 
 ## 20230404 continued
-- [ ] refactor project edit to same as task name edit
-  - [ ] remove hidden form from the view
-  - [ ] remove all associated functions in view
-  - [ ] remove associated listeners in controller
-  - [ ] add listeners for edit similar to task edit
+- [x] refactor project edit to same as task name edit
+  - [x] remove hidden form from the view
+  - [x] remove all associated functions in view
+  - [x] remove associated listeners in controller
+  - [x] add listeners for edit similar to task edit
+
+- [ ] make new task form dissapear on focusout or esc similar to project form
 

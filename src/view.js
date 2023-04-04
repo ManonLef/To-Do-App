@@ -48,6 +48,9 @@ function taskForm() {
   newTaskForm.setAttribute("hidden", "true");
   newTaskForm.setAttribute("onsubmit", "return false");
 
+  const formContainer = document.createElement("div");
+  formContainer.className = "new-task-form-container"
+
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
 
@@ -131,7 +134,7 @@ function taskForm() {
   priorityDiv.append(priorityLabel, prioritySelect);
   descriptionDiv.append(descriptionLabel, inputDescription);
 
-  newTaskForm.append(
+  formContainer.append(
     checkbox,
     taskDiv,
     dueDiv,
@@ -139,6 +142,7 @@ function taskForm() {
     descriptionDiv,
     submit
   );
+  newTaskForm.appendChild(formContainer)
   taskElement.appendChild(newTaskForm);
 
   submit.addEventListener("click", () => {
