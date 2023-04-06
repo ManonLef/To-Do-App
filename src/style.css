@@ -19,9 +19,10 @@ body {
 }
 
 .task-div {
-  display: flex;
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr 1fr; 
   gap: 10px;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .check-and-task-container {
@@ -43,6 +44,8 @@ body {
 .task-container {
   grid-column-start: 1;
   grid-column-end: 5;
+  display: grid;
+  gap: 3px;
 }
 
 .add-project-icon-container,
