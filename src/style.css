@@ -71,3 +71,15 @@ body {
 .project-name {
   padding-right: auto;
 }
+
+.low-prio {
+background-color: rgba(159, 250, 117, 0.3);
+}
+
+.medium-prio {
+  background-color: rgba(250, 183, 117, 0.3);
+}
+
+.high-prio {
+  background-color: rgba(250, 117, 117, 0.3);
+}

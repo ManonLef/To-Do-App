@@ -353,6 +353,15 @@ function createTaskElement(taskObject) {
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);
   taskDiv.appendChild(deleteButton);
+
+  // special classes for priority
+  if (taskObject.priority === "low") {
+    taskDiv.classList.add("low-prio")
+  } else if (taskObject.priority === "medium") {
+    taskDiv.classList.add("medium-prio")
+  } else if (taskObject.priority === "high") {
+    taskDiv.classList.add("high-prio")
+  }
 }
 
 function renderTasks(projectTasks) {
