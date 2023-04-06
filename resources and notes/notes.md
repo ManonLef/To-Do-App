@@ -179,9 +179,9 @@ Things to consider:
 - [x] add color/style to current project in project list
 - [x] create function(s) to edit a task 
   - [x] create function to edit checked status of a specific task
-- [ ] function to change task priority
+- [x] function to change task priority
 - [ ] function to change dueDate
-- [ ] add color to task div based on priority
+- [x] add color to task div based on priority
 
 
 ## future ideas
@@ -210,8 +210,9 @@ This seems to be caused by the form submit
 
 - I will start today by making the forms (add project and tasks) exitable while clicking out  of them or maybe hitting esc
 - [x] make add project form dissapear when clicking outside.
-- [ ] ISSUE addProject function jumping to first item with said project name
+- [x] ISSUE addProject function jumping to first item with said project name
   - when you add a project, it will make the project active by name. When you add a project with the same name as a previous one, it will jump to the first one in the array. Consider using the vault projects array last item instead.
+  - fix [April 6th](#20230406)
 
 - I used contenteditable for the taskname field which worked out lovely. 
 - I want to refactor the project name edit to do the same thing. Sadly that one took me a lot of time to set up but this task edit approach seems so much cleaner and more reusable.
@@ -229,5 +230,12 @@ This seems to be caused by the form submit
   - [x] remove associated listeners in controller
   - [x] add listeners for edit similar to task edit
 
-- [ ] make new task form dissapear on focusout or esc similar to project form
+- [x] make new task form dissapear on focusout or esc similar to project form
 
+## 20230406 
+- [x] display the priority on the tasks rendered
+- [ ] remove description visuals for now on rendered tasks
+- [x] add function to change priority
+- [ ] Optional: add sort by priority option
+
+- FIX new project with same name making first of name active project. Added a function to return the latest project ID and set that as active after adding a project.
