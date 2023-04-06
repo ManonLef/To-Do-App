@@ -49,7 +49,7 @@ function taskForm() {
   newTaskForm.setAttribute("onsubmit", "return false");
 
   const formContainer = document.createElement("div");
-  formContainer.className = "new-task-form-container"
+  formContainer.className = "new-task-form-container";
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -142,7 +142,7 @@ function taskForm() {
     descriptionDiv,
     submit
   );
-  newTaskForm.appendChild(formContainer)
+  newTaskForm.appendChild(formContainer);
   taskElement.appendChild(newTaskForm);
 
   submit.addEventListener("click", () => {
@@ -155,7 +155,7 @@ function taskForm() {
       resetTaskForm();
     }
   });
-  
+
   newTaskForm.addEventListener("focusout", (event) => {
     if (newTaskForm.contains(event.relatedTarget)) return;
     resetTaskForm();
@@ -342,14 +342,14 @@ function createTaskElement(taskObject) {
   // prioDiv.appendChild(prio)
   // prio dropdown
   const prioritySelect = document.createElement("select");
-  prioritySelect.setAttribute("data-taskID", taskObject.taskUuid)
+  prioritySelect.setAttribute("data-taskID", taskObject.taskUuid);
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.id = "task-priority";
   prioritySelect.value = taskObject.priority;
 
   const priorityOptionNone = document.createElement("option");
   priorityOptionNone.setAttribute("value", "");
-  priorityOptionNone.textContent = "";
+  priorityOptionNone.textContent = "none";
 
   const priorityOptionOne = document.createElement("option");
   priorityOptionOne.setAttribute("value", "task-prio-low");
@@ -359,13 +359,17 @@ function createTaskElement(taskObject) {
   priorityOptionTwo.setAttribute("value", "task-prio-medium");
   priorityOptionTwo.textContent = "medium";
 
-
   const priorityOptionThree = document.createElement("option");
   priorityOptionThree.setAttribute("value", "task-prio-high");
   priorityOptionThree.textContent = "high";
 
-  prioritySelect.append(priorityOptionNone, priorityOptionOne, priorityOptionTwo, priorityOptionThree)
-  taskDiv.appendChild(prioritySelect)
+  prioritySelect.append(
+    priorityOptionNone,
+    priorityOptionOne,
+    priorityOptionTwo,
+    priorityOptionThree
+  );
+  taskDiv.appendChild(prioritySelect);
   // due
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
@@ -386,16 +390,17 @@ function createTaskElement(taskObject) {
 
   // special classes for priority
   if (taskObject.priority === "low") {
-    taskDiv.classList.add("low-prio")
-    priorityOptionOne.selected = "selected"
+    taskDiv.classList.add("low-prio");
+    priorityOptionOne.selected = "selected";
   } else if (taskObject.priority === "medium") {
-    taskDiv.classList.add("medium-prio")
-    priorityOptionTwo.selected = "selected"
+    taskDiv.classList.add("medium-prio");
+    priorityOptionTwo.selected = "selected";
   } else if (taskObject.priority === "high") {
-    taskDiv.classList.add("high-prio")
-    priorityOptionThree.selected = "selected"
+    taskDiv.classList.add("high-prio");
+    priorityOptionThree.selected = "selected";
   } else {
-    priorityOptionNone.selected = "selected"
+    priorityOptionNone.selected = "selected";
+    priorityOptionNone.textContent =""
   }
 }
 
