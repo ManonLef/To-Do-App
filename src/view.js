@@ -329,6 +329,13 @@ function createTaskElement(taskObject) {
     checkbox.setAttribute("checked", true);
     task.className = "task-name checked";
   }
+
+  // prio
+  const prio = document.createElement("div")
+  prio.className = "task-priority"
+  prio.setAttribute("data-taskID", taskObject.taskUuid)
+  prio.textContent = taskObject.priority;
+  taskDiv.appendChild(prio)
   // due
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
