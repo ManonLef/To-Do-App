@@ -65,6 +65,12 @@ function getCurrentProjectIndex() {
   return projectIndex;
 }
 
+function getLatestProjectID() {
+  const latestIdIndex = vault.projects.length - 1;
+  const latestProjectID = vault.projects[latestIdIndex].projectUuid
+  return latestProjectID
+}
+
 function getTaskArrayCurrentProject() {
   const index = getCurrentProjectIndex();
   return vault.projects[index].projectTasks;
@@ -98,12 +104,6 @@ function findTaskIndex(taskUuid) {
     { taskUuid }
   );
   return taskIndex;
-}
-
-function findProjectIdFromName(name) {
-  const index = _.findIndex(vault.projects, { name });
-  const { projectUuid } = vault.projects[index];
-  return projectUuid;
 }
 
 function findProjectIndexFromId(id) {
@@ -183,6 +183,13 @@ function toggleStatus(taskUuid) {
 
 // unused from controller
 
+// function findProjectIdFromName(name) {
+//   const index = _.findIndex(vault.projects, { name });
+//   const { projectUuid } = vault.projects[index];
+//   return projectUuid;
+// }
+
+
 // function getProjectIndex(taskUuid) {
 //   const projectAndTaskIndex = findTaskByUuid(taskUuid);
 //   const projectIndex = projectAndTaskIndex[0];
@@ -234,7 +241,6 @@ export {
   getCurrentProjectID,
   getCurrentProjectIndex,
   addProject,
-  findProjectIdFromName,
   getAllProjects,
   getTaskArrayCurrentProject,
   addTaskToProject,
@@ -246,4 +252,5 @@ export {
   toggleStatus,
   sortedArray,
   changeTaskName,
+  getLatestProjectID,
 };

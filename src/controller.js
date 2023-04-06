@@ -5,7 +5,6 @@ import {
   setCurrentProject,
   getCurrentProjectID,
   addProject,
-  findProjectIdFromName,
   getAllProjects,
   getTaskArrayCurrentProject,
   addTaskToProject,
@@ -16,6 +15,7 @@ import {
   toggleStatus,
   sortedArray,
   changeTaskName,
+  getLatestProjectID,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -167,7 +167,6 @@ document.querySelector(".add-project-button").addEventListener("click", () => {
   const projectName = document.querySelector("#project").value;
   document.querySelector(".project-form").reset();
   addProject(projectName);
-  const projectID = findProjectIdFromName(projectName);
-  setCurrentProject(projectID);
+  setCurrentProject(getLatestProjectID());
   renderAll();
 });
