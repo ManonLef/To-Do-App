@@ -181,6 +181,13 @@ function toggleStatus(taskUuid) {
   addToStorage();
 }
 
+function editPriority(taskUuid, value) {
+  const taskIndex = findTaskIndex(taskUuid);
+  const projectIndex = getCurrentProjectIndex();
+  vault.projects[projectIndex].projectTasks[taskIndex].priority = value
+  addToStorage()
+}
+
 // unused from controller
 
 // function findProjectIdFromName(name) {
@@ -253,4 +260,5 @@ export {
   sortedArray,
   changeTaskName,
   getLatestProjectID,
+  editPriority,
 };

@@ -16,6 +16,7 @@ import {
   sortedArray,
   changeTaskName,
   getLatestProjectID,
+  editPriority,
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -70,6 +71,8 @@ export default function renderAll() {
   // addProjectEditListeners();
   addCheckBoxListeners();
   addTaskNameEditListeners();
+  //
+  addPriorityListeners()
   console.table(vault.projects);
 }
 
@@ -111,6 +114,22 @@ function addCheckBoxListeners() {
 function toggleCheckBox() {
   const id = this.getAttribute("data-taskID");
   toggleStatus(id);
+  renderAll();
+}
+
+// listen for prio change
+function addPriorityListeners() {
+  const priority = document.querySelectorAll("#task-priority")
+  priority.forEach((dropdown) => {
+    dropdown.addEventListener("change", editPrio);
+  })
+}
+
+function editPrio() {
+  const id = this.getAttribute("data-taskID");
+  const {value} = this
+  console.log(`prio updated for ${id}`)
+  editPriority(id,value);
   renderAll();
 }
 

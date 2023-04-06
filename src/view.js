@@ -348,19 +348,19 @@ function createTaskElement(taskObject) {
   prioritySelect.value = taskObject.priority;
 
   const priorityOptionNone = document.createElement("option");
-  priorityOptionNone.setAttribute("value", "");
+  priorityOptionNone.setAttribute("value", "none");
   priorityOptionNone.textContent = "none";
 
   const priorityOptionOne = document.createElement("option");
-  priorityOptionOne.setAttribute("value", "task-prio-low");
+  priorityOptionOne.setAttribute("value", "low");
   priorityOptionOne.textContent = "low";
 
   const priorityOptionTwo = document.createElement("option");
-  priorityOptionTwo.setAttribute("value", "task-prio-medium");
+  priorityOptionTwo.setAttribute("value", "medium");
   priorityOptionTwo.textContent = "medium";
 
   const priorityOptionThree = document.createElement("option");
-  priorityOptionThree.setAttribute("value", "task-prio-high");
+  priorityOptionThree.setAttribute("value", "high");
   priorityOptionThree.textContent = "high";
 
   prioritySelect.append(
