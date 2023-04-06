@@ -331,11 +331,41 @@ function createTaskElement(taskObject) {
   }
 
   // prio
-  const prio = document.createElement("div")
-  prio.className = "task-priority"
-  prio.setAttribute("data-taskID", taskObject.taskUuid)
-  prio.textContent = taskObject.priority;
-  taskDiv.appendChild(prio)
+  // const prioDiv = document.createElement("div")
+  // prioDiv.className = "priority-container"
+  // taskDiv.appendChild(prioDiv)
+
+  // const prio = document.createElement("div")
+  // prio.className = "task-priority"
+  // prio.setAttribute("data-taskID", taskObject.taskUuid)
+  // prio.textContent = taskObject.priority;
+  // prioDiv.appendChild(prio)
+  // prio dropdown
+  const prioritySelect = document.createElement("select");
+  prioritySelect.setAttribute("data-taskID", taskObject.taskUuid)
+  prioritySelect.setAttribute("name", "priority");
+  prioritySelect.id = "task-priority";
+  prioritySelect.value = taskObject.priority;
+
+  const priorityOptionNone = document.createElement("option");
+  priorityOptionNone.setAttribute("value", "");
+  priorityOptionNone.textContent = "";
+
+  const priorityOptionOne = document.createElement("option");
+  priorityOptionOne.setAttribute("value", "task-prio-low");
+  priorityOptionOne.textContent = "low";
+
+  const priorityOptionTwo = document.createElement("option");
+  priorityOptionTwo.setAttribute("value", "task-prio-medium");
+  priorityOptionTwo.textContent = "medium";
+
+
+  const priorityOptionThree = document.createElement("option");
+  priorityOptionThree.setAttribute("value", "task-prio-high");
+  priorityOptionThree.textContent = "high";
+
+  prioritySelect.append(priorityOptionNone, priorityOptionOne, priorityOptionTwo, priorityOptionThree)
+  taskDiv.appendChild(prioritySelect)
   // due
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
@@ -357,10 +387,15 @@ function createTaskElement(taskObject) {
   // special classes for priority
   if (taskObject.priority === "low") {
     taskDiv.classList.add("low-prio")
+    priorityOptionOne.selected = "selected"
   } else if (taskObject.priority === "medium") {
     taskDiv.classList.add("medium-prio")
+    priorityOptionTwo.selected = "selected"
   } else if (taskObject.priority === "high") {
     taskDiv.classList.add("high-prio")
+    priorityOptionThree.selected = "selected"
+  } else {
+    priorityOptionNone.selected = "selected"
   }
 }
 
