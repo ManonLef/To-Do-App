@@ -20,7 +20,7 @@ body {
 
 .task-div {
   display: grid;
-  grid-template-columns: 10fr 3fr 3fr 3fr 3fr;
+  grid-template-columns: 10fr auto 2fr 1fr;
   gap: 10px;
   align-items: center;
 }
@@ -88,9 +88,7 @@ body {
   display: flex;
 }
 select {
-  /* // A reset of styles, including removing the default dropdown arrow */
   appearance: none;
-  /* // Additional resets for further consistency */
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -107,6 +105,5 @@ select::-ms-expand {
 }
 
 select {
-  /* // ...existing styles */
   outline: none;
 }
