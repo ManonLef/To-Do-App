@@ -7,15 +7,15 @@
 .content {
   display: grid;
   grid-template-columns: 2fr 5fr;
-  gap: 30px;
   height: 100vh;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
 /* sidebar styling */
 .projects-sidebar {
   display: grid;
   grid-template-rows: auto 7fr 3rem;
-  background-color: rgb(97, 143, 151);
+  box-shadow: 0px 0px 3px 0px rgba(110, 110, 110, 0.3);
 }
 
 .project-container {
@@ -28,8 +28,9 @@
 .project-form {
   grid-row-start: 3;
   grid-row-end: 4;
-  padding: 10px;
-  background-color: rgb(219, 173, 230);
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  box-shadow: -3px 0px 3px 0px rgba(110, 110, 110, 0.3);
 }
 
 /* project  elements styling*/
@@ -52,8 +53,53 @@
 /* project form styling */
 
 /* task container styling */
+.task-content {
+  display: grid;
+  grid-template-rows: auto 7fr 3rem;
+}
 
+.task-container {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+}
+
+.add-task-icon-container {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  box-shadow: 3px 0px 3px 0px rgba(110, 110, 110, 0.3);
+}
 /* task elements styling */
+.task-div {
+  color: rgb(64, 64, 64);
+  display: grid;
+  grid-template-columns: 10fr auto auto auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.35rem;
+  border-left: 0.3rem solid transparent; 
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 0.3rem;
+}
+
+.task-div.low-prio {
+  border-left: 0.3rem solid rgba(67, 189, 102, 0.9);
+}
+
+.medium-prio {
+  border-left: 0.3rem solid rgba(247, 134, 21, 0.772);
+}
+
+.high-prio {
+  border-left: 0.3rem solid rgba(222, 56, 56, 0.725);
+}
+
 
 /* task form styling */
 
@@ -67,16 +113,6 @@ button {
 /* footer styling */
 
 /* old styling */
-
-.task-div {
-  display: grid;
-  grid-template-columns: 10fr auto auto auto 1fr;
-  gap: 2rem;
-  align-items: center;
-  padding: 1rem;
-  border-left: 1rem solid transparent;
-
-}
 
 .check-and-task-container {
   display: flex;
@@ -97,19 +133,6 @@ button {
   grid-template-rows: auto 1fr 1fr;
 }
 
-.task-container {
-  grid-column-start: 1;
-  grid-column-end: 6;
-  display: grid;
-  gap: 3px;
-  padding-right: 50px;
-}
-
-.add-task-icon-container {
-  padding: 10px;
-  background-color: lightblue;
-}
-
 .new-project-input-and-button,
 .new-task-form-container {
   display: flex;
@@ -117,17 +140,6 @@ button {
   justify-content: space-between;
 }
 
-.task-div.low-prio {
-  border-left: 1rem solid rgba(159, 250, 117, 0.3);
-}
-
-.medium-prio {
-  border-left: 1rem solid rgba(250, 183, 117, 0.3);
-}
-
-.high-prio {
-  border-left: 1rem solid rgba(250, 117, 117, 0.3);
-}
 
 .priority-container {
   display: flex;

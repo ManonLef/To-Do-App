@@ -14,7 +14,7 @@ projectContainer.className = "project-container";
 projectElement.appendChild(projectContainer);
 
 const taskElement = document.createElement("div");
-taskElement.className = "task-element";
+taskElement.className = "task-content";
 pageContent.appendChild(taskElement);
 
 const taskContainer = document.createElement("div");
