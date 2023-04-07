@@ -373,18 +373,32 @@ function createTaskElement(taskObject) {
     priorityOptionThree
   );
   taskDiv.appendChild(prioritySelect);
-  // due
+
+  // due (non input to-edit version)
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
   dueDate.textContent = taskObject.dueDate;
-  // taskDiv.appendChild(dueDate);
+  taskDiv.appendChild(dueDate);
+
+  // dueDate using spans to edit just using calendar
+  const upperSpan = document.createElement("span");
+  upperSpan.className = "datepicker-toggle";
+
+  const innerSpan = document.createElement("span");
+  innerSpan.className = "datepicker-toggle-button";
+
+  upperSpan.appendChild(innerSpan);
 
   const date = document.createElement("input");
   date.setAttribute("type", "date");
   date.setAttribute("value", taskObject.dueDate);
   date.setAttribute("data-taskID", taskObject.taskUuid);
   date.id = "date";
-  taskDiv.append(date);
+  date.className = "datepicker-input";
+  upperSpan.appendChild(date);
+
+  taskDiv.append(upperSpan);
+
   // edit button (for now)
   // const editButton = document.createElement("button");
   // editButton.className = "edit-button";
