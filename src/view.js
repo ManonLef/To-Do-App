@@ -255,7 +255,10 @@ function projectForm() {
     showProjectIcon();
   });
 
-  input.addEventListener("focusout", resetForm);
+  newProjectForm.addEventListener("focusout", (event) => {
+    if (newProjectForm.contains(event.relatedTarget)) return;
+    resetForm();
+  });
   input.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       resetForm();
@@ -400,7 +403,7 @@ function createTaskElement(taskObject) {
     priorityOptionThree.selected = "selected";
   } else {
     priorityOptionNone.selected = "selected";
-    priorityOptionNone.textContent =""
+    priorityOptionNone.textContent = "";
   }
 }
 

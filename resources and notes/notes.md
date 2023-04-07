@@ -239,3 +239,5 @@ This seems to be caused by the form submit
 - [ ] Optional: add sort by priority option
 
 - FIX new project with same name making first of name active project. Added a function to return the latest project ID and set that as active after adding a project.
+
+- add project button not working (has to do with the focusout listener again)
