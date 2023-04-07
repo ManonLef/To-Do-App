@@ -88,7 +88,7 @@ function addProjectListeners() {
   deleteButtons.forEach((button) => {
     button.addEventListener("mouseup", deleteProjectOnClick);
   });
-  const projects = document.querySelectorAll(".sidebar-project");
+  const projects = document.querySelectorAll(".project-name");
   projects.forEach((element) => {
     element.addEventListener("mouseup", selectProjectOnClick);
   });
