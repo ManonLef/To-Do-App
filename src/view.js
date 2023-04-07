@@ -332,10 +332,6 @@ function createTaskElement(taskObject) {
   task.setAttribute("data-taskID", taskObject.taskUuid);
 
   checkboxTaskDiv.appendChild(task);
-  if (taskObject.checked) {
-    checkbox.setAttribute("checked", true);
-    task.className = "task-name checked";
-  }
 
   // prio
   // const prioDiv = document.createElement("div")
@@ -430,6 +426,14 @@ function createTaskElement(taskObject) {
   } else {
     priorityOptionNone.selected = "selected";
     priorityOptionNone.textContent = "";
+  }
+
+  if (taskObject.checked) {
+    checkbox.setAttribute("checked", true);
+    task.classList.add("checked");
+    dueDate.classList.add("checked");
+    prioritySelect.classList.add("checked");
+
   }
 }
 
