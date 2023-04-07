@@ -1,9 +1,13 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
 const body = document.querySelector("body");
 
+const pageContent = document.createElement("div")
+pageContent.className = 'content'
+body.appendChild(pageContent)
+
 const projectElement = document.createElement("div");
-projectElement.className = "project-sidebar";
-body.appendChild(projectElement);
+projectElement.className = "projects-sidebar";
+pageContent.appendChild(projectElement);
 
 const projectContainer = document.createElement("div");
 projectContainer.className = "project-container";
@@ -11,7 +15,7 @@ projectElement.appendChild(projectContainer);
 
 const taskElement = document.createElement("div");
 taskElement.className = "task-element";
-body.appendChild(taskElement);
+pageContent.appendChild(taskElement);
 
 const taskContainer = document.createElement("div");
 taskContainer.className = "task-container";
@@ -275,6 +279,8 @@ function projectForm() {
 function createProjectElements(project, currentProjectId) {
   const projectDiv = document.createElement("div");
   projectDiv.className = "sidebar-project";
+  projectDiv.setAttribute("data-projectID", project.projectUuid);
+
   projectContainer.appendChild(projectDiv);
 
   // regular container

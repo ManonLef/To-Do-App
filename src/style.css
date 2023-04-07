@@ -1,21 +1,72 @@
+/* full page styling */
 * {
   margin: 0;
   padding: 0;
 }
 
-.sidebar-project {
-  border: 1px solid pink;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr;
-}
-
-body {
+.content {
   display: grid;
   grid-template-columns: 2fr 5fr;
-  padding: 50px;
   gap: 30px;
+  height: 100vh;
 }
+
+/* sidebar styling */
+.projects-sidebar {
+  display: grid;
+  grid-template-rows: auto 7fr 3rem;
+  background-color: rgb(97, 143, 151);
+}
+
+.project-container {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+}
+
+.add-project-icon-container,
+.project-form {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  padding: 10px;
+  background-color: rgb(219, 173, 230);
+}
+
+/* project  elements styling*/
+.sidebar-project {
+  color: rgb(64, 64, 64);
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 0.3rem;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+  padding: 0.7rem;
+  border-left: 0.5rem solid transparent;
+}
+
+.active-project {
+  border-left: 0.5rem solid rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* project form styling */
+
+/* task container styling */
+
+/* task elements styling */
+
+/* task form styling */
+
+/* button styling */
+button {
+  background-color: rgb(99, 99, 99);
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+/* footer styling */
+
+/* old styling */
 
 .task-div {
   display: grid;
@@ -54,7 +105,6 @@ body {
   padding-right: 50px;
 }
 
-.add-project-icon-container,
 .add-task-icon-container {
   padding: 10px;
   background-color: lightblue;
@@ -65,14 +115,6 @@ body {
   display: flex;
   gap: 10px;
   justify-content: space-between;
-}
-
-.active-project {
-  background-color: rgb(255, 230, 230);
-}
-
-.project-name {
-  padding-right: auto;
 }
 
 .task-div.low-prio {
