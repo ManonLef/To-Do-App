@@ -297,13 +297,11 @@ function createProjectElements(project, currentProjectId) {
 
   // delete button (but not for default inbox)
   if (!project.default) {
-    const deleteButton = document.createElement("button");
+    const deleteButton = document.createElement("img");
     deleteButton.className = "project-delete-button";
-    deleteButton.textContent = "delete";
+    deleteButton.setAttribute("src", "../resources-and-notes/delete_forever_white_18dp.svg")
     deleteButton.setAttribute("data-projectID", project.projectUuid);
     projectDiv.appendChild(deleteButton);
-
-    deleteButton.disabled = false;
   }
   // special class for currentProject
   if (currentProjectId === project.projectUuid) {
