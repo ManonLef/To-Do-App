@@ -84,7 +84,7 @@
 /* task elements styling */
 .task-div {
   display: grid;
-  grid-template-columns: 18fr 3fr 4fr 1fr 1fr;
+  grid-template-columns: 18fr auto 4fr 1fr 1fr;
   gap: 3px;
   align-items: center;
   padding: 0.5rem;
@@ -108,6 +108,11 @@
 /* task element details */
 select {
   color: white;
+}
+
+.task-date,
+.delete-button {
+justify-self: center;
 }
 /* task form styling */
 
@@ -143,7 +148,7 @@ select {
 }
 
 select {
-  appearance: none;
+  /* appearance: none; */
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
