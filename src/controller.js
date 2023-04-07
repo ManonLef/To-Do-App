@@ -17,6 +17,7 @@ import {
   changeTaskName,
   getLatestProjectID,
   editPriority,
+  editTaskDue
 } from "./model";
 
 //  --------------------------------------------------------------------------
@@ -71,6 +72,7 @@ export default function renderAll() {
   // addProjectEditListeners();
   addCheckBoxListeners();
   addTaskNameEditListeners();
+  addDateChangeListeners();
   //
   addPriorityListeners()
   console.table(vault.projects);
@@ -173,6 +175,21 @@ function addTaskDeleteListeners() {
   deleteButtons.forEach((button) => {
     button.addEventListener("mouseup", deleteTaskOnClick);
   });
+}
+
+function addDateChangeListeners() {
+  const dateFields = document.querySelectorAll("#date");
+  dateFields.forEach((date) => {
+    date.addEventListener("change", editTaskDate)
+  })
+}
+
+function editTaskDate() {
+  const id = this.getAttribute("data-taskID")
+  const newDate = this.value
+  console.log(`${id} ${newDate}`)
+  editTaskDue(id, newDate)
+  renderAll()
 }
 
 // new task and new form submit buttons (hidden by default)

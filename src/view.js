@@ -377,7 +377,14 @@ function createTaskElement(taskObject) {
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
   dueDate.textContent = taskObject.dueDate;
-  taskDiv.appendChild(dueDate);
+  // taskDiv.appendChild(dueDate);
+
+  const date = document.createElement("input");
+  date.setAttribute("type", "date");
+  date.setAttribute("value", taskObject.dueDate);
+  date.setAttribute("data-taskID", taskObject.taskUuid);
+  date.id = "date";
+  taskDiv.append(date);
   // edit button (for now)
   // const editButton = document.createElement("button");
   // editButton.className = "edit-button";

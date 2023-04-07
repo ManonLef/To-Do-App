@@ -67,8 +67,8 @@ function getCurrentProjectIndex() {
 
 function getLatestProjectID() {
   const latestIdIndex = vault.projects.length - 1;
-  const latestProjectID = vault.projects[latestIdIndex].projectUuid
-  return latestProjectID
+  const latestProjectID = vault.projects[latestIdIndex].projectUuid;
+  return latestProjectID;
 }
 
 function getTaskArrayCurrentProject() {
@@ -78,19 +78,28 @@ function getTaskArrayCurrentProject() {
 
 function sortedArray() {
   // sorted by (unchecked + dueDate ascending > no dueDate) > (checked + dueDate ascending > no dueDate)
-  const unchecked = _.filter(getTaskArrayCurrentProject(), task => !task.checked)
-  const uncheckedWithDue = _.filter(unchecked, task => task.dueDate)
-  const uncheckedWithDueDesc = _.sortBy(uncheckedWithDue, task => task.dueDate)
-  const uncheckedWithoutDue = _.filter(unchecked, task => !task.dueDate)
-  const sortedUnchecked = uncheckedWithDueDesc.concat(uncheckedWithoutDue)
+  const unchecked = _.filter(
+    getTaskArrayCurrentProject(),
+    (task) => !task.checked
+  );
+  const uncheckedWithDue = _.filter(unchecked, (task) => task.dueDate);
+  const uncheckedWithDueDesc = _.sortBy(
+    uncheckedWithDue,
+    (task) => task.dueDate
+  );
+  const uncheckedWithoutDue = _.filter(unchecked, (task) => !task.dueDate);
+  const sortedUnchecked = uncheckedWithDueDesc.concat(uncheckedWithoutDue);
 
-  const checked = _.filter(getTaskArrayCurrentProject(), task => task.checked)
-  const checkedWithDue = _.filter(checked, task => task.dueDate)
-  const checkedWithDueDesc = _.sortBy(checkedWithDue, task => task.dueDate)
-  const checkedWithoutDue = _.filter(checked, task => !task.dueDate)
-  const sortedChecked = checkedWithDueDesc.concat(checkedWithoutDue)
+  const checked = _.filter(
+    getTaskArrayCurrentProject(),
+    (task) => task.checked
+  );
+  const checkedWithDue = _.filter(checked, (task) => task.dueDate);
+  const checkedWithDueDesc = _.sortBy(checkedWithDue, (task) => task.dueDate);
+  const checkedWithoutDue = _.filter(checked, (task) => !task.dueDate);
+  const sortedChecked = checkedWithDueDesc.concat(checkedWithoutDue);
 
-  const sorted = sortedUnchecked.concat(sortedChecked)
+  const sorted = sortedUnchecked.concat(sortedChecked);
   return sorted;
 }
 
@@ -163,10 +172,10 @@ function removeTask(taskUuid) {
 }
 
 function changeTaskName(taskUuid, newName) {
-  const index = findTaskIndex(taskUuid)
+  const index = findTaskIndex(taskUuid);
   const task = vault.projects[getCurrentProjectIndex()].projectTasks[index];
-  task.task = newName
-  addToStorage()
+  task.task = newName;
+  addToStorage();
 }
 
 function toggleStatus(taskUuid) {
@@ -181,11 +190,19 @@ function toggleStatus(taskUuid) {
   addToStorage();
 }
 
+function editTaskDue(taskUuid, newDue) {
+  const taskIndex = findTaskIndex(taskUuid);
+  const projectIndex = getCurrentProjectIndex();
+  vault.projects[projectIndex].projectTasks[taskIndex].dueDate = newDue;
+  addToStorage()
+}
+
+
 function editPriority(taskUuid, value) {
   const taskIndex = findTaskIndex(taskUuid);
   const projectIndex = getCurrentProjectIndex();
-  vault.projects[projectIndex].projectTasks[taskIndex].priority = value
-  addToStorage()
+  vault.projects[projectIndex].projectTasks[taskIndex].priority = value;
+  addToStorage();
 }
 
 // unused from controller
@@ -195,7 +212,6 @@ function editPriority(taskUuid, value) {
 //   const { projectUuid } = vault.projects[index];
 //   return projectUuid;
 // }
-
 
 // function getProjectIndex(taskUuid) {
 //   const projectAndTaskIndex = findTaskByUuid(taskUuid);
@@ -261,4 +277,5 @@ export {
   changeTaskName,
   getLatestProjectID,
   editPriority,
+  editTaskDue,
 };
