@@ -36,9 +36,9 @@ function getTaskFromForm() {
   const due = document.querySelector("#due-date").value;
   const prio = document.querySelector("#priority").value;
   const projectUuid = getCurrentProjectID();
-  const description = document.querySelector("#description").value;
+  // const description = document.querySelector("#description").value;
 
-  return [checked, task, due, prio, projectUuid, description];
+  return [checked, task, due, prio, projectUuid];
 }
 
 //  --------------------------------------------------------------------------
