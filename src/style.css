@@ -11,16 +11,15 @@
 }
 
 body {
-  width: 100vw;
   display: grid;
-  grid-template-columns: 2fr 5fr 1fr;
+  grid-template-columns: 2fr 5fr;
   padding: 50px;
   gap: 30px;
 }
 
 .task-div {
   display: grid;
-  grid-template-columns: 10fr auto 2fr 1fr;
+  grid-template-columns: 10fr auto 2fr auto;
   gap: 10px;
   align-items: center;
 }
@@ -49,6 +48,7 @@ body {
   grid-column-end: 6;
   display: grid;
   gap: 3px;
+  padding-right: 50px;
 }
 
 .add-project-icon-container,
@@ -87,6 +87,7 @@ body {
 .priority-container {
   display: flex;
 }
+
 select {
   appearance: none;
   background-color: transparent;
