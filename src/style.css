@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&display=swap");
 /* full page styling */
 * {
   margin: 0;
@@ -8,11 +9,17 @@
   display: grid;
   grid-template-columns: 2fr 5fr;
   height: 100vh;
-  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  background: #12c2e9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: "Anuphan", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 /* sidebar styling */
 .projects-sidebar {
+  color: white;
   display: grid;
   grid-template-rows: auto 7fr 3rem;
   box-shadow: 0px 0px 3px 0px rgba(110, 110, 110, 0.3);
@@ -35,9 +42,8 @@
 
 /* project  elements styling*/
 .sidebar-project {
-  color: rgb(64, 64, 64);
   display: grid;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 0.3rem;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr;
@@ -47,7 +53,7 @@
 
 .active-project {
   border-left: 0.5rem solid rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 /* project form styling */
@@ -83,7 +89,7 @@
   gap: 1rem;
   align-items: center;
   padding: 0.35rem;
-  border-left: 0.3rem solid transparent; 
+  border-left: 0.3rem solid transparent;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 0.3rem;
 }
@@ -99,7 +105,6 @@
 .high-prio {
   border-left: 0.3rem solid rgba(222, 56, 56, 0.725);
 }
-
 
 /* task form styling */
 
@@ -139,7 +144,6 @@ button {
   gap: 10px;
   justify-content: space-between;
 }
-
 
 .priority-container {
   display: flex;
