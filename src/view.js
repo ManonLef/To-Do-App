@@ -410,7 +410,8 @@ function createTaskElement(taskObject) {
   // editButton.setAttribute("data-taskID", taskObject.taskUuid);
   // taskDiv.appendChild(editButton);
   // delete button
-  const deleteButton = document.createElement("button");
+  const deleteButton = document.createElement("img");
+  deleteButton.setAttribute("src", "../resources-and-notes/delete_forever_white_18dp.svg")
   deleteButton.className = "delete-button";
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);

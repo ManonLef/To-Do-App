@@ -67,8 +67,9 @@
   grid-column-start: 1;
   grid-column-end: 6;
   display: grid;
-  gap: 0.7rem;
+  /* gap: 3px; */
   padding: 1rem;
+  color: white;
 }
 
 .add-task-icon-container {
@@ -82,38 +83,36 @@
 }
 /* task elements styling */
 .task-div {
-  color: rgb(64, 64, 64);
   display: grid;
-  grid-template-columns: 10fr auto auto auto 1fr;
-  gap: 1rem;
+  grid-template-columns: 18fr 3fr 4fr 1fr 1fr;
+  gap: 3px;
   align-items: center;
-  padding: 0.35rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  /* border-radius: 5px; */
   border-left: 0.3rem solid transparent;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-radius: 0.3rem;
+  box-shadow: -3px 0px 0px 0px rgb(255, 255, 255)
 }
 
 .task-div.low-prio {
-  border-left: 0.3rem solid rgba(67, 189, 102, 0.9);
+  border-left: 0.3rem solid rgb(91, 182, 200);
+  box-shadow: -3px 0px 0px 0px rgb(255, 255, 255)
 }
 
 .medium-prio {
-  border-left: 0.3rem solid rgba(247, 134, 21, 0.772);
+  border-left: 0.3rem solid rgb(76, 161, 177);
 }
 
 .high-prio {
-  border-left: 0.3rem solid rgba(222, 56, 56, 0.725);
+  border-left: 0.3rem solid rgb(47, 88, 96);
 }
 
+/* task element details */
+select {
+  color: white;
+}
 /* task form styling */
 
-/* button styling */
-button {
-  background-color: rgb(99, 99, 99);
-  color: white;
-  border: 2px solid transparent;
-  border-radius: 5px;
-}
 /* footer styling */
 
 /* old styling */
@@ -127,8 +126,8 @@ button {
   width: 100%;
 }
 .checked {
-  color: rgb(186, 186, 186);
-  text-decoration: line-through rgb(133, 133, 133);
+  color: rgba(255, 255, 255, 0.461);
+  text-decoration: line-through rgba(255, 255, 255, 0.715);
 }
 
 .task-element {
@@ -181,7 +180,7 @@ select {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../resources-and-notes/calendar_month_black_18dp.svg");
+  background-image: url("../resources-and-notes/edit_calendar_white_24dp.svg");
 }
 
 .datepicker-input {
