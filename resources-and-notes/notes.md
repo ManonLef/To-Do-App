@@ -234,10 +234,14 @@ This seems to be caused by the form submit
 
 ## 20230406 
 - [x] display the priority on the tasks rendered
-- [ ] remove description visuals for now on rendered tasks
+- [x] remove description visuals for now on rendered tasks
 - [x] add function to change priority
 - [ ] Optional: add sort by priority option
 
 - FIX new project with same name making first of name active project. Added a function to return the latest project ID and set that as active after adding a project.
 
 - add project button not working (has to do with the focusout listener again)
+
+## 20230407
+- had some struggles with styling the datepicker. I did implement the datepicker change listener.
+- eventually used this guide [here](https://dev.to/codeclown/styling-a-native-date-input-into-a-custom-no-library-datepicker-2in) to style my datepicker as I intended.
