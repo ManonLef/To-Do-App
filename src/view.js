@@ -415,13 +415,13 @@ function createTaskElement(taskObject) {
 
   // special classes for priority
   if (taskObject.priority === "low") {
-    taskDiv.classList.add("low-prio");
+    checkbox.classList.add("low-prio");
     priorityOptionOne.selected = "selected";
   } else if (taskObject.priority === "medium") {
-    taskDiv.classList.add("medium-prio");
+    checkbox.classList.add("medium-prio");
     priorityOptionTwo.selected = "selected";
   } else if (taskObject.priority === "high") {
-    taskDiv.classList.add("high-prio");
+    checkbox.classList.add("high-prio");
     priorityOptionThree.selected = "selected";
   } else {
     priorityOptionNone.selected = "selected";
@@ -433,7 +433,7 @@ function createTaskElement(taskObject) {
     task.classList.add("checked");
     dueDate.classList.add("checked");
     prioritySelect.classList.add("checked");
-
+    taskDiv.classList.add("checked");
   }
 }
 
