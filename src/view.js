@@ -84,6 +84,7 @@ function taskForm() {
 
   const dueLabel = document.createElement("label");
   dueLabel.setAttribute("for", "due-date");
+  dueLabel.setAttribute("hidden", "true")
   dueLabel.textContent = "due";
 
   const inputDue = document.createElement("input");
@@ -97,11 +98,11 @@ function taskForm() {
   const priorityLabel = document.createElement("label");
   priorityLabel.setAttribute("for", "priority");
   priorityLabel.textContent = "priority";
+  priorityLabel.setAttribute("hidden", "true")
 
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.id = "priority";
-  prioritySelect.setAttribute("placeholder", "priority")
 
   const priorityOptionNone = document.createElement("option");
   priorityOptionNone.setAttribute("value", "");
@@ -109,6 +110,7 @@ function taskForm() {
 
   const priorityOptionOne = document.createElement("option");
   priorityOptionOne.setAttribute("value", "low");
+  priorityOptionOne.setAttribute("selected", "true")
   priorityOptionOne.textContent = "low";
 
   const priorityOptionTwo = document.createElement("option");
@@ -168,7 +170,7 @@ function taskForm() {
     }
   });
 
-  newTaskForm.addEventListener("focusout", (event) => {
+  formContainer.addEventListener("focusout", (event) => {
     if (newTaskForm.contains(event.relatedTarget)) return;
     resetTaskForm();
   });
