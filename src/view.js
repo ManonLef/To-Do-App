@@ -68,7 +68,7 @@ function hideTaskIcon() {
 function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form";
-  // newTaskForm.setAttribute("hidden", "true");
+  newTaskForm.setAttribute("hidden", "true");
   newTaskForm.setAttribute("onsubmit", "return false");
 
   const formContainer = document.createElement("div");
@@ -204,7 +204,7 @@ function taskForm() {
 function addTaskIcon() {
   const addTask = document.createElement("div");
   addTask.className = "add-task-icon-container";
-  addTask.textContent = "+";
+  addTask.textContent = "+ add task";
 
   taskElement.appendChild(addTask);
 
