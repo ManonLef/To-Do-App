@@ -40,6 +40,10 @@ const taskContainer = document.createElement("div");
 taskContainer.className = "task-container";
 taskElement.appendChild(taskContainer);
 
+const footer = document.createElement("footer");
+footer.textContent = "footer";
+pageContent.appendChild(footer);
+
 function removeChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);

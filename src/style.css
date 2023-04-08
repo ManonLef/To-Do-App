@@ -14,10 +14,11 @@ body {
     rgba(255, 150, 3, 1) 100%
   );
 }
+
 .content {
   display: grid;
   grid-template-columns: 2fr 8fr;
-  grid-template-rows: 3rem auto;
+  grid-template-rows: 3rem auto 3rem;
   height: 100%;
   font-family: "Anuphan", sans-serif;
 
@@ -28,6 +29,15 @@ body {
 
 header {
   grid-area: 1/1/2/3;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #bc3b96;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
+footer {
+  grid-area: 3/1/4/3;
   background-color: rgba(255, 255, 255, 0.5);
   color: #bc3b96;
   font-weight: 600;
@@ -285,13 +295,13 @@ select {
   /* text-decoration: line-through rgba(255, 255, 255, 0.715); */
 }
 
-/* @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .content {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
-} */
+}
 
 /* task form */
 
