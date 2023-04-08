@@ -8,6 +8,7 @@
 .content {
   display: grid;
   grid-template-columns: 2fr 8fr;
+  grid-template-rows: auto 10fr;
   height: 100vh;
   background: linear-gradient(
     90deg,
@@ -22,12 +23,21 @@
   font-weight: 300;
 }
 
+header {
+  grid-area: 1/1/2/3;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #bc3b96;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
 /* sidebar styling */
 .projects-sidebar {
   color: white;
   display: grid;
   grid-template-rows: auto auto 3rem;
-  box-shadow: 0px 0px 4px 0px rgba(62, 62, 62, 0.47);
+  box-shadow: 0px 2px 2px 0px rgba(62, 62, 62, 0.47);
 }
 
 .project-container {
@@ -64,10 +74,28 @@
 }
 /* project form styling */
 
+/* legend styling */
+.task-legend {
+  display: grid;
+  grid-template-columns: 12fr 3fr 3fr 1fr 1fr;
+  gap: 3px;
+  padding: 0 1.5rem;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.legend-task-name {
+  justify-self: center;
+}
+.legend-due {
+  justify-self: center;
+}
 /* task container styling */
+
 .task-content {
   display: grid;
-  grid-template-rows: auto auto 3rem;
+  grid-template-rows: 3rem auto 3rem;
   grid-template-columns: 1fr;
   color: white;
 }
@@ -79,7 +107,7 @@
   flex-direction: column;
   gap: 3px;
   color: white;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .add-task-icon-container {

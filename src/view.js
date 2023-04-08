@@ -5,6 +5,10 @@ const pageContent = document.createElement("div")
 pageContent.className = 'content'
 body.appendChild(pageContent)
 
+const header = document.createElement("header")
+header.textContent = "hello"
+pageContent.appendChild(header)
+
 const projectElement = document.createElement("div");
 projectElement.className = "projects-sidebar";
 pageContent.appendChild(projectElement);
@@ -16,6 +20,21 @@ projectElement.appendChild(projectContainer);
 const taskElement = document.createElement("div");
 taskElement.className = "task-content";
 pageContent.appendChild(taskElement);
+
+const taskLegend = document.createElement("div");
+taskLegend.className = "task-legend"
+const legendTask = document.createElement("div")
+legendTask.className = "legend-task-name"
+legendTask.textContent = "task"
+const legendPriority = document.createElement("div")
+legendPriority.className = "legend-priority"
+legendPriority.textContent = "priority"
+const legendDue = document.createElement("div")
+legendDue.className = "legend-due"
+legendDue.textContent = "due date"
+taskLegend.append(legendTask, legendPriority, legendDue)
+taskElement.appendChild(taskLegend)
+
 
 const taskContainer = document.createElement("div");
 taskContainer.className = "task-container";
