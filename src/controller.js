@@ -137,7 +137,7 @@ function editPrio() {
 
 // task name field edit listeners
 function addTaskNameEditListeners() {
-  const taskNameFields = document.querySelectorAll(".task-name,.checked");
+  const taskNameFields = document.querySelectorAll(".task-name");
   taskNameFields.forEach((field) => {
     field.addEventListener("dblclick", makeFieldEditable);
   });
