@@ -49,11 +49,14 @@ function hideTaskIcon() {
 function taskForm() {
   const newTaskForm = document.createElement("form");
   newTaskForm.className = "task-form";
-  newTaskForm.setAttribute("hidden", "true");
+  // newTaskForm.setAttribute("hidden", "true");
   newTaskForm.setAttribute("onsubmit", "return false");
 
   const formContainer = document.createElement("div");
   formContainer.className = "new-task-form-container";
+
+  const taskAndCheckBoxDiv = document.createElement("div")
+  taskAndCheckBoxDiv.className = "task-form-check-task-container"
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -62,13 +65,18 @@ function taskForm() {
   checkbox.id = "checkbox";
   checkbox.setAttribute("type", "checkbox");
 
+  taskAndCheckBoxDiv.append(checkbox, taskDiv)
+
   const taskLabel = document.createElement("label");
   taskLabel.setAttribute("for", "task");
   taskLabel.textContent = "task";
+  taskLabel.setAttribute("hidden", "true")
 
   const inputTask = document.createElement("input");
   inputTask.setAttribute("type", "text");
   inputTask.setAttribute("name", "task");
+  inputTask.setAttribute("placeholder", "new task");
+
   inputTask.id = "task"; // check
 
   const dueDiv = document.createElement("div");
@@ -93,6 +101,7 @@ function taskForm() {
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
   prioritySelect.id = "priority";
+  prioritySelect.setAttribute("placeholder", "priority")
 
   const priorityOptionNone = document.createElement("option");
   priorityOptionNone.setAttribute("value", "");
@@ -139,10 +148,9 @@ function taskForm() {
   // descriptionDiv.append(descriptionLabel, inputDescription);
 
   formContainer.append(
-    checkbox,
-    taskDiv,
-    dueDiv,
+    taskAndCheckBoxDiv,
     priorityDiv,
+    dueDiv,
     // descriptionDiv,
     submit
   );

@@ -7,9 +7,8 @@
 
 .content {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 2fr 8fr;
   height: 100vh;
-  background: rgb(111, 17, 175);
   background: linear-gradient(
     90deg,
     rgba(111, 17, 175, 1) 0%,
@@ -27,13 +26,14 @@
 .projects-sidebar {
   color: white;
   display: grid;
-  grid-template-rows: auto 7fr 3rem;
+  grid-template-rows: auto auto 3rem;
   box-shadow: 0px 0px 4px 0px rgba(62, 62, 62, 0.47);
 }
 
 .project-container {
-  display: grid;
-  gap: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   padding: 1rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -67,17 +67,19 @@
 /* task container styling */
 .task-content {
   display: grid;
-  grid-template-rows: auto 7fr 3rem;
+  grid-template-rows: auto auto 3rem;
+  grid-template-columns: 1fr;
   color: white;
 }
 
 .task-container {
   grid-column-start: 1;
   grid-column-end: 6;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 3px;
-  padding: 1rem;
   color: white;
+  padding: 1rem;
 }
 
 .add-task-icon-container {
@@ -92,7 +94,7 @@
 /* task elements styling */
 .task-div {
   display: grid;
-  grid-template-columns: 18fr auto 4fr 1fr 1fr;
+  grid-template-columns: 12fr auto 3fr 1fr 1fr;
   gap: 3px;
   align-items: center;
   padding: 0.5rem;
@@ -100,12 +102,13 @@
   border-radius: 5px;
   border-left: 0.3rem solid transparent;
 }
+
 .task-div.checked {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .checkbox {
-  border: 2px solid #BC3B96;
+  border: 2px solid #bc3b96;
 }
 
 .checkbox.low-prio {
@@ -113,13 +116,12 @@
 }
 
 .checkbox.medium-prio {
-  border: 2px solid #FF7A52;
+  border: 2px solid #ff7a52;
 }
 
 .checkbox.high-prio {
-  border: 2px solid #F95D81;
+  border: 2px solid #f95d81;
 }
-
 
 /* task element details */
 select {
@@ -164,7 +166,7 @@ select {
 }
 
 select {
-  appearance: none;
+  /* appearance: none; */
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -229,7 +231,7 @@ select {
   -webkit-appearance: none;
   background: none;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.769);
+  background-color: rgba(255, 255, 255, 0.5);
   transition: background 300ms;
   cursor: pointer;
 }
@@ -261,6 +263,45 @@ select {
 }
 
 .checked {
-  color: rgba(255, 255, 255, 0.461);
-  text-decoration: line-through rgba(255, 255, 255, 0.715);
+  color: rgba(255, 255, 255, 0.3);
+  /* text-decoration: line-through rgba(255, 255, 255, 0.715); */
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+/* task form */
+
+.new-task-form-container {
+  display: grid;
+  grid-template-columns: 12fr auto 3fr 1fr;
+  gap: 3px;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  border-left: 0.3rem solid transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-form-check-task-container {
+  display: flex;
+  gap: 3px;
+}
+
+.task-form {
+  padding: 1rem;
+}
+.task {
+  display: flex;
+  flex-direction: column;
+}
+
+#checkbox {
+  align-self: center;
 }
