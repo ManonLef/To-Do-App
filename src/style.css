@@ -94,7 +94,7 @@
 /* task elements styling */
 .task-div {
   display: grid;
-  grid-template-columns: 12fr 2fr 3fr 1fr 1fr;
+  grid-template-columns: 12fr 3fr 3fr 1fr 1fr;
   gap: 3px;
   align-items: center;
   padding: 0.5rem;
@@ -166,7 +166,10 @@ select {
 }
 
 select {
-  /* appearance: none; */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
   border: none;
   padding: 0 1em 0 0;
@@ -279,7 +282,7 @@ select {
 
 .new-task-form-container {
   display: grid;
-  grid-template-columns: 12fr 2fr 3fr 2fr;
+  grid-template-columns: 12fr 3fr 3fr 2fr;
   gap: 3px;
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.3);
@@ -299,6 +302,7 @@ select {
 .task-form {
   padding: 1rem;
 }
+
 .task {
   display: flex;
   flex-direction: column;
@@ -317,7 +321,7 @@ select {
 }
 
 .task > input::placeholder {
-  color:#bc3b95b4;
+  color: #bc3b95b4;
 }
 
 .due-date {
@@ -329,6 +333,6 @@ button {
   appearance: none;
   border-radius: 4px;
   border-color: transparent;
-  background-color:#f95d81;
-  color:#ffffff;
+  background-color: #f95d81;
+  color: #ffffff;
 }
