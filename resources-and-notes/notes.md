@@ -245,3 +245,13 @@ This seems to be caused by the form submit
 ## 20230407
 - had some struggles with styling the datepicker. I did implement the datepicker change listener.
 - eventually used this guide [here](https://dev.to/codeclown/styling-a-native-date-input-into-a-custom-no-library-datepicker-2in) to style my datepicker as I intended.
+
+## 20230409
+- I'm nearing the end of the styling for this project. 
+- [ ] BUG safari submit button does not work. 
+- ^ could be triggering focusout perhaps instead of submit. Look into logging the event to find out
+
+- open project or task form: reset and close other form
+
+- ISSUE firefox loses focus on task form when date is clicked (opening calendar)
+- ISSUE safari is losing focus on task form when checkbox is clicked
