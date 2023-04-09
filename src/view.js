@@ -208,7 +208,7 @@ function taskForm() {
 function addTaskIcon() {
   const addTask = document.createElement("div");
   addTask.className = "add-task-icon-container";
-  addTask.textContent = "+ add task";
+  addTask.textContent = "+ new task";
 
   taskElement.appendChild(addTask);
 
@@ -242,7 +242,7 @@ function showProjectIcon() {
 function addProjectIcon() {
   const addProject = document.createElement("div");
   addProject.className = "add-project-icon-container";
-  addProject.textContent = "+";
+  addProject.textContent = "+ new project";
   projectElement.appendChild(addProject);
 
   addProject.addEventListener("click", () => {
