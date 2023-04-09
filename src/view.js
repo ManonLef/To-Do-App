@@ -1,17 +1,22 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
 const body = document.querySelector("body");
 
-const pageContent = document.createElement("div")
-pageContent.className = 'content'
-body.appendChild(pageContent)
+const pageContent = document.createElement("div");
+pageContent.className = "content";
+body.appendChild(pageContent);
 
-const header = document.createElement("header")
-header.textContent = "hello"
-pageContent.appendChild(header)
+const header = document.createElement("header");
+header.textContent = "hello";
+pageContent.appendChild(header);
 
 const projectElement = document.createElement("div");
 projectElement.className = "projects-sidebar";
 pageContent.appendChild(projectElement);
+
+const projectsLegend = document.createElement("div");
+projectsLegend.className = 'project-legend'
+projectsLegend.textContent = "projects"
+projectElement.appendChild(projectsLegend)
 
 const projectContainer = document.createElement("div");
 projectContainer.className = "project-container";
@@ -22,19 +27,18 @@ taskElement.className = "task-content";
 pageContent.appendChild(taskElement);
 
 const taskLegend = document.createElement("div");
-taskLegend.className = "task-legend"
-const legendTask = document.createElement("div")
-legendTask.className = "legend-task-name"
-legendTask.textContent = "task"
-const legendPriority = document.createElement("div")
-legendPriority.className = "legend-priority"
-legendPriority.textContent = "priority"
-const legendDue = document.createElement("div")
-legendDue.className = "legend-due"
-legendDue.textContent = "due date"
-taskLegend.append(legendTask, legendPriority, legendDue)
-taskElement.appendChild(taskLegend)
-
+taskLegend.className = "task-legend";
+const legendTask = document.createElement("div");
+legendTask.className = "legend-task-name";
+legendTask.textContent = "task";
+const legendPriority = document.createElement("div");
+legendPriority.className = "legend-priority";
+legendPriority.textContent = "priority";
+const legendDue = document.createElement("div");
+legendDue.className = "legend-due";
+legendDue.textContent = "due date";
+taskLegend.append(legendTask, legendPriority, legendDue);
+taskElement.appendChild(taskLegend);
 
 const taskContainer = document.createElement("div");
 taskContainer.className = "task-container";
@@ -78,8 +82,8 @@ function taskForm() {
   const formContainer = document.createElement("div");
   formContainer.className = "new-task-form-container";
 
-  const taskAndCheckBoxDiv = document.createElement("div")
-  taskAndCheckBoxDiv.className = "task-form-check-task-container"
+  const taskAndCheckBoxDiv = document.createElement("div");
+  taskAndCheckBoxDiv.className = "task-form-check-task-container";
 
   const taskDiv = document.createElement("div");
   taskDiv.className = "task";
@@ -88,12 +92,12 @@ function taskForm() {
   checkbox.id = "checkbox";
   checkbox.setAttribute("type", "checkbox");
 
-  taskAndCheckBoxDiv.append(checkbox, taskDiv)
+  taskAndCheckBoxDiv.append(checkbox, taskDiv);
 
   const taskLabel = document.createElement("label");
   taskLabel.setAttribute("for", "task");
   taskLabel.textContent = "task";
-  taskLabel.setAttribute("hidden", "true")
+  taskLabel.setAttribute("hidden", "true");
 
   const inputTask = document.createElement("input");
   inputTask.setAttribute("type", "text");
@@ -107,7 +111,7 @@ function taskForm() {
 
   const dueLabel = document.createElement("label");
   dueLabel.setAttribute("for", "due-date");
-  dueLabel.setAttribute("hidden", "true")
+  dueLabel.setAttribute("hidden", "true");
   dueLabel.textContent = "due";
 
   const inputDue = document.createElement("input");
@@ -121,7 +125,7 @@ function taskForm() {
   const priorityLabel = document.createElement("label");
   priorityLabel.setAttribute("for", "priority");
   priorityLabel.textContent = "priority";
-  priorityLabel.setAttribute("hidden", "true")
+  priorityLabel.setAttribute("hidden", "true");
 
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("name", "priority");
@@ -133,7 +137,7 @@ function taskForm() {
 
   const priorityOptionOne = document.createElement("option");
   priorityOptionOne.setAttribute("value", "low");
-  priorityOptionOne.setAttribute("selected", "true")
+  priorityOptionOne.setAttribute("selected", "true");
   priorityOptionOne.textContent = "low";
 
   const priorityOptionTwo = document.createElement("option");
@@ -265,18 +269,19 @@ function projectForm() {
 
   const label = document.createElement("label");
   label.setAttribute("for", "project");
-  label.textContent = "project";
+  // label.textContent = "project";
 
   const input = document.createElement("input");
   input.className = "new-project-input";
   input.setAttribute("type", "text");
   input.setAttribute("name", "project");
   input.setAttribute("id", "project");
+  input.setAttribute("placeholder", "project name")
 
   const submit = document.createElement("button");
   submit.setAttribute("type", "submit");
   submit.setAttribute("class", "add-project-button");
-  submit.textContent = "add project";
+  submit.textContent = "submit";
 
   newProjectDiv.append(label, input);
   fieldsContainer.append(newProjectDiv, submit);
@@ -332,7 +337,10 @@ function createProjectElements(project, currentProjectId) {
   if (!project.default) {
     const deleteButton = document.createElement("img");
     deleteButton.className = "project-delete-button";
-    deleteButton.setAttribute("src", "../resources-and-notes/delete_forever_white_18dp.svg")
+    deleteButton.setAttribute(
+      "src",
+      "../resources-and-notes/delete_forever_white_18dp.svg"
+    );
     deleteButton.setAttribute("data-projectID", project.projectUuid);
     projectDiv.appendChild(deleteButton);
   }
@@ -440,7 +448,10 @@ function createTaskElement(taskObject) {
   // taskDiv.appendChild(editButton);
   // delete button
   const deleteButton = document.createElement("img");
-  deleteButton.setAttribute("src", "../resources-and-notes/delete_forever_white_18dp.svg")
+  deleteButton.setAttribute(
+    "src",
+    "../resources-and-notes/delete_forever_white_18dp.svg"
+  );
   deleteButton.className = "delete-button";
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);

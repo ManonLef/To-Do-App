@@ -46,39 +46,42 @@ footer {
 }
 
 /* sidebar styling */
-.projects-sidebar {
+/* .projects-sidebar {
   color: white;
   display: grid;
   grid-template-rows: auto auto 3rem;
-}
+} */
 
-.project-container {
+/* .project-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 1rem;
   font-weight: 400;
   text-transform: uppercase;
+} */
+
+.project-legend {
+  padding: 0.5rem 1.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
 }
 
-.add-project-icon-container,
+/* .add-project-icon-container,
 .project-form {
-  grid-row-start: 3;
-  grid-row-end: 4;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 1rem;
   box-shadow: -3px 0px 3px 0px rgba(110, 110, 110, 0.3);
-}
+} */
 
 /* project  elements styling*/
 .sidebar-project {
   display: grid;
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 0.3rem;
+  border-radius: 5px;
   grid-template-columns: 10fr 1fr;
   grid-template-rows: 1fr;
   padding: 0.7rem;
-  border-left: 0.5rem solid transparent;
 }
 
 .active-project {
@@ -104,17 +107,16 @@ footer {
   justify-self: center;
 }
 
-/* task container styling */
+/* container styling */
 
-.task-content {
-  /* display: grid;
-  grid-template-rows: 1fr 10fr 1fr;
-  grid-template-columns: 1fr; */
+.task-content,
+.projects-sidebar {
   color: white;
   height: 100%;
 }
 
-.task-container {
+.task-container,
+.project-container {
   display: flex;
   flex-direction: column;
   padding: 3px;
@@ -184,6 +186,16 @@ select {
   margin: 3px 1rem;
   border-radius: 5px;
   align-self: center;
+  justify-self: center;
+}
+
+.new-project-input-and-button {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap:3px;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
 }
 
 /* footer styling */
@@ -324,7 +336,8 @@ select {
   padding-right: 0.5rem;
 }
 
-.task-form {
+.task-form,
+.project-form {
   padding: 3px 1rem;
 }
 
@@ -337,7 +350,8 @@ select {
   align-self: center;
 }
 
-.task > input {
+.task > input,
+.project > input {
   padding: 3px;
   appearance: none;
   border-radius: 4px;
@@ -345,7 +359,8 @@ select {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-.task > input::placeholder {
+.task > input::placeholder,
+.project > input::placeholder {
   color: #bc3b95b4;
 }
 
