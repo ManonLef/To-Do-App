@@ -198,8 +198,11 @@ function taskForm() {
   });
 
   formContainer.addEventListener("focusout", (event) => {
-    if (newTaskForm.contains(event.relatedTarget)) return;
-    resetTaskForm();
+    console.log((event.relatedTarget))
+    if (formContainer.contains(event.relatedTarget)) return;
+    setTimeout(() => {
+      resetTaskForm();
+    },150);
   });
 
   function resetTaskForm() {
