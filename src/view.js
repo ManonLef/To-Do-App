@@ -288,6 +288,9 @@ function projectForm() {
   newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
+
+
+
   submit.addEventListener("click", (event) => {
     if (event.type === "click") {
       // to avoid the focusout to fire on click as well
@@ -297,15 +300,18 @@ function projectForm() {
     showProjectIcon();
   });
 
-  newProjectForm.addEventListener("focusout", (event) => {
-    if (newProjectForm.contains(event.relatedTarget)) return;
-    resetForm();
-  });
-  input.addEventListener("keydown", (event) => {
+  // newProjectForm.addEventListener("focusout", (event) => {
+  //   if (newProjectForm.contains(event.relatedTarget)) return;
+  //   resetForm();
+  // });
+
+  window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       resetForm();
     }
   });
+
+
 
   function resetForm() {
     newProjectForm.reset();
