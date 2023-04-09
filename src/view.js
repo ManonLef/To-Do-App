@@ -288,30 +288,19 @@ function projectForm() {
   newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
-
-
-
-  submit.addEventListener("click", (event) => {
-    if (event.type === "click") {
-      // to avoid the focusout to fire on click as well
-      input.removeEventListener("focusout", resetForm);
-    }
-    hideProjectForm();
-    showProjectIcon();
+  input.addEventListener("blur", (event) => {
+    console.log(event)
+    // to prevent firing before submit in controller eventlistener
+    setTimeout(() => {
+      resetForm();
+    }, 150);
   });
 
-  // newProjectForm.addEventListener("focusout", (event) => {
-  //   if (newProjectForm.contains(event.relatedTarget)) return;
-  //   resetForm();
-  // });
-
-  window.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       resetForm();
     }
   });
-
-
 
   function resetForm() {
     newProjectForm.reset();
