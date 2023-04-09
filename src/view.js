@@ -36,7 +36,7 @@ legendPriority.className = "legend-priority";
 legendPriority.textContent = "priority";
 const legendDue = document.createElement("div");
 legendDue.className = "legend-due";
-legendDue.textContent = "due date";
+legendDue.textContent = "due";
 taskLegend.append(legendTask, legendPriority, legendDue);
 taskElement.appendChild(taskLegend);
 

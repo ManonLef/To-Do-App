@@ -183,7 +183,7 @@ select {
 .add-project-icon-container {
   background-color: rgba(255, 255, 255, 0.3);
   padding: 0.65rem 1rem;
-  margin: 3px 1rem;
+  margin: 3px 1rem 1rem 1rem;
   border-radius: 5px;
   align-self: center;
   justify-self: center;
@@ -192,7 +192,7 @@ select {
 .new-project-input-and-button {
   display: grid;
   grid-template-columns: 4fr 2fr;
-  gap:3px;
+  gap: 3px;
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
@@ -309,9 +309,21 @@ select {
 
 @media only screen and (max-width: 600px) {
   .content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem auto 1fr 3rem;
+  }
+
+  .projects-sidebar {
+    grid-area: 2/1/2/2;
+  }
+
+  .task-content {
+    grid-area: 3/1/4/2;
+  }
+
+  footer {
+    grid-area: 4/1/5/2;
   }
 }
 
