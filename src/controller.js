@@ -12,7 +12,7 @@ import {
   setCurrentProjectToDefault,
   editProjectName,
   toggleStatus,
-  sortedArray,
+  sortedTaskArray,
   changeTaskName,
   getLatestProjectID,
   editPriority,
@@ -184,7 +184,8 @@ function addTaskListeners() {
   addTaskDeleteListeners();
 }
 
-// new task and new form submit buttons (hidden by default)
+// rendered form listeners
+
 document.querySelector(".add-task-button").addEventListener("click", () => {
   addTaskToProject(getTaskFromForm());
   document.querySelector(".task-form").reset();
@@ -200,8 +201,7 @@ document.querySelector(".add-project-button").addEventListener("click", () => {
 });
 
 export default function renderAll() {
-  renderCurrent(getAllProjects(), sortedArray(), getCurrentProjectID());
+  renderCurrent(getAllProjects(), sortedTaskArray(), getCurrentProjectID());
   addProjectListeners();
   addTaskListeners();
-  addTaskPriorityListeners();
 }
