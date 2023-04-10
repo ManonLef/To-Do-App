@@ -329,6 +329,11 @@ button {
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
+  font-size: 16px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
@@ -350,3 +355,4 @@ button {
     grid-area: 4/1/5/2;
   }
 }
+
