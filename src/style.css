@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&display=swap");
-/* full page styling */
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +18,7 @@ body {
 .content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 10fr 1fr;
+  grid-template-rows: 4rem 10fr 4rem;
   height: 100%;
   font-family: "Anuphan", sans-serif;
 
@@ -45,36 +45,32 @@ footer {
   grid-area: 3/1/4/3;
 }
 
-/* sidebar styling */
-/* .projects-sidebar {
-  color: white;
-  display: grid;
-  grid-template-rows: auto auto 3rem;
-} */
-
-/* .project-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 1rem;
-  font-weight: 400;
-  text-transform: uppercase;
-} */
-
-.project-legend {
+.project-legend,
+.task-legend {
   padding: 0.5rem 1.5rem;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.project-legend {
   text-align: center;
 }
 
-/* .add-project-icon-container,
-.project-form {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 1rem;
-  box-shadow: -3px 0px 3px 0px rgba(110, 110, 110, 0.3);
-} */
+.legend-task-name {
+  justify-self: center;
+}
 
-/* project  elements styling*/
+.legend-due {
+  justify-self: center;
+}
+
+.task-legend {
+  display: grid;
+  grid-template-columns: 12fr 3fr 3fr 1fr 1fr;
+  gap: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
 .sidebar-project {
   display: grid;
   background-color: rgba(255, 255, 255, 0.1);
@@ -87,27 +83,6 @@ footer {
 .active-project {
   background-color: rgba(255, 255, 255, 0.3);
 }
-/* project form styling */
-
-/* legend styling */
-.task-legend {
-  display: grid;
-  grid-template-columns: 12fr 3fr 3fr 1fr 1fr;
-  gap: 3px;
-  padding: 0.5rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.legend-task-name {
-  justify-self: center;
-}
-.legend-due {
-  justify-self: center;
-}
-
-/* container styling */
 
 .task-content,
 .projects-sidebar {
@@ -124,8 +99,6 @@ footer {
   color: white;
   padding: 0 1rem;
 }
-
-/* task elements styling */
 
 .task-div {
   display: grid;
@@ -157,12 +130,6 @@ footer {
   border: 2px solid #f95d81;
 }
 
-/* task element details */
-
-select {
-  color: white;
-}
-
 .check-and-task-container {
   display: flex;
   gap: 10px;
@@ -177,7 +144,6 @@ select {
 .delete-button {
   justify-self: center;
 }
-/* task form and new task element styling */
 
 .add-task-icon-container,
 .add-project-icon-container {
@@ -198,11 +164,8 @@ select {
   border-radius: 5px;
 }
 
-/* footer styling */
-
-/* old styling */
-
 select {
+  color: white;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -262,8 +225,6 @@ select {
   cursor: pointer;
 }
 
-/* Basic styling */
-
 [type="checkbox"] {
   width: 1.5rem;
   height: 1.5rem;
@@ -276,8 +237,6 @@ select {
   cursor: pointer;
 }
 
-/* Pseudo element for check styling */
-
 [type="checkbox"]::before {
   content: "";
   color: transparent;
@@ -288,8 +247,6 @@ select {
   background-color: transparent;
   background-size: contain;
 }
-
-/* Checked */
 
 [type="checkbox"]:checked {
   background-color: currentcolor;
@@ -304,30 +261,7 @@ select {
 
 .checked {
   color: rgba(255, 255, 255, 0.3);
-  /* text-decoration: line-through rgba(255, 255, 255, 0.715); */
 }
-
-@media only screen and (max-width: 600px) {
-  .content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto 10fr 1fr;
-  }
-
-  .projects-sidebar {
-    grid-area: 2/1/2/2;
-  }
-
-  .task-content {
-    grid-area: 3/1/4/2;
-  }
-
-  footer {
-    grid-area: 4/1/5/2;
-  }
-}
-
-/* task form */
 
 .new-task-form-container {
   display: grid;
@@ -365,6 +299,7 @@ select {
 .project {
   display: flex;
 }
+
 .task > input,
 .project > input {
   width: 100%;
@@ -373,13 +308,14 @@ select {
   border-radius: 4px;
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.3);
-  color:rgba(111, 17, 175, 0.7);
+  color: rgba(111, 17, 175, 0.7);
   outline: none;
+  font-size: 16px;
 }
 
 .task > input::placeholder,
 .project > input::placeholder {
-  color:rgba(111, 17, 175, 0.4);
+  color: rgba(111, 17, 175, 0.4);
 }
 
 .due-date {
@@ -393,4 +329,24 @@ button {
   border-color: transparent;
   background-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4rem auto 10fr 4rem;
+  }
+
+  .projects-sidebar {
+    grid-area: 2/1/2/2;
+  }
+
+  .task-content {
+    grid-area: 3/1/4/2;
+  }
+
+  footer {
+    grid-area: 4/1/5/2;
+  }
 }
