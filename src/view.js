@@ -305,17 +305,16 @@ function createProjectElements(project, currentProjectId) {
 
   projectContainer.appendChild(projectDiv);
 
-  // regular container
-  const regContainer = document.createElement("div");
-  regContainer.className = `regular-${project.projectUuid}`;
-  regContainer.setAttribute("data-projectID", project.projectUuid);
-  projectDiv.appendChild(regContainer);
+  const sidebarcontainer = document.createElement("div");
+  sidebarcontainer.className = "sidebar-container";
+  sidebarcontainer.setAttribute("data-projectID", project.projectUuid);
+  projectDiv.appendChild(sidebarcontainer);
 
   const projectName = document.createElement("p");
   projectName.className = "project-name";
   projectName.textContent = project.name;
   projectName.setAttribute("data-projectID", project.projectUuid);
-  regContainer.appendChild(projectName);
+  sidebarcontainer.appendChild(projectName);
 
   // delete button (but not for default inbox)
   if (!project.default) {
