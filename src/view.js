@@ -1,4 +1,7 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
+
+// static page content
+
 const body = document.querySelector("body");
 
 const pageContent = document.createElement("div");
@@ -48,30 +51,108 @@ const footer = document.createElement("footer");
 footer.textContent = "© 2023 Manon Lef";
 pageContent.appendChild(footer);
 
-function removeChildNodes(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
+addTaskIcon();
+taskForm();
+
+addProjectIcon();
+projectForm();
+
+// project form
+
+function projectForm() {
+  const newProjectForm = document.createElement("form");
+  newProjectForm.className = "project-form";
+  newProjectForm.setAttribute("hidden", "true");
+  newProjectForm.setAttribute("onsubmit", "return false");
+
+  const fieldsContainer = document.createElement("div");
+  fieldsContainer.className = "new-project-input-and-button";
+
+  const newProjectDiv = document.createElement("div");
+  newProjectDiv.className = "project";
+
+  const label = document.createElement("label");
+  label.setAttribute("for", "project");
+
+  const input = document.createElement("input");
+  input.className = "new-project-input";
+  input.setAttribute("type", "text");
+  input.setAttribute("name", "project");
+  input.setAttribute("id", "project");
+  input.setAttribute("placeholder", "project name");
+
+  const submit = document.createElement("button");
+  submit.setAttribute("type", "submit");
+  submit.setAttribute("class", "add-project-button");
+  submit.textContent = "submit";
+
+  newProjectDiv.append(label, input);
+  fieldsContainer.append(newProjectDiv, submit);
+  newProjectForm.append(fieldsContainer);
+  projectElement.appendChild(newProjectForm);
+
+  input.addEventListener("blur", () => {
+    // to prevent firing before submit in controller eventlistener
+    setTimeout(() => {
+      resetForm();
+    }, 150);
+  });
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      setTimeout(() => {
+        resetForm();
+      }, 10);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      resetForm();
+    }
+  });
+
+  function resetForm() {
+    newProjectForm.reset();
+    hideProjectForm();
+    showProjectIcon();
   }
 }
 
-function showTaskForm() {
-  document.querySelector(".task-form").removeAttribute("hidden");
-  document.querySelector("#task").focus();
+function showProjectForm() {
+  document.querySelector(".project-form").removeAttribute("hidden");
+  document.querySelector(".new-project-input").focus();
 }
 
-function hideTaskForm() {
-  document.querySelector(".task-form").setAttribute("hidden", "true");
+function hideProjectForm() {
+  document.querySelector(".project-form").setAttribute("hidden", "true");
 }
 
-function showTaskIcon() {
-  document.querySelector(".add-task-icon-container").removeAttribute("hidden");
-}
-
-function hideTaskIcon() {
+function hideProjectIcon() {
   document
-    .querySelector(".add-task-icon-container")
+    .querySelector(".add-project-icon-container")
     .setAttribute("hidden", "true");
 }
+
+function showProjectIcon() {
+  document
+    .querySelector(".add-project-icon-container")
+    .removeAttribute("hidden");
+}
+
+function addProjectIcon() {
+  const addProject = document.createElement("div");
+  addProject.className = "add-project-icon-container";
+  addProject.textContent = "+ new project";
+  projectElement.appendChild(addProject);
+
+  addProject.addEventListener("click", () => {
+    showProjectForm();
+    hideProjectIcon();
+  });
+}
+
+// task form
 
 function taskForm() {
   const newTaskForm = document.createElement("form");
@@ -104,7 +185,7 @@ function taskForm() {
   inputTask.setAttribute("name", "task");
   inputTask.setAttribute("placeholder", "new task");
 
-  inputTask.id = "task"; // check
+  inputTask.id = "task";
 
   const dueDiv = document.createElement("div");
   dueDiv.className = "due-date";
@@ -117,7 +198,7 @@ function taskForm() {
   const inputDue = document.createElement("input");
   inputDue.setAttribute("type", "date");
   inputDue.setAttribute("name", "due-date");
-  inputDue.id = "due-date"; // check
+  inputDue.id = "due-date";
 
   const priorityDiv = document.createElement("div");
   priorityDiv.className = "priority";
@@ -163,12 +244,7 @@ function taskForm() {
   );
   priorityDiv.append(priorityLabel, prioritySelect);
 
-  formContainer.append(
-    taskAndCheckBoxDiv,
-    priorityDiv,
-    dueDiv,
-    submit
-  );
+  formContainer.append(taskAndCheckBoxDiv, priorityDiv, dueDiv, submit);
   newTaskForm.appendChild(formContainer);
   taskElement.appendChild(newTaskForm);
 
@@ -184,7 +260,6 @@ function taskForm() {
   });
 
   formContainer.addEventListener("focusout", (event) => {
-    console.log(event.relatedTarget);
     if (formContainer.contains(event.relatedTarget)) return;
     setTimeout(() => {
       resetTaskForm();
@@ -196,6 +271,25 @@ function taskForm() {
     hideTaskForm();
     showTaskIcon();
   }
+}
+
+function showTaskForm() {
+  document.querySelector(".task-form").removeAttribute("hidden");
+  document.querySelector("#task").focus();
+}
+
+function hideTaskForm() {
+  document.querySelector(".task-form").setAttribute("hidden", "true");
+}
+
+function showTaskIcon() {
+  document.querySelector(".add-task-icon-container").removeAttribute("hidden");
+}
+
+function hideTaskIcon() {
+  document
+    .querySelector(".add-task-icon-container")
+    .setAttribute("hidden", "true");
 }
 
 function addTaskIcon() {
@@ -211,92 +305,7 @@ function addTaskIcon() {
   });
 }
 
-function showProjectForm() {
-  document.querySelector(".project-form").removeAttribute("hidden");
-  document.querySelector(".new-project-input").focus();
-}
-
-function hideProjectForm() {
-  document.querySelector(".project-form").setAttribute("hidden", "true");
-}
-
-function hideProjectIcon() {
-  document
-    .querySelector(".add-project-icon-container")
-    .setAttribute("hidden", "true");
-}
-
-function showProjectIcon() {
-  document
-    .querySelector(".add-project-icon-container")
-    .removeAttribute("hidden");
-}
-
-function addProjectIcon() {
-  const addProject = document.createElement("div");
-  addProject.className = "add-project-icon-container";
-  addProject.textContent = "+ new project";
-  projectElement.appendChild(addProject);
-
-  addProject.addEventListener("click", () => {
-    showProjectForm();
-    hideProjectIcon();
-  });
-}
-
-function projectForm() {
-  const newProjectForm = document.createElement("form");
-  newProjectForm.className = "project-form";
-  newProjectForm.setAttribute("hidden", "true");
-  newProjectForm.setAttribute("onsubmit", "return false");
-
-  const fieldsContainer = document.createElement("div");
-  fieldsContainer.className = "new-project-input-and-button";
-
-  const newProjectDiv = document.createElement("div");
-  newProjectDiv.className = "project";
-
-  const label = document.createElement("label");
-  label.setAttribute("for", "project");
-  // label.textContent = "project";
-
-  const input = document.createElement("input");
-  input.className = "new-project-input";
-  input.setAttribute("type", "text");
-  input.setAttribute("name", "project");
-  input.setAttribute("id", "project");
-  input.setAttribute("placeholder", "project name");
-
-  const submit = document.createElement("button");
-  submit.setAttribute("type", "submit");
-  submit.setAttribute("class", "add-project-button");
-  submit.textContent = "submit";
-
-  newProjectDiv.append(label, input);
-  fieldsContainer.append(newProjectDiv, submit);
-  newProjectForm.append(fieldsContainer);
-  projectElement.appendChild(newProjectForm);
-
-  input.addEventListener("blur", (event) => {
-    console.log(event);
-    // to prevent firing before submit in controller eventlistener
-    setTimeout(() => {
-      resetForm();
-    }, 150);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      resetForm();
-    }
-  });
-
-  function resetForm() {
-    newProjectForm.reset();
-    hideProjectForm();
-    showProjectIcon();
-  }
-}
+// project and task elements
 
 function createProjectElements(project, currentProjectId) {
   const projectDiv = document.createElement("div");
@@ -305,16 +314,16 @@ function createProjectElements(project, currentProjectId) {
 
   projectContainer.appendChild(projectDiv);
 
-  const sidebarcontainer = document.createElement("div");
-  sidebarcontainer.className = "sidebar-container";
-  sidebarcontainer.setAttribute("data-projectID", project.projectUuid);
-  projectDiv.appendChild(sidebarcontainer);
+  const sidebarContainer = document.createElement("div");
+  sidebarContainer.className = "sidebar-container";
+  sidebarContainer.setAttribute("data-projectID", project.projectUuid);
+  projectDiv.appendChild(sidebarContainer);
 
   const projectName = document.createElement("p");
   projectName.className = "project-name";
   projectName.textContent = project.name;
   projectName.setAttribute("data-projectID", project.projectUuid);
-  sidebarcontainer.appendChild(projectName);
+  sidebarContainer.appendChild(projectName);
 
   // delete button (but not for default inbox)
   if (!project.default) {
@@ -334,22 +343,21 @@ function createProjectElements(project, currentProjectId) {
 }
 
 function createTaskElement(taskObject) {
-  // task div
   const taskDiv = document.createElement("div");
   taskDiv.className = "task-div";
   taskDiv.setAttribute("data-taskID", taskObject.taskUuid);
   taskContainer.appendChild(taskDiv);
-  // checkbox and task container to keep them together
+
   const checkboxTaskDiv = document.createElement("div");
   checkboxTaskDiv.className = "check-and-task-container";
   taskDiv.appendChild(checkboxTaskDiv);
-  // checkbox
+
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("data-taskID", taskObject.taskUuid);
   checkbox.className = "checkbox";
   checkboxTaskDiv.appendChild(checkbox);
-  // task
+
   const task = document.createElement("p");
   task.textContent = taskObject.task;
   task.className = "task-name";
@@ -357,17 +365,6 @@ function createTaskElement(taskObject) {
 
   checkboxTaskDiv.appendChild(task);
 
-  // prio
-  // const prioDiv = document.createElement("div")
-  // prioDiv.className = "priority-container"
-  // taskDiv.appendChild(prioDiv)
-
-  // const prio = document.createElement("div")
-  // prio.className = "task-priority"
-  // prio.setAttribute("data-taskID", taskObject.taskUuid)
-  // prio.textContent = taskObject.priority;
-  // prioDiv.appendChild(prio)
-  // prio dropdown
   const prioritySelect = document.createElement("select");
   prioritySelect.setAttribute("data-taskID", taskObject.taskUuid);
   prioritySelect.setAttribute("name", "priority");
@@ -398,7 +395,7 @@ function createTaskElement(taskObject) {
   );
   taskDiv.appendChild(prioritySelect);
 
-  // due (non input to-edit version)
+  // due (non input version)
   const dueDate = document.createElement("div");
   dueDate.className = "task-date";
   dueDate.textContent = taskObject.dueDate;
@@ -423,13 +420,6 @@ function createTaskElement(taskObject) {
 
   taskDiv.append(upperSpan);
 
-  // edit button (for now)
-  // const editButton = document.createElement("button");
-  // editButton.className = "edit-button";
-  // editButton.textContent = "edit";
-  // editButton.setAttribute("data-taskID", taskObject.taskUuid);
-  // taskDiv.appendChild(editButton);
-  // delete button
   const deleteButton = document.createElement("img");
   deleteButton.setAttribute(
     "src",
@@ -464,6 +454,14 @@ function createTaskElement(taskObject) {
   }
 }
 
+// rendering
+
+function removeChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
 function renderTasks(projectTasks) {
   removeChildNodes(taskContainer);
   projectTasks.forEach((taskObject) => {
@@ -487,9 +485,3 @@ export default function renderCurrent(
   renderProjects(allProjects, currentProjectId);
   renderTasks(currentProjectTasks);
 }
-
-addTaskIcon();
-taskForm();
-
-addProjectIcon();
-projectForm();
