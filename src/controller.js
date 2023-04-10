@@ -17,10 +17,34 @@ import {
   changeTaskName,
   getLatestProjectID,
   editPriority,
-  editTaskDue
+  editTaskDue,
 } from "./model";
 
 setCurrentProjectToDefault();
+
+// project functions
+
+function selectProjectOnClick(event) {
+  const id = this.getAttribute("data-projectID");
+  setCurrentProject(id);
+  // in case of double click we want to continue to the edit field but remove the listener for single click
+  if (event.detail === 2) {
+    this.removeEventListener("mouseup", selectProjectOnClick);
+  }
+  // if this is just single click, rerender with new active project
+  if (event.detail === 1) {
+    renderAll();
+  }
+}
+
+function deleteProjectOnClick() {
+  const id = this.getAttribute("data-projectID");
+  removeProject(id);
+  setCurrentProject(vault.projects[0].projectUuid);
+  renderAll();
+}
+
+// task functions
 
 function getTaskFromForm() {
   const { checked } = document.querySelector("#checkbox");
@@ -32,101 +56,33 @@ function getTaskFromForm() {
   return [checked, task, due, prio, projectUuid];
 }
 
+function toggleTaskCheckBox() {
+  const id = this.getAttribute("data-taskID");
+  toggleStatus(id);
+  renderAll();
+}
+
+function editTaskPriority() {
+  const id = this.getAttribute("data-taskID");
+  const { value } = this;
+  editPriority(id, value);
+  renderAll();
+}
+
+function editTaskDate() {
+  const id = this.getAttribute("data-taskID");
+  const newDate = this.value;
+  editTaskDue(id, newDate);
+  renderAll();
+}
+
 function deleteTaskOnClick() {
   const id = this.getAttribute("data-taskID");
   removeTask(id);
   renderAll();
 }
 
-function selectProjectOnClick(event) {
-  const id = this.getAttribute("data-projectID");
-  setCurrentProject(id);
-  // in case of doubleclick we want to continue to the edit field but remove the listener for single click
-  if (event.detail === 2) {
-    this.removeEventListener("mouseup", selectProjectOnClick)
-  }
-  // if this is just single click, rerender
-  if (event.detail === 1) {
-    renderAll();
-  }
-}
-
-export default function renderAll() {
-  renderCurrent(getAllProjects(), sortedArray(), getCurrentProjectID());
-  console.table(getTaskArrayCurrentProject());
-  addProjectListeners();
-  addTaskDeleteListeners();
-  addCheckBoxListeners();
-  addTaskNameEditListeners();
-  addDateChangeListeners();
-  addPriorityListeners()
-  console.table(vault.projects);
-}
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||| • Listeners • |||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
-// project edit or delete listeners
-function addProjectListeners() {
-  const deleteButtons = document.querySelectorAll(".project-delete-button");
-  deleteButtons.forEach((button) => {
-    button.addEventListener("mouseup", deleteProjectOnClick);
-  });
-  const projects = document.querySelectorAll(".sidebar-project");
-  projects.forEach((element) => {
-    element.addEventListener("mouseup", selectProjectOnClick);
-  });
-  const projectNameFields = document.querySelectorAll(".project-name");
-  projectNameFields.forEach((field) => {
-    field.addEventListener("dblclick", makeFieldEditable);
-  });
-}
-
-function deleteProjectOnClick() {
-  const id = this.getAttribute("data-projectID");
-  removeProject(id);
-  setCurrentProject(vault.projects[0].projectUuid);
-  renderAll();
-}
-
-// task checkbox field listener
-function addCheckBoxListeners() {
-  const checkBox = document.querySelectorAll(".checkbox");
-  checkBox.forEach((box) => {
-    box.addEventListener("change", toggleCheckBox);
-  });
-}
-
-function toggleCheckBox() {
-  const id = this.getAttribute("data-taskID");
-  toggleStatus(id);
-  renderAll();
-}
-
-// listen for prio change
-function addPriorityListeners() {
-  const priority = document.querySelectorAll("#task-priority")
-  priority.forEach((dropdown) => {
-    dropdown.addEventListener("change", editPrio);
-  })
-}
-
-function editPrio() {
-  const id = this.getAttribute("data-taskID");
-  const {value} = this
-  console.log(`prio updated for ${id}`)
-  editPriority(id,value);
-  renderAll();
-}
-
-// task name field edit listeners
-function addTaskNameEditListeners() {
-  const taskNameFields = document.querySelectorAll(".task-name");
-  taskNameFields.forEach((field) => {
-    field.addEventListener("dblclick", makeFieldEditable);
-  });
-}
+// project and task combined functions
 
 function makeFieldEditable() {
   this.setAttribute("contenteditable", "true");
@@ -155,26 +111,78 @@ function editName(e) {
   }
 }
 
-function addTaskDeleteListeners() {
-  const deleteButtons = document.querySelectorAll(".delete-button");
+// project listeners
+
+function addProjectDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".project-delete-button");
   deleteButtons.forEach((button) => {
-    button.addEventListener("mouseup", deleteTaskOnClick);
+    button.addEventListener("mouseup", deleteProjectOnClick);
   });
 }
 
-function addDateChangeListeners() {
-  const dateFields = document.querySelectorAll("#date");
-  dateFields.forEach((date) => {
-    date.addEventListener("change", editTaskDate)
-  })
+function addProjectSelectListeners() {
+  const projects = document.querySelectorAll(".sidebar-project");
+  projects.forEach((element) => {
+    element.addEventListener("mouseup", selectProjectOnClick);
+  });
 }
 
-function editTaskDate() {
-  const id = this.getAttribute("data-taskID")
-  const newDate = this.value
-  console.log(`${id} ${newDate}`)
-  editTaskDue(id, newDate)
-  renderAll()
+function addProjectEditListeners() {
+  const projectNameFields = document.querySelectorAll(".project-name");
+  projectNameFields.forEach((field) => {
+    field.addEventListener("dblclick", makeFieldEditable);
+  });
+}
+
+function addProjectListeners() {
+  addProjectDeleteListeners();
+  addProjectSelectListeners();
+  addProjectEditListeners();
+}
+
+// task listeners
+
+function addTaskCheckBoxListeners() {
+  const checkBox = document.querySelectorAll(".checkbox");
+  checkBox.forEach((checkbox) => {
+    checkbox.addEventListener("change", toggleTaskCheckBox);
+  });
+}
+
+function addTaskNameEditListeners() {
+  const taskNameFields = document.querySelectorAll(".task-name");
+  taskNameFields.forEach((field) => {
+    field.addEventListener("dblclick", makeFieldEditable);
+  });
+}
+
+function addTaskPriorityListeners() {
+  const priority = document.querySelectorAll("#task-priority");
+  priority.forEach((dropdown) => {
+    dropdown.addEventListener("change", editTaskPriority);
+  });
+}
+
+function addTaskDateListeners() {
+  const dateFields = document.querySelectorAll("#date");
+  dateFields.forEach((date) => {
+    date.addEventListener("change", editTaskDate);
+  });
+}
+
+function addTaskDeleteListeners() {
+  const deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach((trashcan) => {
+    trashcan.addEventListener("mouseup", deleteTaskOnClick);
+  });
+}
+
+function addTaskListeners() {
+  addTaskCheckBoxListeners();
+  addTaskNameEditListeners();
+  addTaskPriorityListeners();
+  addTaskDateListeners();
+  addTaskDeleteListeners();
 }
 
 // new task and new form submit buttons (hidden by default)
@@ -191,3 +199,10 @@ document.querySelector(".add-project-button").addEventListener("click", () => {
   setCurrentProject(getLatestProjectID());
   renderAll();
 });
+
+export default function renderAll() {
+  renderCurrent(getAllProjects(), sortedArray(), getCurrentProjectID());
+  addProjectListeners();
+  addTaskListeners();
+  addTaskPriorityListeners();
+}
