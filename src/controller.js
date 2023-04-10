@@ -6,7 +6,6 @@ import {
   getCurrentProjectID,
   addProject,
   getAllProjects,
-  getTaskArrayCurrentProject,
   addTaskToProject,
   removeTask,
   removeProject,
@@ -123,7 +122,7 @@ function addProjectDeleteListeners() {
 function addProjectSelectListeners() {
   const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
-    element.addEventListener("mouseup", selectProjectOnClick);
+    element.addEventListener("mousedown", selectProjectOnClick);
   });
 }
 
