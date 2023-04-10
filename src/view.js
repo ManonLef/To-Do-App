@@ -148,18 +148,6 @@ function taskForm() {
   priorityOptionThree.setAttribute("value", "high");
   priorityOptionThree.textContent = "high";
 
-  // const descriptionDiv = document.createElement("div");
-  // descriptionDiv.className = "description";
-
-  // const descriptionLabel = document.createElement("label");
-  // descriptionLabel.setAttribute("for", "description");
-  // descriptionLabel.textContent = "description";
-
-  // const inputDescription = document.createElement("input");
-  // inputDescription.setAttribute("type", "text");
-  // inputDescription.setAttribute("name", "description");
-  // inputDescription.id = "description"; // check
-
   const submit = document.createElement("button");
   submit.setAttribute("type", "submit");
   submit.className = "add-task-button";
@@ -174,13 +162,11 @@ function taskForm() {
     priorityOptionThree
   );
   priorityDiv.append(priorityLabel, prioritySelect);
-  // descriptionDiv.append(descriptionLabel, inputDescription);
 
   formContainer.append(
     taskAndCheckBoxDiv,
     priorityDiv,
     dueDiv,
-    // descriptionDiv,
     submit
   );
   newTaskForm.appendChild(formContainer);
