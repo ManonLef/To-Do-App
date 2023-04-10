@@ -20,15 +20,7 @@ import {
   editTaskDue
 } from "./model";
 
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • Startup state • |||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
-
 setCurrentProjectToDefault();
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||||||| • Forms • |||||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
 
 function getTaskFromForm() {
   const { checked } = document.querySelector("#checkbox");
@@ -39,10 +31,6 @@ function getTaskFromForm() {
 
   return [checked, task, due, prio, projectUuid];
 }
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||||| • Functionality • |||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
 
 function deleteTaskOnClick() {
   const id = this.getAttribute("data-taskID");
@@ -68,11 +56,9 @@ export default function renderAll() {
   console.table(getTaskArrayCurrentProject());
   addProjectListeners();
   addTaskDeleteListeners();
-  // addProjectEditListeners();
   addCheckBoxListeners();
   addTaskNameEditListeners();
   addDateChangeListeners();
-  //
   addPriorityListeners()
   console.table(vault.projects);
 }
@@ -87,7 +73,7 @@ function addProjectListeners() {
   deleteButtons.forEach((button) => {
     button.addEventListener("mouseup", deleteProjectOnClick);
   });
-  const projects = document.querySelectorAll(".project-name");
+  const projects = document.querySelectorAll(".sidebar-project");
   projects.forEach((element) => {
     element.addEventListener("mouseup", selectProjectOnClick);
   });
