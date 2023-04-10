@@ -6,7 +6,7 @@ pageContent.className = "content";
 body.appendChild(pageContent);
 
 const header = document.createElement("header");
-header.textContent = "hello";
+header.textContent = "Procrasti-Not";
 pageContent.appendChild(header);
 
 const projectElement = document.createElement("div");
@@ -14,9 +14,9 @@ projectElement.className = "projects-sidebar";
 pageContent.appendChild(projectElement);
 
 const projectsLegend = document.createElement("div");
-projectsLegend.className = 'project-legend'
-projectsLegend.textContent = "projects"
-projectElement.appendChild(projectsLegend)
+projectsLegend.className = "project-legend";
+projectsLegend.textContent = "projects";
+projectElement.appendChild(projectsLegend);
 
 const projectContainer = document.createElement("div");
 projectContainer.className = "project-container";
@@ -45,7 +45,7 @@ taskContainer.className = "task-container";
 taskElement.appendChild(taskContainer);
 
 const footer = document.createElement("footer");
-footer.textContent = "footer";
+footer.textContent = "© 2023 Manon Lef";
 pageContent.appendChild(footer);
 
 function removeChildNodes(parent) {
@@ -198,11 +198,11 @@ function taskForm() {
   });
 
   formContainer.addEventListener("focusout", (event) => {
-    console.log((event.relatedTarget))
+    console.log(event.relatedTarget);
     if (formContainer.contains(event.relatedTarget)) return;
     setTimeout(() => {
       resetTaskForm();
-    },150);
+    }, 150);
   });
 
   function resetTaskForm() {
@@ -279,7 +279,7 @@ function projectForm() {
   input.setAttribute("type", "text");
   input.setAttribute("name", "project");
   input.setAttribute("id", "project");
-  input.setAttribute("placeholder", "project name")
+  input.setAttribute("placeholder", "project name");
 
   const submit = document.createElement("button");
   submit.setAttribute("type", "submit");
@@ -292,7 +292,7 @@ function projectForm() {
   projectElement.appendChild(newProjectForm);
 
   input.addEventListener("blur", (event) => {
-    console.log(event)
+    console.log(event);
     // to prevent firing before submit in controller eventlistener
     setTimeout(() => {
       resetForm();

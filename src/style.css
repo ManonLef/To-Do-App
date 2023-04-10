@@ -18,7 +18,7 @@ body {
 .content {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 3rem auto 3rem;
+  grid-template-rows: 1fr 10fr 1fr;
   height: 100%;
   font-family: "Anuphan", sans-serif;
 
@@ -27,22 +27,22 @@ body {
   font-weight: 300;
 }
 
-header {
-  grid-area: 1/1/2/3;
+header,
+footer {
   background-color: rgba(255, 255, 255, 0.5);
   color: #bc3b96;
   font-weight: 600;
-  text-transform: uppercase;
   padding: 1rem;
+  text-align: center;
+  font-size: 22px;
+}
+
+header {
+  grid-area: 1/1/2/3;
 }
 
 footer {
   grid-area: 3/1/4/3;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #bc3b96;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 1rem;
 }
 
 /* sidebar styling */
@@ -311,7 +311,7 @@ select {
   .content {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 3rem auto 1fr 3rem;
+    grid-template-rows: 1fr auto 10fr 1fr;
   }
 
   .projects-sidebar {
