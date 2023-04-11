@@ -2,7 +2,7 @@
 
 ## Result
 [Try the Procrasti-Not app live here](https://manonlef.github.io/To-Do-App/)
-![Preview of my Procrasti-Not app](../resources-and-notes/to-do-preview.png)
+![Preview of my Procrasti-Not app](./resources-and-notes/to-do-preview.png)
 
 ## About this project
 For this Project it was required to build a functioning to-do app using a modular design pattern. I went for an ES6 modules oriented approach. Compared to the previous projects, this one is pretty lengthy. I used ESLint, Prettier, Webpack and tried implementing an MVC setup by doing some research about this.
