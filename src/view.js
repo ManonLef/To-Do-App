@@ -91,39 +91,43 @@ function projectForm() {
   newProjectForm.append(fieldsContainer);
   projectElement.appendChild(newProjectForm);
 
-  input.addEventListener("blur", () => {
-    // to prevent firing before submit in controller eventlistener
-    setTimeout(() => {
-      resetForm();
-    }, 150);
-  });
-
-  input.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-      setTimeout(() => {
-        resetForm();
-      }, 10);
-    }
-  });
-
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       resetForm();
     }
   });
 
-  function resetForm() {
+  submit.addEventListener("click", () => {
     hideProjectForm();
     showProjectIcon();
-  }
+  })
 }
 
+function resetForm() {
+  document.querySelector(".project-form").reset();
+  hideProjectForm();
+  showProjectIcon();
+}
+
+function focusListenProject(event) {
+  if (
+    event.target !== document.querySelector(".project-form") &&
+    event.target !== document.querySelector(".new-project-input-and-button") &&
+    event.target !== document.querySelector(".project") &&
+    event.target !== document.querySelector(".new-project-input") &&
+    event.target !== document.querySelector(".add-project-button")
+  ) {
+    resetForm();
+  }
+}
 function showProjectForm() {
+  document.addEventListener("mousedown", focusListenProject);
   document.querySelector(".project-form").removeAttribute("hidden");
   document.querySelector(".new-project-input").focus();
 }
 
 function hideProjectForm() {
+  document.removeEventListener("mousedown", focusListenProject);
   document.querySelector(".project-form").setAttribute("hidden", "true");
 }
 
@@ -289,6 +293,7 @@ function taskForm() {
 }
 
 function resetTaskForm() {
+  document.querySelector(".task-form").reset();
   hideTaskForm();
   showTaskIcon();
 }
