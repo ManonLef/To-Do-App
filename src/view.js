@@ -190,15 +190,44 @@ function taskForm() {
   const dueDiv = document.createElement("div");
   dueDiv.className = "due-date";
 
-  const dueLabel = document.createElement("label");
-  dueLabel.setAttribute("for", "due-date");
-  dueLabel.setAttribute("hidden", "true");
-  dueLabel.textContent = "due";
+  // const dueLabel = document.createElement("label");
+  // dueLabel.setAttribute("for", "due-date");
+  // dueLabel.setAttribute("hidden", "true");
+  // dueLabel.textContent = "due";
 
-  const inputDue = document.createElement("input");
-  inputDue.setAttribute("type", "date");
-  inputDue.setAttribute("name", "due-date");
-  inputDue.id = "due-date";
+  // const inputDue = document.createElement("input");
+  // inputDue.setAttribute("type", "date");
+  // inputDue.setAttribute("name", "due-date");
+  // inputDue.id = "due-date";
+
+  const upperSpan = document.createElement("span");
+  upperSpan.className = "datepicker-toggle";
+
+  const innerSpan = document.createElement("span");
+  innerSpan.className = "datepicker-toggle-button";
+
+  upperSpan.appendChild(innerSpan);
+
+  const date = document.createElement("input");
+  date.setAttribute("type", "date");
+  // date.setAttribute("value", taskObject.dueDate);
+  // date.setAttribute("data-taskID", taskObject.taskUuid);
+  date.setAttribute("name", "due-date");
+
+  date.id = "due-date";
+  date.className = "datepicker-input";
+  upperSpan.appendChild(date);
+  date.valueAsDate = new Date();
+
+  const dueDate = document.createElement("div");
+  dueDate.className = "render-date";
+  dueDate.textContent = date.value;
+
+  date.addEventListener("change", () => {
+    dueDate.textContent = date.value;
+  });
+
+  dueDiv.append(dueDate, upperSpan);
 
   const priorityDiv = document.createElement("div");
   priorityDiv.className = "priority";
@@ -235,7 +264,7 @@ function taskForm() {
   submit.textContent = "submit";
 
   taskDiv.append(taskLabel, inputTask);
-  dueDiv.append(dueLabel, inputDue);
+  // dueDiv.append(dueLabel, inputDue);
   prioritySelect.append(
     priorityOptionNone,
     priorityOptionOne,
