@@ -3,7 +3,7 @@ import _ from "lodash";
 import Vault from "./classes/vault";
 import Project from "./classes/project";
 import Task from "./classes/task"; 
-import * as defaultProjects from "../resources-and-notes/defaultProjects.json"
+import defaultProjects from "../resources-and-notes/defaultProjects.json"
 
 // start state
 

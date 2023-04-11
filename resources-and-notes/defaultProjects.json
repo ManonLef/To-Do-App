@@ -4,7 +4,7 @@
             "name": "Inbox",
             "projectTasks": [
                 {
-                    "checked": false,
+                    "checked": true,
                     "task": "This is your default project",
                     "dueDate": "",
                     "priority": "none",
@@ -12,7 +12,7 @@
                     "projectUuid": "1681196611150"
                 },
                 {
-                    "checked": false,
+                    "checked": true,
                     "task": "It's for fleeting tasks that don't belong to a project",
                     "dueDate": "",
                     "priority": "low",
@@ -20,11 +20,19 @@
                     "projectUuid": "1681196611150"
                 },
                 {
-                    "checked": false,
+                    "checked": true,
                     "task": "Browse through the other projects for inspiration",
                     "dueDate": "2023-11-30",
                     "priority": "medium",
                     "taskUuid": "1681197732082",
+                    "projectUuid": "1681196611150"
+                },
+                {
+                    "checked": false,
+                    "task": "Edit Task and Project Names by doublecklicking it",
+                    "dueDate": "2023-02-01",
+                    "priority": "high",
+                    "taskUuid": "1681223157636",
                     "projectUuid": "1681196611150"
                 }
             ],
