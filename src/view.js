@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-import trash from "../src/trash.svg"
+import trash from "./trash.svg"
 // static page content
 
 const body = document.querySelector("body");
