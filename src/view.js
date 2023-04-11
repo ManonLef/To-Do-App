@@ -1,5 +1,6 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
 import trash from "./trash.svg"
+import calendar from "./calendar.svg"
 // static page content
 
 const body = document.querySelector("body");
@@ -206,7 +207,8 @@ function taskForm() {
   const upperSpan = document.createElement("span");
   upperSpan.className = "datepicker-toggle";
 
-  const innerSpan = document.createElement("span");
+  const innerSpan = new Image();
+  innerSpan.src = calendar
   innerSpan.className = "datepicker-toggle-button";
 
   upperSpan.appendChild(innerSpan);
@@ -460,7 +462,8 @@ function createTaskElement(taskObject) {
   const upperSpan = document.createElement("span");
   upperSpan.className = "datepicker-toggle";
 
-  const innerSpan = document.createElement("span");
+  const innerSpan = new Image()
+  innerSpan.src = calendar
   innerSpan.className = "datepicker-toggle-button";
 
   upperSpan.appendChild(innerSpan);
