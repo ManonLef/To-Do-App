@@ -477,7 +477,7 @@ function createTaskElement(taskObject) {
   const deleteButton = document.createElement("img");
   deleteButton.setAttribute(
     "src",
-    "../src/trash.svg"
+    "../resources-and-notes/delete_forever_white_18dp.svg"
   );
   deleteButton.className = "delete-button";
   deleteButton.textContent = "delete";

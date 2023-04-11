@@ -14,13 +14,8 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
-        // type: 'asset/resource',
-        use: ['file-loader'],
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
