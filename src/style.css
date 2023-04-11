@@ -265,14 +265,13 @@ select {
 
 .new-task-form-container {
   display: grid;
-  grid-template-columns: 12fr 3fr 3fr 2fr;
+  grid-template-columns: 12fr 2fr 4fr 2fr;
   gap: 10px;
   padding: 0.5rem;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  align-self: center;
 }
 
 .task-form-check-task-container {

@@ -113,7 +113,6 @@ function projectForm() {
   });
 
   function resetForm() {
-    newProjectForm.reset();
     hideProjectForm();
     showProjectIcon();
   }
@@ -287,28 +286,49 @@ function taskForm() {
       resetTaskForm();
     }
   });
+}
 
-  formContainer.addEventListener("focusout", (event) => {
-    if (formContainer.contains(event.relatedTarget)) return;
-    setTimeout(() => {
-      resetTaskForm();
-    }, 150);
-  });
-
-  function resetTaskForm() {
-    newTaskForm.reset();
-    hideTaskForm();
-    showTaskIcon();
-  }
+function resetTaskForm() {
+  hideTaskForm();
+  showTaskIcon();
 }
 
 function showTaskForm() {
   document.querySelector(".task-form").removeAttribute("hidden");
   document.querySelector("#task").focus();
+  document.addEventListener("mousedown", focusListen);
+  // reset date to today
+  const due = document.querySelector("#due-date");
+  due.valueAsDate = new Date();
+  document.querySelector(".render-date").textContent = due.value;
+}
+
+// to add cross browser compatibility due to different form handling and form-events losing focus
+function focusListen(event) {
+  if (
+    event.target !== document.querySelector(".new-task-form-container") &&
+    event.target !== document.querySelector(".task-form") &&
+    event.target !==
+      document.querySelector(".task-form-check-task-container") &&
+    event.target !== document.querySelector("#checkbox") &&
+    event.target !== document.querySelector(".task") &&
+    event.target !== document.querySelector("#task") &&
+    event.target !== document.querySelector("#priority") &&
+    event.target !== document.querySelector(".priority") &&
+    event.target !== document.querySelector(".due-date") &&
+    event.target !== document.querySelector(".render-date") &&
+    event.target !== document.querySelector(".datepicker-toggle") &&
+    event.target !== document.querySelector(".datepicker-toggle-button") &&
+    event.target !== document.querySelector("#due-date") &&
+    event.target !== document.querySelector(".add-task-button")
+  ) {
+    resetTaskForm();
+  }
 }
 
 function hideTaskForm() {
   document.querySelector(".task-form").setAttribute("hidden", "true");
+  document.removeEventListener("click", focusListen);
 }
 
 function showTaskIcon() {
