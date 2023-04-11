@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/index.js",
   output: {
     filename: "main.js",
@@ -14,11 +14,13 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-        use: [
-          'file-loader',
-        ],
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        // type: 'asset/resource',
+        use: ['file-loader'],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,

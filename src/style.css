@@ -357,8 +357,3 @@ button:hover {
     grid-area: 4/1/5/2;
   }
 }
-
-.project-delete-button {
-  background: url("./delete_forever_white_18dp.svg");
-}
-
