@@ -358,3 +358,7 @@ button:hover {
   }
 }
 
+.project-delete-button {
+  background: url("./delete_forever_white_18dp.svg");
+}
+
