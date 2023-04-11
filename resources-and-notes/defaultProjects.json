@@ -1,0 +1,464 @@
+{
+    "array": [
+        {
+            "name": "Inbox",
+            "projectTasks": [
+                {
+                    "checked": false,
+                    "task": "This is your default project",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197674254",
+                    "projectUuid": "1681196611150"
+                },
+                {
+                    "checked": false,
+                    "task": "It's for fleeting tasks that don't belong to a project",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681197698431",
+                    "projectUuid": "1681196611150"
+                },
+                {
+                    "checked": false,
+                    "task": "Browse through the other projects for inspiration",
+                    "dueDate": "2023-11-30",
+                    "priority": "medium",
+                    "taskUuid": "1681197732082",
+                    "projectUuid": "1681196611150"
+                }
+            ],
+            "projectUuid": "1681196611150",
+            "default": "default"
+        },
+        {
+            "name": "Home Improvement",
+            "projectTasks": [
+                {
+                    "checked": false,
+                    "task": "Choose a paint color for the room",
+                    "dueDate": "2023-12-31",
+                    "priority": "high",
+                    "taskUuid": "1681196700634",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Purchase paint, brushes, and other necessary supplies",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681196709801",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Remove furniture from the room",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681196715776",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Clean the walls and repair any damage",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681196722008",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Apply primer to the walls",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681196727891",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Paint the walls and allow them to dry",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681196733414",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": false,
+                    "task": "Replace furniture and decor",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681196741832",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": true,
+                    "task": "Discuss Timeline",
+                    "dueDate": "2023-06-11",
+                    "priority": "high",
+                    "taskUuid": "1681196826647",
+                    "projectUuid": "1681196622587"
+                },
+                {
+                    "checked": true,
+                    "task": "Decide on which room to paint first",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681196845569",
+                    "projectUuid": "1681196622587"
+                }
+            ],
+            "projectUuid": "1681196622587"
+        },
+        {
+            "name": "Career",
+            "projectTasks": [
+                {
+                    "checked": true,
+                    "task": "Research the topic and gather information",
+                    "dueDate": "2023-04-01",
+                    "priority": "low",
+                    "taskUuid": "1681196885398",
+                    "projectUuid": "1681196629901"
+                },
+                {
+                    "checked": true,
+                    "task": "Create an outline or structure for the report/presentation",
+                    "dueDate": "2023-04-09",
+                    "priority": "medium",
+                    "taskUuid": "1681196891912",
+                    "projectUuid": "1681196629901"
+                },
+                {
+                    "checked": true,
+                    "task": "Write the first draft of the report/presentation",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681196899463",
+                    "projectUuid": "1681196629901"
+                },
+                {
+                    "checked": false,
+                    "task": "Edit and revise the report/presentation",
+                    "dueDate": "2023-05-18",
+                    "priority": "medium",
+                    "taskUuid": "1681196904941",
+                    "projectUuid": "1681196629901"
+                },
+                {
+                    "checked": false,
+                    "task": "Practice presenting the report/presentation",
+                    "dueDate": "2023-05-21",
+                    "priority": "none",
+                    "taskUuid": "1681196911579",
+                    "projectUuid": "1681196629901"
+                },
+                {
+                    "checked": false,
+                    "task": "Finalise the report/presentation and submit it to the relevant parties",
+                    "dueDate": "2023-06-16",
+                    "priority": "high",
+                    "taskUuid": "1681196923810",
+                    "projectUuid": "1681196629901"
+                }
+            ],
+            "projectUuid": "1681196629901"
+        },
+        {
+            "name": "Health and Wellness",
+            "projectTasks": [
+                {
+                    "checked": false,
+                    "task": "Research and choose a workout routine",
+                    "dueDate": "2023-07-01",
+                    "priority": "high",
+                    "taskUuid": "1681197039375",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": false,
+                    "task": "Purchase any necessary workout equipment or clothing",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681197046417",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": false,
+                    "task": "Schedule time for workouts in your calendar",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197052133",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": false,
+                    "task": "Plan and prepare healthy meals",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197060301",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": false,
+                    "task": "Create a meal plan and grocery list",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197065555",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": false,
+                    "task": "Practice mindfulness or meditation for a set amount of time each day",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197072384",
+                    "projectUuid": "1681196637009"
+                },
+                {
+                    "checked": true,
+                    "task": "Write down the pros and cons of living a healthier more balanced life",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681197105122",
+                    "projectUuid": "1681196637009"
+                }
+            ],
+            "projectUuid": "1681196637009"
+        },
+        {
+            "name": "Personal Development",
+            "projectTasks": [
+                {
+                    "checked": false,
+                    "task": "Choose a new programming language to learn",
+                    "dueDate": "",
+                    "priority": "high",
+                    "taskUuid": "1681197147133",
+                    "projectUuid": "1681196650713"
+                },
+                {
+                    "checked": false,
+                    "task": "Research learning resources",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681197170779",
+                    "projectUuid": "1681196650713"
+                }
+            ],
+            "projectUuid": "1681196650713"
+        },
+        {
+            "name": "Travel",
+            "projectTasks": [
+                {
+                    "checked": true,
+                    "task": "Research travel destinations and choose a location",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197204195",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": true,
+                    "task": "Research flights",
+                    "dueDate": "2023-05-11",
+                    "priority": "high",
+                    "taskUuid": "1681197221036",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": true,
+                    "task": "Research accomodations",
+                    "dueDate": "2023-05-24",
+                    "priority": "low",
+                    "taskUuid": "1681197229001",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": false,
+                    "task": "Book flights and accomodation",
+                    "dueDate": "2023-05-31",
+                    "priority": "high",
+                    "taskUuid": "1681197242838",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": false,
+                    "task": "Plan activities and create a travel itinerary",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197249186",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": false,
+                    "task": "Purchase any necessary travel gear or supplies",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681197255554",
+                    "projectUuid": "1681196656474"
+                },
+                {
+                    "checked": false,
+                    "task": "Research local customs and culture",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197262450",
+                    "projectUuid": "1681196656474"
+                }
+            ],
+            "projectUuid": "1681196656474"
+        },
+        {
+            "name": "Finances",
+            "projectTasks": [
+                {
+                    "checked": true,
+                    "task": "Create a budget for monthly expenses",
+                    "dueDate": "2023-01-01",
+                    "priority": "none",
+                    "taskUuid": "1681197354187",
+                    "projectUuid": "1681196662728"
+                },
+                {
+                    "checked": true,
+                    "task": "Identify areas where you can cut back on spending",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197360847",
+                    "projectUuid": "1681196662728"
+                },
+                {
+                    "checked": true,
+                    "task": "Set a savings goal and create a plan for achieving it",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681197367012",
+                    "projectUuid": "1681196662728"
+                },
+                {
+                    "checked": true,
+                    "task": "Track expenses and income in a spreadsheet or budgeting app",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197374134",
+                    "projectUuid": "1681196662728"
+                },
+                {
+                    "checked": false,
+                    "task": "Set a secondary savings goal",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681197457398",
+                    "projectUuid": "1681196662728"
+                }
+            ],
+            "projectUuid": "1681196662728"
+        },
+        {
+            "name": "Birthday Event",
+            "projectTasks": [
+                {
+                    "checked": true,
+                    "task": "Determine the guest list",
+                    "dueDate": "2023-03-01",
+                    "priority": "high",
+                    "taskUuid": "1681197508824",
+                    "projectUuid": "1681196673956"
+                },
+                {
+                    "checked": true,
+                    "task": "Send out invitations",
+                    "dueDate": "2023-03-02",
+                    "priority": "low",
+                    "taskUuid": "1681197515914",
+                    "projectUuid": "1681196673956"
+                },
+                {
+                    "checked": true,
+                    "task": "Plan menu",
+                    "dueDate": "2023-04-01",
+                    "priority": "none",
+                    "taskUuid": "1681197525939",
+                    "projectUuid": "1681196673956"
+                },
+                {
+                    "checked": false,
+                    "task": "Purchase food and drinks",
+                    "dueDate": "2023-04-28",
+                    "priority": "low",
+                    "taskUuid": "1681197534249",
+                    "projectUuid": "1681196673956"
+                },
+                {
+                    "checked": false,
+                    "task": "Create a timeline and assign tasks to helpers",
+                    "dueDate": "2023-04-02",
+                    "priority": "high",
+                    "taskUuid": "1681197554232",
+                    "projectUuid": "1681196673956"
+                }
+            ],
+            "projectUuid": "1681196673956"
+        },
+        {
+            "name": "Community Service",
+            "projectTasks": [],
+            "projectUuid": "1681196684478"
+        },
+        {
+            "name": "App Feature Ideas",
+            "projectTasks": [
+                {
+                    "checked": false,
+                    "task": "Add priority filter for task list",
+                    "dueDate": "",
+                    "priority": "high",
+                    "taskUuid": "1681197778457",
+                    "projectUuid": "1681197756913"
+                },
+                {
+                    "checked": false,
+                    "task": "Move tasks to a different project",
+                    "dueDate": "",
+                    "priority": "high",
+                    "taskUuid": "1681197794598",
+                    "projectUuid": "1681197756913"
+                },
+                {
+                    "checked": false,
+                    "task": "Drag projects to a new position",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197837352",
+                    "projectUuid": "1681197756913"
+                },
+                {
+                    "checked": false,
+                    "task": "Add Today's Project with deadline set to today for new tasks",
+                    "dueDate": "",
+                    "priority": "medium",
+                    "taskUuid": "1681197869081",
+                    "projectUuid": "1681197756913"
+                },
+                {
+                    "checked": false,
+                    "task": "Add Week view",
+                    "dueDate": "",
+                    "priority": "none",
+                    "taskUuid": "1681197876698",
+                    "projectUuid": "1681197756913"
+                },
+                {
+                    "checked": false,
+                    "task": "Add Multiple themes",
+                    "dueDate": "",
+                    "priority": "low",
+                    "taskUuid": "1681197938821",
+                    "projectUuid": "1681197756913"
+                }
+            ],
+            "projectUuid": "1681197756913"
+        }
+    ]
+}

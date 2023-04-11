@@ -2,7 +2,8 @@
 import _ from "lodash";
 import Vault from "./classes/vault";
 import Project from "./classes/project";
-import Task from "./classes/task";
+import Task from "./classes/task"; 
+import * as defaultProjects from "../resources-and-notes/defaultProjects.json"
 
 // start state
 
@@ -29,10 +30,14 @@ function retrieveLocalStorage() {
     const parsedArray = JSON.parse(str);
     addPrototype(parsedArray);
     vault.projects = parsedArray;
-    console.log(vault.projects);
     return vault.projects;
   }
-  return console.log("no local storage available");
+  // console.log("no local storage available, loading default projects");
+  const loadDefaults = defaultProjects.array;
+  addPrototype(loadDefaults);
+  vault.projects = loadDefaults;
+  addToStorage()
+  return vault.projects;
 }
 
 function addToStorage() {
@@ -113,10 +118,6 @@ function findTaskIndex(taskUuid) {
   );
   return taskIndex;
 }
-
-//  --------------------------------------------------------------------------
-//  |||||||||||||||||||||||||| • edit variables • ||||||||||||||||||||||||||||
-//  --------------------------------------------------------------------------
 
 // projects
 

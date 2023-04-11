@@ -180,7 +180,7 @@ Things to consider:
 - [x] create function(s) to edit a task 
   - [x] create function to edit checked status of a specific task
 - [x] function to change task priority
-- [ ] function to change dueDate
+- [x] function to change dueDate
 - [x] add color to task div based on priority
 
 
@@ -248,10 +248,23 @@ This seems to be caused by the form submit
 
 ## 20230409
 - I'm nearing the end of the styling for this project. 
-- [ ] BUG safari submit button does not work. 
+- [x] BUG safari submit button does not work. 
 - ^ could be triggering focusout perhaps instead of submit. Look into logging the event to find out
 
 - open project or task form: reset and close other form
 
-- ISSUE firefox loses focus on task form when date is clicked (opening calendar)
+- ISSUE firefox loses focus on task form when date is clicked (opening calendar) more info (less than a few months ago) [here](https://bugzilla.mozilla.org/show_bug.cgi?id=1812041)
 - ISSUE safari is losing focus on task form when checkbox is clicked
+
+- [ ] optional: format date and time displayed after input (consider minimum value of today as well for form input)
+- [x] optional: add option to prefill with some projects and tasks through a button in the header or something
+- [ ] add errors for local storage.
+
+## 20230411
+
+- ideas from this morning: 
+  - [ ] remove checkmark from task form (fixes safari issue)
+  - [ ] remove calendar icon from task form (fixes firefox issue)
+  - [ ] change focus out listener instead of the above to listen for a click everywhere but inside the form
+
+
