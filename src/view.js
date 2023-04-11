@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-
+import trashImg from "../resources-and-notes/delete_forever_white_18dp.svg";
 // static page content
 
 const body = document.querySelector("body");
@@ -381,12 +381,9 @@ function createProjectElements(project, currentProjectId) {
 
   // delete button (but not for default inbox)
   if (!project.default) {
-    const deleteButton = document.createElement("img");
+    const deleteButton = new Image;
     deleteButton.className = "project-delete-button";
-    deleteButton.setAttribute(
-      "src",
-      "../resources-and-notes/delete_forever_white_18dp.svg"
-    );
+    deleteButton.src = trashImg;
     deleteButton.setAttribute("data-projectID", project.projectUuid);
     projectDiv.appendChild(deleteButton);
   }
