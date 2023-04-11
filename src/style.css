@@ -201,7 +201,7 @@ select {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../resources-and-notes/edit_calendar_white_24dp.svg");
+  background-image: url("../src/calendar.svg");
 }
 
 .datepicker-input {

@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", { "functions": false }] */
-
+import trash from "../src/trash.svg"
 // static page content
 
 const body = document.querySelector("body");
@@ -381,14 +381,15 @@ function createProjectElements(project, currentProjectId) {
 
   // delete button (but not for default inbox)
   if (!project.default) {
-    const deleteButton = document.createElement("img");
-    deleteButton.className = "project-delete-button";
-    deleteButton.setAttribute(
-      "src",
-      "../src/trash.svg"
-    );
-    deleteButton.setAttribute("data-projectID", project.projectUuid);
+    const deleteButton = new Image()
+    deleteButton.src = trash
+    // deleteButton.setAttribute(
+    //   "src",
+    //   "../src/trash.svg"
+    // );
     projectDiv.appendChild(deleteButton);
+    deleteButton.className = "project-delete-button";
+    deleteButton.setAttribute("data-projectID", project.projectUuid);
   }
   // special class for currentProject
   if (currentProjectId === project.projectUuid) {
@@ -474,16 +475,13 @@ function createTaskElement(taskObject) {
 
   taskDiv.append(upperSpan);
 
-  const deleteButton = document.createElement("img");
-  deleteButton.setAttribute(
-    "src",
-    "../resources-and-notes/delete_forever_white_18dp.svg"
-  );
+  const deleteButton = new Image()
+  deleteButton.src = trash;
+  taskDiv.appendChild(deleteButton);
   deleteButton.className = "delete-button";
   deleteButton.textContent = "delete";
   deleteButton.setAttribute("data-taskID", taskObject.taskUuid);
-  taskDiv.appendChild(deleteButton);
-
+  
   // special classes for priority
   if (taskObject.priority === "low") {
     checkbox.classList.add("low-prio");
