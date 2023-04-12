@@ -45,7 +45,7 @@ The project is optimized for Chrome on a regular screen. Some mobile display adj
 ## Notes and Lessons Learned
 To be honest I'm not sure where to begin. This project was huge! It was a lot more code and new functionality to keep track of all at once. But I'll give it a shot and extract some of the main things worth a mention.
 
-- **Project Notes:** I've taken a lot of notes during this project with near-daily updates that can be found [here](../resources-and-notes/notes.md).
+- **Project Notes:** I've taken a lot of notes during this project with near-daily updates that can be found [here](./resources-and-notes/notes.md).
 
 - **MVC Pattern:** I spent a good amount of time planning out my code and trying to learn about the MVC pattern. I considered where I wanted every bit of my functionality to end up and which module would see what. Eventually I ended up with separate classes modules for vault, project and task. The **Model** handling all the data, data editing and storage. The **View** handling UI and UI change event listeners only, and the **Controller** delegating all the tasks that needed to be done after user interaction requiring data retrieval from the Model to send to the view and getting the required renders and the event listeners back in place. I can't be entirely sure this is a good implementation of the MVC, but it did make me think a lot more about scalability and modularity and organization of code.
 
