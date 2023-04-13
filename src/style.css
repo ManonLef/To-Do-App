@@ -318,7 +318,7 @@ select {
 
 .due-date {
   display: flex;
-  gap:10px;
+  gap: 10px;
   text-align: center;
   justify-content: flex-end;
 }
@@ -355,4 +355,21 @@ button:hover {
   footer {
     grid-area: 4/1/5/2;
   }
+}
+
+.project-legend,
+.task-legend,
+header,
+footer,
+.task-date,
+.render-date {
+  cursor:default;
+}
+
+.priority,
+#task-priority,
+.add-task-icon-container,
+.add-project-icon-container,
+img {
+  cursor:pointer;
 }
