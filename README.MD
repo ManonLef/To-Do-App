@@ -85,7 +85,7 @@ To be honest I'm not sure where to begin. This project was huge! It was a lot mo
 - [ ] mobile responsive update
 - [ ] add different theme options (including a higher contrast one)
 - [ ] flag over-due (credit: suggestion by Moomins on discord)
-- [x] edit cursor behavior on non-editable vs interactive content *fixed in* commit 7771b68
+- [x] edit cursor behavior on non-editable vs interactive content [*fixed in commit 7771b68*](https://github.com/ManonLef/To-Do-App/commit/7771b68c8a3e064d69a159cef90cf6f51eda1db3)
 
 
 
